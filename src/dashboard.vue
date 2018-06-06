@@ -8,21 +8,24 @@
             <v-layout row wrap>
 
                <v-flex d-flex md3>
-                  <v-card color="red" dark>
-                     <v-card-title  primary class="title">Waste <v-spacer></v-spacer>  <v-icon right>{{ lorem.waste.icon }}</v-icon></v-card-title>
-                     <v-card-text >{{ lorem.waste.title1.slice(0, 90) }}
-                           <h2  style="display:inline">  {{ lorem.waste.value1}}</h2>
+                  <v-card :color="waste.color" dark>
+                     <v-card-title primary class="title">Waste
+                        <v-spacer></v-spacer>
+                        <v-icon>fa-trash</v-icon>
+                     </v-card-title>
+                     <v-card-text>
+                        <span class="title">Containers full: </span> <span class="headline">{{ waste.value }}%</span>
                      </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md3 >
-                  <v-card color="pink" dark  >
+                  <v-card color="pink" dark >
                      <v-card-title primary class="title">Parkings <v-spacer></v-spacer>  <v-icon right>{{ lorem.parking.icon }}</v-icon></v-card-title>
                      <v-card-text >
-                            {{ lorem.parking.title1.slice(0, 90) }}<h2  style="display:inline">{{ lorem.parking.value1 }}</h2> <br>    
+                            {{ lorem.parking.title1.slice(0, 90) }}<h2  style="display:inline">{{ lorem.parking.value1 }}</h2> <br>
                             {{ lorem.parking.title2.slice(0, 90) }}<h2  style="display:inline">{{ lorem.parking.value2 }}</h2>
                      </v-card-text>
-                 
+
                   </v-card>
                </v-flex>
 
@@ -50,7 +53,6 @@
                      <v-flex d-flex md12>
                         <v-card color="blue" dark>
                            <v-card-title primary class="title">Map</v-card-title>
-                            <iframe width=100% height=60% src="/static/maptest.html"></iframe>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -114,25 +116,60 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-
 export default {
   data: () => ({
-     lorem: {
-     waste:{title1:"Containers full: ", value1:"24%", icon:"fa-trash fa-lg"},
-     parking:{title1:"Free: ", value1:"60%", title2: "Parked cars/hour: ",value2:"230",  title3: " Average park time:", value3: 10, title4: "revenue today: ", 
-     value4: " 12.5 тыс.р/час",icon:"fa-car fa-5x"},
-     sl:{title1:"Lamps power-on: ", value1: "40/400" , title2:"incidents", value2: 15, title3:"Current  consumption: ", value3:" 500Wh ",icon:"fa-lightbulb"},
-     video:{title:"Selected camera stream", icon:"fa-video"},
-     map:{title:"Карта"},
-     meters:{title1:"Households equiped: ", value1:"20%", title2:"Current consumption:", value2:"500Wh:", title3:"Incidents:", value3: 0, icon:"fa-tachometer-alt"},
-     air:{title:"Air quality grade: ", grade: "1",icon:"fa-tree"},
-     weather:{title:"Forecast", weathericon: "fa-cloud", temperature: "+23C", icon:"fa-cloud"},
-     power:{title1:"Corent consumption: ", value1: "90Wh", title2:"incidents: ", value2: 0, icon:"fa-chart-line" }
-
+    waste: {
+      value: "24",
+      color: "green lighten-1"
+    },
+    lorem: {
+      parking: {
+        title1: "Free: ",
+        value1: "60%",
+        title2: "Parked cars/hour: ",
+        value2: "230",
+        title3: " Average park time:",
+        value3: 10,
+        title4: "revenue today: ",
+        value4: " 12.5 тыс.р/час",
+        icon: "fa-car fa-5x"
+      },
+      sl: {
+        title1: "Lamps power-on: ",
+        value1: "40/400",
+        title2: "incidents",
+        value2: 15,
+        title3: "Current  consumption: ",
+        value3: " 500Wh ",
+        icon: "fa-lightbulb"
+      },
+      video: { title: "Selected camera stream", icon: "fa-video" },
+      map: { title: "Карта" },
+      meters: {
+        title1: "Households equiped: ",
+        value1: "20%",
+        title2: "Current consumption:",
+        value2: "500Wh:",
+        title3: "Incidents:",
+        value3: 0,
+        icon: "fa-tachometer-alt"
+      },
+      air: { title: "Air quality grade: ", grade: "1", icon: "fa-tree" },
+      weather: {
+        title: "Forecast",
+        weathericon: "fa-cloud",
+        temperature: "+23C",
+        icon: "fa-cloud"
+      },
+      power: {
+        title1: "Corent consumption: ",
+        value1: "90Wh",
+        title2: "incidents: ",
+        value2: 0,
+        icon: "fa-chart-line"
       }
-  }),
-
-
+    }
+  })
 };
 </script>
 
