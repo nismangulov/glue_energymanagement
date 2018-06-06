@@ -53,8 +53,7 @@
             <v-list-tile
               v-for="(child, i) in item.children"
               :key="i"
-              @click=""
-               :to="{path: item.path + '/' + child.path}"
+               :to="{path: child.path}"
             >
               <v-list-tile-action v-if="child.icon">
                 <v-icon small class="ml-2">{{ child.icon }}</v-icon>
@@ -66,7 +65,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else :key="item.text" @click="" :to="{path: item.path}">
+          <v-list-tile v-else :key="item.text" :to="{path: item.path}">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -116,17 +115,17 @@ export default {
         children: [
           {
             icon: "fa-map",
-            path: "map",
+            path: "/eco_monitoring/map",
             text: "Map"
           },
           {
             icon: "fa-th-list",
-            path: "stations",
+            path: "/eco_monitoring/stations",
             text: "Stations"
           },
           {
             icon: "fa-calendar-alt",
-            path: "history",
+            path: "/eco_monitoring/history",
             text: "Historical data"
           }
         ]
@@ -139,12 +138,12 @@ export default {
         children: [
           {
             icon: "fa-chart-line",
-            path: "stat",
+            path: "/parking/stat",
             text: "Statistic"
           },
           {
             icon: "fa-map",
-            path: "map",
+            path: "/parking/map",
             text: "Map"
           }
         ]
@@ -157,12 +156,12 @@ export default {
         children: [
           {
             icon: "fa-sliders-h",
-            path: "main",
+            path: "/lighting/main",
             text: "Main"
           },
           {
             icon: "fa-external-link-square-alt",
-            path: "unilight",
+            path: "/lighting/unilight",
             text: "Unilight"
           }
         ]
@@ -175,12 +174,12 @@ export default {
         children: [
           {
             icon: "fa-key",
-            path: "acs-lora",
+            path: "/safety/acs_lora",
             text: "Access Control System"
           },
           {
             icon: "fa-video",
-            path: "video",
+            path: "/safety/video",
             text: "Video analitics"
           }
         ]
@@ -193,17 +192,17 @@ export default {
         children: [
            {
             icon: "fa-compress",
-            path: "meters",
+            path: "/metering/meters",
             text: "Meters"
           },
           {
             icon: "fa-external-link-square-alt",
-            path: "linergo",
+            path: "/metering/linergo",
             text: "Linergo"
           },
           {
             icon: "fa-external-link-square-alt",
-            path: "gascloud",
+            path: "/metering/gascloud",
             text: "Gascloud"
           }
         ]
@@ -216,12 +215,12 @@ export default {
         children: [
            {
             icon: "fa-chart-line",
-            path: "stat",
+            path: "/energy/stat",
             text: "Statistic"
           },
           {
             icon: "fa-exclamation-triangle",
-            path: "incidents",
+            path: "/energy/incidents",
             text: "Incidents"
           }
         ]
@@ -234,17 +233,17 @@ export default {
         children: [
            {
             icon: "fa-chart-line",
-            path: "stat",
+            path: "/waste/stat",
             text: "Statistic"
           },
           {
             icon: "fa-th-list",
-            path: "сontainers",
+            path: "/waste/сontainers",
             text: "Сontainers"
           },
           {
             icon: "fa-calendar-alt",
-            path: "plannicg",
+            path: "/waste/planning",
             text: "Planning"
           }
         ]
