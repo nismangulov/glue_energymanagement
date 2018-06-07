@@ -15,28 +15,41 @@
                      </v-card-text>
                   </v-card>
                </v-flex>
-               <v-flex d-flex md3 >
-                  <v-card color="pink" dark >
-                     <v-card-title primary class="title">Parkings <v-spacer></v-spacer>  <v-icon right>{{ lorem.parking.icon }}</v-icon></v-card-title>
-                     <v-card-text >
-                            {{ lorem.parking.title1.slice(0, 90) }}<h2  style="display:inline">{{ lorem.parking.value1 }}</h2> <br>
-                            {{ lorem.parking.title2.slice(0, 90) }}<h2  style="display:inline">{{ lorem.parking.value2 }}</h2>
+               <v-flex d-flex md3>
+                  <v-card :color="parking.color" dark>
+                     <v-card-title primary class="title">Parking
+                        <v-spacer></v-spacer>
+                        <v-icon>fa-car</v-icon>
+                     </v-card-title>
+                     <v-card-text>
+                        <span class="title">Free: </span> <span class="headline">{{ parking.value1 }}%</span><br>
+                        <span class="title">Avg park time: </span> <span class="headline">{{ parking.value2 }}min</span>
                      </v-card-text>
-
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card color="purple" dark>
-                     <v-card-title primary class="title">Smart lighting <v-spacer></v-spacer>  <v-icon right>{{ lorem.sl.icon }}</v-icon></v-card-title>
-                     <v-card-text>{{ lorem.sl.title1.slice(0, 100) }}<h2  style="display:inline">  {{ lorem.sl.value1}}</h2></v-card-text>
+                  <v-card :color="sl.color" dark>
+                     <v-card-title primary class="title">Smart Lighting
+                        <v-spacer></v-spacer>
+                        <v-icon>fa-lightbulb</v-icon>
+                     </v-card-title>
+                     <v-card-text>
+                        <span class="title">Lamps on: </span><span class="headline">{{ sl.value1 }}</span><br>
+                        <span class="title">Consumption: </span><span class="headline">{{ sl.value2 }}Wh</span>
+                     </v-card-text>
                   </v-card>
-               </v-flex>
+               </v-flex>  
                <v-flex d-flex md3>
-                  <v-card color="indigo" dark>
-                     <v-card-title primary class="title">Video<v-spacer></v-spacer>  <v-icon right>{{ lorem.video.icon }}</v-icon></v-card-title>
-                     <v-card-text>{{ lorem.video.title.slice(0, 100) }}</v-card-text>
+                  <v-card :color="video.color" dark>
+                     <v-card-title primary class="title">Video
+                        <v-spacer></v-spacer>
+                        <v-icon>fa-video</v-icon>
+                     </v-card-title>
+                     <v-card-text>
+                        <span class="caption">Selected camera stream </span> 
+                     </v-card-text>
                   </v-card>
-               </v-flex>
+               </v-flex>       
             </v-layout>
       </v-flex>
       <v-flex d-flex md8>
@@ -60,46 +73,66 @@
                            <v-flex class="fix-layout" d-flex md12>
                               <v-layout class="fix-layout" row wrap>
                                  <v-flex d-flex md6>
-                                    <v-card color="green" dark>
-                                       <v-card-title primary class="title">Meters<v-spacer></v-spacer>  <v-icon right>{{ lorem.meters.icon }}</v-icon></v-card-title>
-                                       <v-card-text>{{ lorem.meters.title1.slice(0, 100) }}<h2  style="display:inline">{{ lorem.meters.value1 }}</h2> </v-card-text>
-                                    </v-card>
+                                      <v-card :color="meters.color" dark>
+                                   <v-card-title primary class="title">Meters
+                                     <v-spacer></v-spacer>
+                                     <v-icon>fa-tachometer-alt</v-icon>
+                                   </v-card-title>
+                              <v-card-text>
+                                <span class="title">Households in: </span> <span class="headline">{{ meters.value1 }}%</span><br>
+                                <span class="title">Consumption: </span> <span class="headline">{{ meters.value2 }}Wh</span>
+                            </v-card-text>
+                              </v-card>
                                  </v-flex>
                                  <v-flex d-flex md6>
                                     <v-layout class="fix-layout" row wrap>
-                                 <v-flex d-flex md6>
-                                    <v-card color="orange" dark >
-                                       <v-card-title primary class="title">AirMeters  <v-icon right>{{ lorem.air.icon }}</v-icon></v-card-title>
-                                       <v-card-text >{{ lorem.air.title.slice(0, 50) }}<h2 style="display:inline" >  {{ lorem.air.grade}}</h2></v-card-text>
-                                    </v-card>
-                                       </v-flex>
-                                       <v-flex d-flex md6>
-                                    <v-card color="lime" dark>
-                                       <v-card-title primary class="title">Weather <v-icon right>{{ lorem.weather.icon }}</v-icon></v-card-title>
-                                       <v-card-text>{{ lorem.weather.title.slice(0, 50) }}<h2 >  {{ lorem.weather.temperature}}</h2></v-card-text>
-                                    </v-card>
-                                 </v-flex>
+                                      <v-flex d-flex md6>
+                                        <v-card :color="air.color" dark>
+                                          <v-card-title primary class="title">Air 
+                                            <v-spacer></v-spacer>
+                                            <v-icon>fa-tree</v-icon>
+                                          </v-card-title>
+                                          <v-card-text>
+                                            <span class="title">Quality grade: </span> <span class="headline">{{ air.value1 }}</span>
+                                          </v-card-text>
+                                       </v-card>
+                                      </v-flex>
+                                      <v-flex d-flex md6>
+                                        <v-card :color="weather.color" dark>
+                                          <v-card-title primary class="title">
+                                            <v-spacer></v-spacer>
+                                            <v-icon>fa-cloud</v-icon>
+                                          </v-card-title>
+                                          <v-card-text>
+                                            <span class="title">Weather </span> <span class="headline">{{ weather.value1 }}C</span>
+                                          </v-card-text>
+                                       </v-card>
+                                      </v-flex>
                                     </v-layout>
                                  </v-flex>
-                              </v-layout>
+                               </v-layout>
                               </v-flex>
                         </v-layout>
                      </v-flex>
                      <v-flex class="move-top" d-flex md6>
                         <v-layout class="fix-layout-large" row wrap>
-                              <v-flex d-flex md12>
-                                    <v-card color="teal" dark>
-                                       <v-card-title primary class="title">Power<v-spacer></v-spacer>  <v-icon right>{{ lorem.power.icon }}</v-icon></v-card-title>
-                                              <v-card-text>{{ lorem.power.title1.slice(0, 100) }}<h2 style="display:inline">{{ lorem.power.value1 }}</h2><br>
-                                              {{ lorem.power.title2.slice(0, 90) }}<h2  style="display:inline">{{ lorem.power.value2 }}</h2>
-                                       </v-card-text>
-                                    </v-card>
-                                 </v-flex>
-                        </v-layout>
-                              </v-flex>
+                           <v-flex d-flex md12>
+                             <v-card :color="power.color" dark  v-on:mouseenter="show=true"  v-on:mouseleave="show=false" >
+                               <v-card-title primary class="title">Power
+                                 <v-spacer></v-spacer>
+                                 <v-icon v-show="false">fa-chart-bar</v-icon>
+                               </v-card-title>
+                               <v-card-text>
+                                 <span class="title">Consumption: </span> <span class="headline">{{ power.value1 }}GWh</span><br>
+                                 <span class="title">Incidents: </span> <span class="headline">{{ power.value2 }}</span>
+                               </v-card-text>
+                               </v-card>
+                            </v-flex>
                         </v-layout>
                      </v-flex>
-                  </v-layout>
+                   </v-layout>
+              </v-flex>
+           </v-layout>
          </v-flex>
    </v-layout>
 </v-container>
@@ -126,57 +159,46 @@ export default {
       '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     marker: L.latLng(55.755826, 37.6172999),
     waste: {
-      value: "24",
+      value: 24,
       color: "green lighten-1"
     },
-    lorem: {
-      parking: {
-        title1: "Free: ",
-        value1: "60%",
-        title2: "Parked cars/hour: ",
-        value2: "230",
-        title3: " Average park time:",
-        value3: 10,
-        title4: "revenue today: ",
-        value4: " 12.5 тыс.р/час",
-        icon: "fa-car fa-5x"
+    parking: {
+      value1: 61,
+      value2: 18,
+      color: "green lighten-1"
       },
-      sl: {
-        title1: "Lamps power-on: ",
-        value1: "40/400",
-        title2: "incidents",
-        value2: 15,
-        title3: "Current  consumption: ",
-        value3: " 500Wh ",
-        icon: "fa-lightbulb"
+    sl: {
+      value1: "40/400",
+      value2: 527,
+      color: "green lighten-1"
+      },  
+    video: { 
+      color: "green lighten-1"
       },
-      video: { title: "Selected camera stream", icon: "fa-video" },
-      map: { title: "Карта" },
-      meters: {
-        title1: "Households equiped: ",
-        value1: "20%",
-        title2: "Current consumption:",
-        value2: "500Wh:",
-        title3: "Incidents:",
-        value3: 0,
-        icon: "fa-tachometer-alt"
+    meters: {
+      value1: "21",
+      value2: "473",
+      color: "green lighten-1"
       },
-      air: { title: "Air quality grade: ", grade: "1", icon: "fa-tree" },
-      weather: {
-        title: "Forecast",
-        weathericon: "fa-cloud",
-        temperature: "+23C",
-        icon: "fa-cloud"
+    air: {
+      value1: "1",
+      color: "green lighten-1"
       },
-      power: {
-        title1: "Corent consumption: ",
-        value1: "90Wh",
-        title2: "incidents: ",
-        value2: 0,
-        icon: "fa-chart-line"
-      }
-    }
-  })
+    weather: {
+      value1: "+23",
+      color: "green lighten-1"
+      },
+    power: {
+      value1: "90",
+      value2: 0,
+      color: "green lighten-1"
+      },
+      show: false
+  }),
+
+  methods : {
+   
+  }
 };
 </script>
 
