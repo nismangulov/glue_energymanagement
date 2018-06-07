@@ -1,12 +1,9 @@
 <template>
-
 <v-container grid-list-md fill-height>
 
    <v-layout column>
       <v-flex d-flex md4>
-         <v-flex d-flex md12>
-            <v-layout row wrap>
-
+            <v-layout class="fix-layout" row wrap>
                <v-flex d-flex md3>
                   <v-card :color="waste.color" dark>
                      <v-card-title primary class="title">Waste
@@ -28,14 +25,12 @@
 
                   </v-card>
                </v-flex>
-
                <v-flex d-flex md3>
                   <v-card color="purple" dark>
                      <v-card-title primary class="title">Smart lighting <v-spacer></v-spacer>  <v-icon right>{{ lorem.sl.icon }}</v-icon></v-card-title>
                      <v-card-text>{{ lorem.sl.title1.slice(0, 100) }}<h2  style="display:inline">  {{ lorem.sl.value1}}</h2></v-card-text>
                   </v-card>
                </v-flex>
-
                <v-flex d-flex md3>
                   <v-card color="indigo" dark>
                      <v-card-title primary class="title">Video<v-spacer></v-spacer>  <v-icon right>{{ lorem.video.icon }}</v-icon></v-card-title>
@@ -43,12 +38,10 @@
                   </v-card>
                </v-flex>
             </v-layout>
-         </v-flex>
       </v-flex>
-
       <v-flex d-flex md8>
+            <v-layout row wrap>
          <v-flex d-flex md6>
-
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="blue" dark>
@@ -61,34 +54,37 @@
                   <v-layout column>
                      <v-flex d-flex md6>
                         <v-layout row wrap>
-                              <v-flex d-flex md12>
-
+                           <v-flex class="fix-layout" d-flex md12>
+                              <v-layout class="fix-layout" row wrap>
                                  <v-flex d-flex md6>
                                     <v-card color="green" dark>
                                        <v-card-title primary class="title">Meters<v-spacer></v-spacer>  <v-icon right>{{ lorem.meters.icon }}</v-icon></v-card-title>
                                        <v-card-text>{{ lorem.meters.title1.slice(0, 100) }}<h2  style="display:inline">{{ lorem.meters.value1 }}</h2> </v-card-text>
                                     </v-card>
                                  </v-flex>
-
+                                 <v-flex d-flex md6>
+                                    <v-layout class="fix-layout" row wrap>
                                  <v-flex d-flex md6>
                                     <v-card color="orange" dark >
                                        <v-card-title primary class="title">AirMeters  <v-icon right>{{ lorem.air.icon }}</v-icon></v-card-title>
                                        <v-card-text >{{ lorem.air.title.slice(0, 50) }}<h2 style="display:inline" >  {{ lorem.air.grade}}</h2></v-card-text>
                                     </v-card>
+                                       </v-flex>
+                                       <v-flex d-flex md6>
                                     <v-card color="lime" dark>
                                        <v-card-title primary class="title">Weather <v-icon right>{{ lorem.weather.icon }}</v-icon></v-card-title>
                                        <v-card-text>{{ lorem.weather.title.slice(0, 50) }}<h2 >  {{ lorem.weather.temperature}}</h2></v-card-text>
                                     </v-card>
                                  </v-flex>
-
+                                    </v-layout>
+                                 </v-flex>
+                              </v-layout>
                               </v-flex>
                         </v-layout>
                      </v-flex>
-                     <v-flex d-flex md6>
-                        <v-layout row wrap>
+                     <v-flex class="move-top" d-flex md6>
+                        <v-layout class="fix-layout-large" row wrap>
                               <v-flex d-flex md12>
-
-                                 <v-flex d-flex md12>
                                     <v-card color="teal" dark>
                                        <v-card-title primary class="title">Power<v-spacer></v-spacer>  <v-icon right>{{ lorem.power.icon }}</v-icon></v-card-title>
                                               <v-card-text>{{ lorem.power.title1.slice(0, 100) }}<h2 style="display:inline">{{ lorem.power.value1 }}</h2><br>
@@ -96,18 +92,14 @@
                                        </v-card-text>
                                     </v-card>
                                  </v-flex>
-
+                        </v-layout>
                               </v-flex>
                         </v-layout>
                      </v-flex>
                   </v-layout>
-
          </v-flex>
-      </v-flex>
    </v-layout>
 </v-container>
-
-
 </template>
 
 <script>
@@ -173,4 +165,16 @@ export default {
 };
 </script>
 
+<style>
+   .container.fill-height .layout.fix-layout {
+      height: calc(100% + 8px)
+   }
 
+   .container.fill-height .layout.fix-layout-large {
+      height: calc(100% + 16px)
+   }
+
+   .move-top {
+      margin-top: -8px;
+   }
+</style>
