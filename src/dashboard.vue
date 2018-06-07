@@ -5,7 +5,7 @@
       <v-flex d-flex md4>
             <v-layout class="fix-layout" row wrap>
                <v-flex d-flex md3>
-                  <v-card :color="waste.color" dark>
+                  <v-card :color="waste.color" dark to="/waste/stat">
                      <v-card-title primary class="title">Waste
                         <v-spacer></v-spacer>
                         <v-icon>fa-trash</v-icon>
@@ -16,7 +16,7 @@
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card :color="parking.color" dark>
+                  <v-card :color="parking.color" dark to="/parking/stat ">
                      <v-card-title primary class="title">Parking
                         <v-spacer></v-spacer>
                         <v-icon>fa-car</v-icon>
@@ -28,7 +28,7 @@
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card :color="lamps.color" dark>
+                  <v-card :color="lamps.color" dark to="/lighting/main">
                      <v-card-title primary class="title">Smart Lighting
                         <v-spacer></v-spacer>
                         <v-icon>fa-lightbulb</v-icon>
@@ -40,7 +40,7 @@
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card :color="video.color" dark>
+                  <v-card :color="video.color" dark to="/safety/video">
                      <v-card-title primary class="title">Video
                         <v-spacer></v-spacer>
                         <v-icon>fa-video</v-icon>
@@ -73,7 +73,7 @@
                            <v-flex class="fix-layout" d-flex md12>
                               <v-layout class="fix-layout" row wrap>
                                  <v-flex d-flex md6>
-                                      <v-card :color="meters.color" dark>
+                                      <v-card :color="meters.color" dark to="/metering/meters">
                                    <v-card-title primary class="title">Meters
                                      <v-spacer></v-spacer>
                                      <v-icon>fa-tachometer-alt</v-icon>
@@ -87,7 +87,7 @@
                                  <v-flex d-flex md6>
                                     <v-layout class="fix-layout" row wrap>
                                       <v-flex d-flex md6>
-                                        <v-card :color="air.color" dark>
+                                        <v-card :color="air.color" dark to="/eco_monitoring/stations">
                                           <v-card-title primary class="title">Air
                                             <v-spacer></v-spacer>
                                             <v-icon>fa-tree</v-icon>
@@ -98,7 +98,7 @@
                                        </v-card>
                                       </v-flex>
                                       <v-flex d-flex md6>
-                                        <v-card :color="weather.color" dark>
+                                        <v-card :color="weather.color" dark to="/eco_monitoring/stations">
                                           <v-card-title primary class="title">
                                             <v-spacer></v-spacer>
                                             <v-icon>fa-cloud</v-icon>
@@ -117,10 +117,10 @@
                      <v-flex class="move-top" d-flex md6>
                         <v-layout class="fix-layout-large" row wrap>
                            <v-flex d-flex md12>
-                             <v-card :color="power.color" dark  v-on:mouseenter="show=true"  v-on:mouseleave="show=false" >
+                             <v-card :color="power.color" dark to="/energy/stat">
                                <v-card-title primary class="title">Power
                                  <v-spacer></v-spacer>
-                                 <v-icon v-show="false">fa-chart-bar</v-icon>
+                                 <v-icon>fa-chart-bar</v-icon>
                                </v-card-title>
                                <v-card-text>
                                  <span class="title">Consumption: </span> <span class="headline">{{ power.value }}GWh</span><br>
@@ -195,7 +195,6 @@ export default {
       incidents: 0,
       color: "green lighten-1"
     },
-    show: false
   })
 };
 </script>

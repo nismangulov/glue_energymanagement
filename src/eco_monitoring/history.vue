@@ -1,8 +1,14 @@
 <template>
-   <v-container>
+   <v-container fill-height>
       <v-layout row wrap>
-         <div class="title text-xs-center">{{ $route.path, $route.name }}</div>
-
+         <v-flex d-flex md12>
+            <v-card color="green" dark>
+               <v-card-title primary class="title">{{$route.path}}
+               </v-card-title>
+               <v-card-text>
+               </v-card-text>
+            </v-card>
+         </v-flex>
       </v-layout>
    </v-container>
 </template>
@@ -17,13 +23,17 @@ Vue.use(VueAxios, Axios);
 
 export default {
   data: () => ({
-  }),
 
+  }),
 };
 </script>
 
 
 <style>
+
+.fill-height {
+  height: 100%;
+}
 
 </style>
 

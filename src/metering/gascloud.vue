@@ -1,9 +1,6 @@
 <template>
-   <v-container>
-      <v-layout row wrap>
-         <div class="title text-xs-center">{{ $route.path, $route.name }}</div>
-
-      </v-layout>
+   <v-container fill-height>
+         <iframe :src="src" class="iframe-size"></iframe>
    </v-container>
 </template>
 
@@ -17,13 +14,25 @@ Vue.use(VueAxios, Axios);
 
 export default {
   data: () => ({
-
+     src: "https://gascloud.ru/"
   }),
 };
 </script>
 
 
 <style>
+
+.fill-height {
+  height: 100%;
+  padding: 0px;
+  padding-top: 2px;
+}
+
+.iframe-size {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
 
 </style>
 
