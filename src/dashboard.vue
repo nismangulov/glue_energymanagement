@@ -45,7 +45,10 @@
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="blue" dark>
-                           <v-card-title primary class="title">Map</v-card-title>
+                           <l-map :zoom="zoom" :center="center">
+                              <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+                              <l-marker :lat-lng="marker"></l-marker>
+                           </l-map>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -106,10 +109,22 @@
 import Vue from "vue";
 import Axios from "axios";
 import VueAxios from "vue-axios";
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 Vue.use(VueAxios, Axios);
 
 export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker
+  },
   data: () => ({
+    zoom: 13,
+    center: L.latLng(55.755826, 37.6172999),
+    url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+    attribution:
+      '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    marker: L.latLng(55.755826, 37.6172999),
     waste: {
       value: "24",
       color: "green lighten-1"
@@ -166,15 +181,17 @@ export default {
 </script>
 
 <style>
-   .container.fill-height .layout.fix-layout {
-      height: calc(100% + 8px)
-   }
+@import "../node_modules/leaflet/dist/leaflet.css";
 
-   .container.fill-height .layout.fix-layout-large {
-      height: calc(100% + 16px)
-   }
+.container.fill-height .layout.fix-layout {
+  height: calc(100% + 8px);
+}
 
-   .move-top {
-      margin-top: -8px;
-   }
+.container.fill-height .layout.fix-layout-large {
+  height: calc(100% + 16px);
+}
+
+.move-top {
+  margin-top: -8px;
+}
 </style>
