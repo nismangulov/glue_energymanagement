@@ -15,9 +15,8 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
-
 export default {
-     components: {
+  components: {
     LMap,
     LTileLayer,
     LMarker
@@ -30,14 +29,13 @@ export default {
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       marker: L.latLng(55.755826, 37.6172999)
-    },
-  }),
+    }
+  })
 };
 </script>
 
 
 <style>
-
 .fill-height {
   height: 100%;
   padding: 0px;
@@ -49,10 +47,8 @@ export default {
   width: 100%;
   border: none;
 }
-
 </style>
 
 
 <style scoped>
-
 </style>

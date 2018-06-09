@@ -1,6 +1,6 @@
 <template>
    <v-container fill-height>
-         <iframe :src="src" class="iframe-size"></iframe>
+      <iframe :src="src" class="iframe-size"></iframe>
    </v-container>
 </template>
 
@@ -11,17 +11,15 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-
 export default {
   data: () => ({
-     src: "https://unilight.su/"
-  }),
+    src: "https://unilight.su/"
+  })
 };
 </script>
 
 
 <style>
-
 .fill-height {
   height: 100%;
   padding: 0px;
@@ -33,10 +31,8 @@ export default {
   width: 100%;
   border: none;
 }
-
 </style>
 
 
 <style scoped>
-
 </style>

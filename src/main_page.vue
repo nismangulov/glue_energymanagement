@@ -1,32 +1,13 @@
 <template lang=html>
   <v-app id="inspire">
-
-<!--    <v-navigation-drawer fixed app clipped disable-resize-watcher permanent touchless width=200>
-      <v-list dense>
-         <v-list-tile v-for="menuitem in menuitems" :to="{path: menuitem.path}">
-               <v-list-tile-action>
-                  <v-icon :color="menuitem.color">{{ menuitem.icon }}</v-icon>
-               </v-list-tile-action>
-               <v-list-tile-content>
-                  <v-list-tile-title>{{menuitem.name}}</v-list-tile-title>
-               </v-list-tile-content>
-         </v-list-tile>
-      </v-list>
-   </v-navigation-drawer> -->
-
        <v-navigation-drawer
       :clipped="$vuetify.breakpoint.lgAndUp"
       v-model="drawer"
-      fixed app clipped disable-resize-watcher permanent touchless width=250
+      fixed app disable-resize-watcher permanent touchless width=250
     >
       <v-list dense>
         <template v-for="item in items">
-          <v-layout
-            v-if="item.heading"
-            :key="item.heading"
-            row
-            align-center
-          >
+          <v-layout v-if="item.heading" :key="item.heading" row align-center >
             <v-flex xs6>
               <v-subheader v-if="item.heading">
                 {{ item.heading }}
@@ -82,7 +63,7 @@
    <v-toolbar color="primary" dark app fixed clipped-left>
          <v-menu>
             <v-toolbar-title slot="activator">
-               <img style="height: 25px" class="mr-3 mt-2" src="./logo_nokia.svg" alt="Nokia Logo"></img>
+                <img class="mr-3 mt-2" src="./logo_nokia.svg" height="25px" alt="Nokia Logo">
                Smart City control center
             </v-toolbar-title>
             </v-menu>
@@ -190,7 +171,7 @@ export default {
         icon: "fa-chart-bar",
         alticon: "fa-chart-bar",
         children: [
-           {
+          {
             icon: "fa-compress",
             path: "/metering/meters",
             text: "Meters"
@@ -213,7 +194,7 @@ export default {
         icon: "fa-plug",
         alticon: "fa-plug",
         children: [
-           {
+          {
             icon: "fa-chart-line",
             path: "/energy/stat",
             text: "Statistic"
@@ -231,7 +212,7 @@ export default {
         icon: "fa-trash-alt",
         alticon: "fa-trash-alt",
         children: [
-           {
+          {
             icon: "fa-chart-line",
             path: "/waste/stat",
             text: "Statistic"

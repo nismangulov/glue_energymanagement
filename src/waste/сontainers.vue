@@ -20,24 +20,18 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-
 export default {
-  data: () => ({
-
-  }),
+  data: () => ({})
 };
 </script>
 
 
 <style>
-
 .fill-height {
   height: 100%;
 }
-
 </style>
 
 
 <style scoped>
-
 </style>
