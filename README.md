@@ -1,6 +1,7 @@
-# vue-spa
+# Control panel for smartsity
 
-> A Vue.js project
+> Glue: https://github.com/vvzvlad/glue
+> Glue-app: https://github.com/vvzvlad/glue_web_app
 
 ## Build Setup
 
@@ -14,5 +15,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
