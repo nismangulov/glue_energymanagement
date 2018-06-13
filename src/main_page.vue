@@ -108,6 +108,11 @@ export default {
             icon: "fa-calendar-alt",
             path: "/eco_monitoring/history",
             text: "Historical data"
+          },
+          {
+            icon: "fa-calendar-alt",
+            path: "/eco_monitoring/aqi",
+            text: "AQI"
           }
         ]
       },
@@ -189,19 +194,24 @@ export default {
         ]
       },
       {
-        path: "energy",
-        text: "Energy management",
+        path: "infrastructure",
+        text: "Infrastructure",
         icon: "fa-plug",
         alticon: "fa-plug",
         children: [
           {
             icon: "fa-chart-line",
-            path: "/energy/stat",
-            text: "Statistic"
+            path: "/infrastructure/energy_management",
+            text: "Energy management"
+          },
+          {
+            icon: "fa-chart-line",
+            path: "/infrastructure/monitoring",
+            text: "Monitoring"
           },
           {
             icon: "fa-exclamation-triangle",
-            path: "/energy/incidents",
+            path: "/infrastructure/incidents",
             text: "Incidents"
           }
         ]
