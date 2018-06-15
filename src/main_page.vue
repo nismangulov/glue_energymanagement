@@ -140,11 +140,11 @@ export default {
         icon: "fa-lightbulb",
         alticon: "fa-lightbulb",
         children: [
-          {
+          /* {
             icon: "fa-sliders-h",
             path: "/lighting/main",
             text: "Main"
-          },
+          }, */
           {
             icon: "fa-external-link-square-alt",
             path: "/lighting/unilight",
