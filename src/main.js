@@ -28,18 +28,43 @@ import waste_сontainers from './waste/сontainers.vue'
 import waste_planning from './waste/planning.vue'
 import waste_stat from './waste/stat.vue'
 
+let color_nokia = {
+   blue: "#124191",
+   gray_1: "#EDF3F5",
+   gray_2: "#BEC8D2",
+   gray_3: "#98A2AE",
+   gray_4: "#4D5766",
+   gray_5: "#273142",
+   light_blue: "#00C9FF",
+   red: "#FF3154",
+   yellow: "#FFFB00",
+   green: "#4BDD33",
+   orange: "#FF9910"
+}
 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify, {
    theme: {
-      primary: "#124191",
-      secondary: "#1976D2",
-      accent: "#80D8FF",
-      error: "#B71C1C",
-      warning: "#FBC02D",
-      info: "#2196f3",
-      success: "#4caf50"
+      nokia_blue: color_nokia.blue,
+      nokia_gray_1: color_nokia.gray_1,
+      nokia_gray_2: color_nokia.gray_2,
+      nokia_gray_3: color_nokia.gray_3,
+      nokia_gray_4: color_nokia.gray_4,
+      nokia_gray_5: color_nokia.gray_5,
+      nokia_light_blue: color_nokia.light_blue,
+      nokia_red: color_nokia.red,
+      nokia_yellow: color_nokia.yellow,
+      nokia_green: color_nokia.green,
+      nokia_orange: color_nokia.orange,
+
+      primary: color_nokia.blue,
+      secondary: color_nokia.light_blue,
+      accent: color_nokia.yellow,
+      error: color_nokia.red,
+      warning: color_nokia.yellow,
+      info: color_nokia.gray_2,
+      success: color_nokia.green,
    }
 })
 
