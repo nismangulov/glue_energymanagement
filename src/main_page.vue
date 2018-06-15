@@ -63,7 +63,7 @@
    <v-toolbar color="primary" dark app fixed clipped-left>
          <v-menu>
             <v-toolbar-title slot="activator">
-                <img class="mr-3 mt-2" src="./logo_nokia.svg" height="25px" alt="Nokia Logo">
+                <img class="mr-3 mt-2" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
                Smart City control center
             </v-toolbar-title>
             </v-menu>
