@@ -61,7 +61,9 @@
                         <v-card color="blue">
                            <l-map :zoom="map.zoom" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
-                              <l-marker :lat-lng="map.marker" @click="marker_click"></l-marker>
+                              <template v-for="marker in map.markers">
+                                 <l-marker :lat-lng="marker.coordinates" @click="marker_click" v-bind:key="marker.name"></l-marker>
+                              </template>
                            </l-map>
                         </v-card>
                      </v-flex>
@@ -165,12 +167,58 @@ export default {
   },
   data: () => ({
     map: {
-      zoom: 13,
-      center: L.latLng(55.755826, 37.6172999),
+      zoom: 12,
+      center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(55.755826, 37.6172999)
+      markers: [
+        {
+          coordinates: L.latLng(55.696623, 37.356674),
+          name: "Waste container #23",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.696342, 37.359745),
+          name: "Waste container #65",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.699384, 37.366796),
+          name: "Waste container #82",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.70835, 37.374306),
+          name: "Waste container #12",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.683824, 37.335218),
+          name: "Waste container #45",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.680333, 37.345947),
+          name: "Waste container #88",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.694659, 37.3438),
+          name: "Waste container #92",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.685413, 37.353031),
+          name: "Waste container #10",
+          type: "waste"
+        },
+        {
+          coordinates: L.latLng(55.679254, 37.34153),
+          name: "Waste container #16",
+          type: "waste"
+        }
+      ]
     },
     waste: {
       color: "nokia_green",
@@ -212,9 +260,16 @@ export default {
     }
   }),
   methods: {
-     marker_click(event) {
-        console.log('clicked marker on', event.latlng.lat, event.latlng.lng)
-     }
+    marker_click(event) {
+      for (let index = 0; index < this.map.markers.length; index++) {
+        if (
+          event.latlng.lat == this.map.markers[index].coordinates.lat &&
+          event.latlng.lng == this.map.markers[index].coordinates.lng
+        ) {
+          console.log(this.map.markers[index].name);
+        }
+      }
+    }
   }
 };
 </script>

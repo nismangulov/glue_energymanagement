@@ -16,24 +16,19 @@
                                     </th>
                                  </tr>
                               </template>
-
                               <template slot="items" slot-scope="props">
-                                 <tr @click="center_map(props.item.coordinates)" :class="props.item.selected ? 'row-selected' : ''">
+                                 <tr @click="table_click(props.item)" :class="props.item.selected ? 'row-selected' : ''">
                                     <td>{{ props.item.name }}</td>
-                                    <td>{{ props.item.level }}</td>
-                                    <td>{{ props.item.battery }}</td>
+                                    <td>{{ props.item.level }} %</td>
+                                    <td>{{ props.item.status }}</td>
+                                    <td>{{ props.item.battery }} %</td>
                                  </tr>
                               </template>
-
                            </v-data-table>
-
                         </v-card>
-
                      </v-flex>
                      <v-flex d-block>
-
                         <v-card>
-
                            <div class="text-xs-center">
                               <span @click="change_page('-')">&larr;</span>
                               <span @click="change_page('+')">&rarr;</span>
@@ -67,7 +62,7 @@
                            <v-card-title primary class="title">Daily filling level
                            </v-card-title>
                            <v-card-text class="pt-0">
-                              <column-chart width="90%" height="100%" class="mx-auto mt-2" :data="[['Sun', 32], ['Mon', 46], ['Tue', 28]]"></column-chart>
+                              <svg class="chart" id="daily_filling_levels_chart"></svg>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -79,8 +74,8 @@
                         <v-card color="indigo lighten-2" dark>
                            <v-card-title primary class="title">Filling level
                            </v-card-title>
-                           <v-card-text class="pt-0">
-                              <pie-chart :data="waste.data" width="60%" height="100%" :colors="waste.colors" :bcolors="waste.bcolors" :library="waste.library" class="mx-auto mt-2"></pie-chart>
+                           <v-card-text class="">
+                              <svg class="chart" id="waste_filling_levels_chart"></svg>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -90,10 +85,11 @@
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="blue lighten-3" dark>
-                           <v-card-title primary class="title">Number of containers
+                           <v-card-title primary class="title">Online
                            </v-card-title>
                            <v-card-text class="pt-0">
-                              <pie-chart :donut="true" :data="waste.data" width="60%" height="100%" :colors="waste.colors" :bcolors="waste.bcolors" :library="waste.library" class="mx-auto mt-2"></pie-chart>
+                              <span class="display-3 mx-auto">{{ online }}/{{ containers.length }}</span>
+                              <span class="display-1"> containers online</span>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -104,9 +100,9 @@
                      <v-flex d-flex md12>
                         <v-card color="teal lighten-2" dark>
                            <v-card-text class="pt-0">
-                              <v-card-title primary class="title">battery containers
+                              <v-card-title primary class="title">Batteries
                               </v-card-title>
-                              <pie-chart :donut="true" :data="waste.data" width="60%" height="100%" :colors="waste.colors" :bcolors="waste.bcolors" :library="waste.library" class="mx-auto mt-2"></pie-chart>
+                              <svg class="chart" id="batteries_levels_chart"></svg>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -126,9 +122,10 @@ Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
-import VueChartkick from "vue-chartkick";
-import Chart from "chart.js";
-Vue.use(VueChartkick, { adapter: Chart });
+import * as d3 from "d3";
+import charts from "../v-charts";
+Vue.use(charts);
+Object.defineProperty(Vue.prototype, "$d3", { value: d3 });
 
 export default {
   components: {
@@ -137,17 +134,42 @@ export default {
     LMarker
   },
   data: () => ({
+    waste_filling_levels_chart: {
+      dim: "name",
+      height: "150",
+      width: "150",
+      selector: "#waste_filling_levels_chart",
+      metric: "value",
+      data: {}
+    },
+    daily_filling_levels_chart: {
+      dim: "name",
+      height: "150",
+      width: "150",
+      selector: "#daily_filling_levels_chart",
+      metric: "value",
+      data: {}
+    },
+    batteries_levels_chart: {
+      dim: "name",
+      height: "150",
+      width: "150",
+      selector: "#batteries_levels_chart",
+      metric: "value",
+      data: {}
+    },
     map: {
       zoom: 12,
       center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
     },
-    pagination: { rowsPerPage: 15, page: 1 },
+    pagination: { rowsPerPage: 15 },
     selected: [],
-
+    online: 0,
     table_headers: [
       { text: "Name", value: "name" },
       { text: "Level", value: "level" },
+      { text: "Status", value: "status" },
       { text: "Battery", value: "battery" }
     ],
     containers: [
@@ -155,73 +177,75 @@ export default {
         coordinates: L.latLng(55.696623, 37.356674),
         name: "Waste container #23",
         type: "waste",
-        level: "20%",
-        battery: "93%"
+        level: "20",
+        battery: "93",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.696342, 37.359745),
         name: "Waste container #65",
         type: "waste",
-        level: "40%",
-        battery: "93%"
+        level: "40",
+        battery: "93",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.699384, 37.366796),
         name: "Waste container #82",
         type: "waste",
-        level: "80%",
-        battery: "98%"
+        level: "80",
+        battery: "98",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.70835, 37.374306),
         name: "Waste container #12",
         type: "waste",
-        level: "90%",
-        battery: "95%"
+        level: "90",
+        battery: "95",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.683824, 37.335218),
         name: "Waste container #45",
         type: "waste",
-        level: "2%",
-        battery: "99%"
+        level: "2",
+        battery: "99",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.680333, 37.345947),
         name: "Waste container #88",
         type: "waste",
-        level: "10%",
-        battery: "94%"
+        level: "10",
+        battery: "94",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.694659, 37.3438),
         name: "Waste container #92",
         type: "waste",
-        level: "28%",
-        battery: "98%"
+        level: "28",
+        battery: "98",
+        status: "online"
       },
       {
         coordinates: L.latLng(55.685413, 37.353031),
         name: "Waste container #10",
         type: "waste",
-        level: "19%",
-        battery: "95%"
+        level: "19",
+        battery: "95",
+        status: "offline"
       },
       {
         coordinates: L.latLng(55.679254, 37.34153),
         name: "Waste container #16",
         type: "waste",
-        level: "30%",
-        battery: "20%"
+        level: "30",
+        battery: "10",
+        status: "online"
       }
-    ],
-    waste: {
-      color: "green lighten-1",
-      data: { "<20%": 20, "<80%": 60, ">80%": 20 },
-      colors: ["#039BE5", "#8D6E63", "#D4E157"],
-      bcolors: ["#FF0000", "#0000FF", "#00FFFF"],
-      library: { legend: { display: true } }
-    }
+    ]
   }),
 
   computed: {
@@ -237,8 +261,33 @@ export default {
       );
     }
   },
+  mounted: function() {
+    this.waste_filling_levels_chart.data = this.calc_filling_levels();
+    this.batteries_levels_chart.data = this.calc_battery_levels();
+    this.daily_filling_levels_chart.data = this.calc_battery_levels();
+    this.online = this.calc_online();
+    this.renderCharts();
+  },
   methods: {
+    renderCharts: function() {
+      this.$helpers.chart.pieChart(
+        this.$d3,
+        this.waste_filling_levels_chart.data,
+        this.waste_filling_levels_chart
+      );
+      this.$helpers.chart.pieChart(
+        this.$d3,
+        this.batteries_levels_chart.data,
+        this.batteries_levels_chart
+      );
+      this.$helpers.chart.pieChart(
+        this.$d3,
+        this.daily_filling_levels_chart.data,
+        this.daily_filling_levels_chart
+      );
+    },
     map_marker_click(event) {
+      let container;
       for (let index = 0; index < this.containers.length; index++) {
         this.containers[index].selected = false;
         if (
@@ -246,13 +295,59 @@ export default {
           event.latlng.lng == this.containers[index].coordinates.lng
         ) {
           this.containers[index].selected = true;
+          container = this.containers[index];
+          this.map.center = L.latLng(0, 0);
           this.map.center = this.containers[index].coordinates;
         }
       }
     },
-    center_map(coordinates) {
-      this.map.center = coordinates;
+
+    table_click(item) {
+      console.log(item);
+      this.containers.forEach(container => {
+        container.selected = false;
+      });
+      item.selected = true;
+      this.map.center = item.coordinates;
       this.map.zoom = 15;
+    },
+    calc_filling_levels() {
+      let count_20 = 0;
+      let count_80 = 0;
+      let count_100 = 0;
+      for (let index = 0; index < this.containers.length; index++) {
+        if (this.containers[index].level < 20) count_20++;
+        else if (this.containers[index].level <= 80) count_80++;
+        else if (this.containers[index].level > 80) count_100++;
+      }
+      return [
+        { name: "<20%", value: count_20 },
+        { name: "<80%", value: count_80 },
+        { name: ">80%", value: count_100 }
+      ];
+    },
+    calc_online() {
+      let online = 0;
+      for (let index = 0; index < this.containers.length; index++) {
+        if (this.containers[index].status == "online") online++;
+      }
+      console.log(online);
+      return online;
+    },
+    calc_battery_levels() {
+      let count_20 = 0;
+      let count_80 = 0;
+      let count_100 = 0;
+      for (let index = 0; index < this.containers.length; index++) {
+        if (this.containers[index].battery < 20) count_20++;
+        else if (this.containers[index].battery <= 80) count_80++;
+        else if (this.containers[index].battery > 80) count_100++;
+      }
+      return [
+        { name: "<20%", value: count_20 },
+        { name: "<80%", value: count_80 },
+        { name: ">80%", value: count_100 }
+      ];
     },
     change_page(direction) {
       if (direction == "-" && this.pagination.page > 1) {
