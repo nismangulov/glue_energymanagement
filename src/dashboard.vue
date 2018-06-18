@@ -61,7 +61,7 @@
                         <v-card color="blue">
                            <l-map :zoom="map.zoom" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
-                              <l-marker :lat-lng="map.marker"></l-marker>
+                              <l-marker :lat-lng="map.marker" @click="marker_click"></l-marker>
                            </l-map>
                         </v-card>
                      </v-flex>
@@ -210,7 +210,12 @@ export default {
       incidents: 0,
       color: "nokia_red"
     }
-  })
+  }),
+  methods: {
+     marker_click(event) {
+        console.log('clicked marker on', event.latlng.lat, event.latlng.lng)
+     }
+  }
 };
 </script>
 
