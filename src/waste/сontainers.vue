@@ -17,11 +17,16 @@
                                  </tr>
                               </template>
                               <template slot="items" slot-scope="props">
-                                 <tr @click="table_click(props.item)" :class="props.item.selected ? 'row-selected' : ''">
-                                    <td>{{ props.item.name }}</td>
-                                    <td>{{ props.item.level }} %</td>
-                                    <td>{{ props.item.status }}</td>
-                                    <td>{{ props.item.battery }} %</td>
+                                 <tr :class="props.item.selected ? 'row-selected' : ''">
+                                    <td @click="table_click(props.item)">{{ props.item.name }}</td>
+                                    <td @click="table_click(props.item)">{{ props.item.level }} %</td>
+                                    <td @click="table_click(props.item)">{{ props.item.status }}</td>
+                                    <td @click="table_click(props.item)">{{ props.item.battery }} %</td>
+                                    <td class="button-sm">
+                                       <v-btn icon class="ml-0 mr-2" @click="showbindetails(props.item)">
+                                          <v-icon color="grey" small>fa-eye</v-icon>
+                                       </v-btn>
+                                    </td>
                                  </tr>
                               </template>
                            </v-data-table>
@@ -41,7 +46,7 @@
                   <v-layout fix-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card>
-                           <l-map :zoom="map.zoom" :center="map.center">
+                           <l-map :zoom="map.zoom" style="z-index: 5" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                               <template v-for="container in containers">
                                  <l-marker :lat-lng="container.coordinates" @click="map_marker_click" v-bind:key="container.name"></l-marker>
@@ -111,6 +116,8 @@
             </v-layout>
          </v-flex>
       </v-layout>
+      <bindetails ref="bindetails"></bindetails>
+
    </v-container>
 </template>
 
@@ -119,6 +126,9 @@ import Vue from "vue";
 import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
+
+import bindetails from "../components/bindetails.vue";
+Vue.component("bindetails", bindetails);
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
@@ -163,14 +173,15 @@ export default {
       center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
     },
-    pagination: { rowsPerPage: 15 },
+    pagination: { rowsPerPage: 5 },
     selected: [],
     online: 0,
     table_headers: [
       { text: "Name", value: "name" },
       { text: "Level", value: "level" },
       { text: "Status", value: "status" },
-      { text: "Battery", value: "battery" }
+      { text: "Battery", value: "battery" },
+      { text: "Details", value: "details" }
     ],
     containers: [
       {
@@ -269,6 +280,9 @@ export default {
     this.renderCharts();
   },
   methods: {
+    showbindetails(item) {
+      this.$refs.bindetails.show(item);
+    },
     renderCharts: function() {
       this.$helpers.chart.pieChart(
         this.$d3,
@@ -377,6 +391,10 @@ table.table thead tr {
 
 .small_title {
   height: 30px;
+}
+
+.button-sm {
+  margin: -11px !important;
 }
 </style>
 
