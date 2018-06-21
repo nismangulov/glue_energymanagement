@@ -380,11 +380,6 @@ export default {
   background-color: rgb(155, 204, 255);
 }
 
-table.table tbody td,
-table.table tbody th {
-  height: 25px !important;
-}
-
 table.table thead tr {
   height: 30px;
 }
@@ -395,6 +390,12 @@ table.table thead tr {
 
 .button-sm {
   margin: -11px !important;
+}
+
+.button-sm button {
+   height: 16px;
+   width: 16px;
+   margin: 0;
 }
 </style>
 
@@ -411,5 +412,10 @@ table.table thead tr {
 
 .move-top {
   margin-top: -8px;
+}
+
+table.table tbody td,
+table.table tbody th {
+  height: 25px !important;
 }
 </style>
