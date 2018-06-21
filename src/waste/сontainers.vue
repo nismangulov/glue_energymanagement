@@ -423,11 +423,10 @@ table.table thead tr {
 }
 
 .table-block {
+   height: calc(100% - 8px);
+   padding: 0;
+   margin: 4px 4px 0 4px;
    background-color: white;
    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-   padding: 0;
-   margin-top: 4px;
-   height: calc(100% - 8px);
-   margin-right: 4px;
 }
 </style>
