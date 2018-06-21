@@ -3,11 +3,11 @@
 
       <v-layout column fix-layout>
          <v-flex d-flex md7>
-            <v-layout fix-layout row wrap>
-               <v-flex d-flex md6>
+            <v-layout fix-layout row>
+               <v-flex d-flex md6 class="table-block">
                   <v-layout fix-layout column>
-                     <v-flex d-inline-flex>
-                        <v-card>
+                     <v-flex d-inline-flex class="flex-full-height">
+                        <v-card class="no-shadow">
                            <v-data-table :headers="table_headers" :items="containers" :pagination.sync="pagination" hide-actions class="elevation-1">
                               <template slot="headers" slot-scope="props">
                                  <tr>
@@ -33,7 +33,7 @@
                         </v-card>
                      </v-flex>
                      <v-flex d-block>
-                        <v-card>
+                        <v-card class="no-shadow">
                            <div class="text-xs-center">
                               <span @click="change_page('-')">&larr;</span>
                               <span @click="change_page('+')">&rarr;</span>
@@ -411,5 +411,22 @@ table.table thead tr {
 
 .move-top {
   margin-top: -8px;
+}
+
+.flex-full-height {
+   height: 100%;
+   padding: 0px !important;
+}
+
+.no-shadow {
+   box-shadow: none;
+}
+
+.table-block {
+   height: calc(100% - 8px);
+   padding: 0;
+   margin: 4px 4px 0 4px;
+   background-color: white;
+   box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
 }
 </style>
