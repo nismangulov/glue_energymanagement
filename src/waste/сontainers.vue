@@ -91,9 +91,9 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-import binstable from "../components/binstable.vue";
+import binstable from "./components/binstable.vue";
 Vue.component("binstable", binstable);
-import tableData from "!json-loader!../assets/datafile.json";
+import tableData from "!json-loader!./containers.json";
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
