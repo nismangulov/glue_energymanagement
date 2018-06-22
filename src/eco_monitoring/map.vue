@@ -1,19 +1,26 @@
 <template>
-   <v-container fill-height>
-      <l-map :zoom="map.zoom" :center="map.center">
-         <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
-         <l-marker :lat-lng="map.marker"></l-marker>
-      </l-map>
+   <v-container grid-list-md fill-height>
+      <v-layout column fix-layout>
+         <v-flex d-flex md12>
+            <v-card>
+               <l-map :zoom="map.zoom" :center="map.center">
+                  <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
+                  <template v-for="marker in map.markers">
+                     <l-marker :lat-lng="marker.coordinates" @click="$router.push({path: '/eco_monitoring/history'})" v-bind:key="marker.name"></l-marker>
+                  </template>
+               </l-map>
+            </v-card>
+         </v-flex>
+      </v-layout>
    </v-container>
 </template>
 
-
 <script>
 import Vue from "vue";
-import Axios from "axios";
-import VueAxios from "vue-axios";
-Vue.use(VueAxios, Axios);
+
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+
+import table_data from "!json-loader!./stations.json";
 
 export default {
   components: {
@@ -23,32 +30,29 @@ export default {
   },
   data: () => ({
     map: {
-      zoom: 13,
+      zoom: 10,
       center: L.latLng(55.755826, 37.6172999),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(55.755826, 37.6172999)
+        '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      markers: table_data
     }
   })
 };
 </script>
 
-
 <style>
-.fill-height {
-  height: 100%;
-  padding: 0px;
-  padding-top: 2px;
+@import "../../node_modules/leaflet/dist/leaflet.css";
+
+.container.fill-height .layout.fix-layout {
+  height: calc(100% + 8px);
 }
 
-.iframe-size {
-  height: 100%;
-  width: 100%;
-  border: none;
+.container.fill-height .layout.fix-layout-large {
+  height: calc(100% + 16px);
 }
-</style>
 
-
-<style scoped>
+.move-top {
+  margin-top: -8px;
+}
 </style>
