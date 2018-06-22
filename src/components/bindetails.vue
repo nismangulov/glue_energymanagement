@@ -3,22 +3,24 @@
     <v-dialog v-model="visible" max-width="300px" overlay-hide style="z-index: 1 ">
       <v-card>
         <v-card-title>
-          <div class="title text-xs-center ">{{props.name}} </div>
+          <div class="title text-xs-center ">{{props.name}} : {{props.status}} </div>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
           <div class="subheading ">Utilization level:</div>
           {{props.level}}
+          <v-progress-circular v-model="props.level" size="80" width="40" color="secondary"></v-progress-circular>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-text>
           <div class="subheading ">Battery status:</div>
           {{props.battery}} 
+          <v-progress-linear v-model="props.battery" height="20" color="secondary"></v-progress-linear>
         </v-card-text>
         <v-divider></v-divider>
             <v-card-text>
           <div class="subheading ">Location:</div>
-          {{props.coordinates}} 
+          Lat:{{props.coordinates.lat}} : Lng:{{props.coordinates.lng}}
         </v-card-text>    
         <v-card-actions>
           <v-btn color="primary " flat @click.stop="visible=false ">Close</v-btn>

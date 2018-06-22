@@ -5,42 +5,7 @@
          <v-flex d-flex md7>
             <v-layout fix-layout row>
                <v-flex d-flex md6 class="table-block">
-                  <v-layout fix-layout column>
-                     <v-flex d-inline-flex class="flex-full-height">
-                        <v-card class="no-shadow">
-                           <v-data-table :headers="table_headers" :items="containers" :pagination.sync="pagination" hide-actions class="elevation-1">
-                              <template slot="headers" slot-scope="props">
-                                 <tr>
-                                    <th v-for="header in props.headers" :key="header.text" class="text-xs-center">
-                                       {{ header.text }}
-                                    </th>
-                                 </tr>
-                              </template>
-                              <template slot="items" slot-scope="props">
-                                 <tr :class="props.item.selected ? 'row-selected' : ''">
-                                    <td @click="table_click(props.item)">{{ props.item.name }}</td>
-                                    <td @click="table_click(props.item)">{{ props.item.level }} %</td>
-                                    <td @click="table_click(props.item)">{{ props.item.status }}</td>
-                                    <td @click="table_click(props.item)">{{ props.item.battery }} %</td>
-                                    <td class="button-sm">
-                                       <v-btn icon class="ml-0 mr-2" @click="showbindetails(props.item)">
-                                          <v-icon color="grey" small>fa-eye</v-icon>
-                                       </v-btn>
-                                    </td>
-                                 </tr>
-                              </template>
-                           </v-data-table>
-                        </v-card>
-                     </v-flex>
-                     <v-flex d-block>
-                        <v-card class="no-shadow">
-                           <div class="text-xs-center">
-                              <span @click="change_page('-')">&larr;</span>
-                              <span @click="change_page('+')">&rarr;</span>
-                           </div>
-                        </v-card>
-                     </v-flex>
-                  </v-layout>
+                 <binstable ref="binstable" @row_clicked="table_click" :bins="containers"></binstable>
                </v-flex>
                <v-flex d-flex md6>
                   <v-layout fix-layout row wrap>
@@ -116,8 +81,7 @@
             </v-layout>
          </v-flex>
       </v-layout>
-      <bindetails ref="bindetails"></bindetails>
-
+           
    </v-container>
 </template>
 
@@ -127,8 +91,9 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-import bindetails from "../components/bindetails.vue";
-Vue.component("bindetails", bindetails);
+import binstable from "../components/binstable.vue";
+Vue.component("binstable", binstable);
+import tableData from "!json-loader!../assets/datafile.json";
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
@@ -143,6 +108,7 @@ export default {
     LTileLayer,
     LMarker
   },
+  
   data: () => ({
     waste_filling_levels_chart: {
       dim: "name",
@@ -172,112 +138,22 @@ export default {
       zoom: 12,
       center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-    },
-    pagination: { rowsPerPage: 14 },
+    },   
     selected: [],
     online: 0,
-    table_headers: [
-      { text: "Name", value: "name" },
-      { text: "Level", value: "level" },
-      { text: "Status", value: "status" },
-      { text: "Battery", value: "battery" },
-      { text: "Details", value: "details" }
-    ],
-    containers: [
-      {
-        coordinates: L.latLng(55.696623, 37.356674),
-        name: "Waste container #23",
-        type: "waste",
-        level: "20",
-        battery: "93",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.696342, 37.359745),
-        name: "Waste container #65",
-        type: "waste",
-        level: "40",
-        battery: "93",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.699384, 37.366796),
-        name: "Waste container #82",
-        type: "waste",
-        level: "80",
-        battery: "98",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.70835, 37.374306),
-        name: "Waste container #12",
-        type: "waste",
-        level: "90",
-        battery: "95",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.683824, 37.335218),
-        name: "Waste container #45",
-        type: "waste",
-        level: "2",
-        battery: "99",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.680333, 37.345947),
-        name: "Waste container #88",
-        type: "waste",
-        level: "10",
-        battery: "94",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.694659, 37.3438),
-        name: "Waste container #92",
-        type: "waste",
-        level: "28",
-        battery: "98",
-        status: "online"
-      },
-      {
-        coordinates: L.latLng(55.685413, 37.353031),
-        name: "Waste container #10",
-        type: "waste",
-        level: "19",
-        battery: "95",
-        status: "offline"
-      },
-      {
-        coordinates: L.latLng(55.679254, 37.34153),
-        name: "Waste container #16",
-        type: "waste",
-        level: "30",
-        battery: "10",
-        status: "online"
-      }
-    ]
+    containers: []  
   }),
 
-  computed: {
-    pages() {
-      if (
-        this.pagination.rowsPerPage == null ||
-        this.pagination.totalItems == null
-      )
-        return 0;
-
-      return Math.ceil(
-        this.pagination.totalItems / this.pagination.rowsPerPage
-      );
-    }
-  },
   mounted: function() {
     this.waste_filling_levels_chart.data = this.calc_filling_levels();
     this.batteries_levels_chart.data = this.calc_battery_levels();
     this.daily_filling_levels_chart.data = this.calc_battery_levels();
     this.online = this.calc_online();
-    this.renderCharts();
+    this.renderCharts(); 
+    },
+
+  created: function() {
+   this.containers = tableData;
   },
   methods: {
     showbindetails(item) {
@@ -362,42 +238,10 @@ export default {
         { name: "<80%", value: count_80 },
         { name: ">80%", value: count_100 }
       ];
-    },
-    change_page(direction) {
-      if (direction == "-" && this.pagination.page > 1) {
-        this.pagination.page--;
-      }
-      if (direction == "+" && this.pagination.page < this.pages) {
-        this.pagination.page++;
-      }
     }
   }
 };
 </script>
-
-<style scoped>
-.row-selected {
-  background-color: rgb(155, 204, 255);
-}
-
-table.table thead tr {
-  height: 30px;
-}
-
-.small_title {
-  height: 30px;
-}
-
-.button-sm {
-  margin: -11px !important;
-}
-
-.button-sm button {
-  height: 16px;
-  width: 16px;
-  margin: 0;
-}
-</style>
 
 <style>
 @import "../../node_modules/leaflet/dist/leaflet.css";
@@ -414,20 +258,6 @@ table.table thead tr {
   margin-top: -8px;
 }
 
-table.table tbody td,
-table.table tbody th {
-  height: 25px !important;
-}
-
-.flex-full-height {
-  height: 100%;
-  padding: 0px !important;
-}
-
-.no-shadow {
-  box-shadow: none;
-}
-
 .table-block {
   height: calc(100% - 8px);
   padding: 0;
@@ -437,3 +267,4 @@ table.table tbody th {
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 </style>
+
