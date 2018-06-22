@@ -2,10 +2,17 @@
    <v-container fill-height>
       <v-layout row wrap>
          <v-flex d-flex md12>
-            <v-card color="green" dark>
-               <v-card-title primary class="title">{{$route.path}}
-               </v-card-title>
+            <v-card color="grafana_grey">
+
                <v-card-text>
+                  <iframe src="https://sk.iot.nokia.com/grafana/d-solo/bSq3Tx7mz/power_smartsityapp?refresh=1m&panelId=6&orgId=1&tab=legend" width="100%" height="200" frameborder="0"></iframe>
+
+                  <iframe src="https://sk.iot.nokia.com/grafana/d-solo/bSq3Tx7mz/power_smartsityapp?refresh=1m&panelId=8&orgId=1&tab=legend" width="100%" height="200" frameborder="0"></iframe>
+
+                  <iframe src="https://sk.iot.nokia.com/grafana/d-solo/bSq3Tx7mz/power_smartsityapp?refresh=1m&panelId=4&orgId=1&tab=legend" width="100%" height="200" frameborder="0"></iframe>
+
+                  <iframe src="https://sk.iot.nokia.com/grafana/d-solo/bSq3Tx7mz/power_smartsityapp?refresh=1m&panelId=2&orgId=1&tab=legend" width="100%" height="200" frameborder="0"></iframe>
+
                </v-card-text>
             </v-card>
          </v-flex>
@@ -15,11 +22,6 @@
 
 
 <script>
-import Vue from "vue";
-import Axios from "axios";
-import VueAxios from "vue-axios";
-Vue.use(VueAxios, Axios);
-
 export default {
   data: () => ({})
 };
@@ -35,3 +37,6 @@ export default {
 
 <style scoped>
 </style>
+
+
+

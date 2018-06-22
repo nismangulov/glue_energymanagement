@@ -49,6 +49,7 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-video</v-icon>
                      </v-card-title>
+                     <img class="cam-image" width="100%" height="60%" src="http://www.intek-m.ru/img/cams/cam_17/17_camera.jpg" />
                   </v-card>
                </v-flex>
             </v-layout>
