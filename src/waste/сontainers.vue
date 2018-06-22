@@ -5,7 +5,7 @@
          <v-flex d-flex md7>
             <v-layout fix-layout row>
                <v-flex d-flex md6 class="table-block">
-                 <binstable ref="binstable" @row_clicked="table_click" :bins="containers"></binstable>
+                  <binstable ref="binstable" @row_clicked="table_click" :bins="containers"></binstable>
                </v-flex>
                <v-flex d-flex md6>
                   <v-layout fix-layout row wrap>
@@ -81,7 +81,7 @@
             </v-layout>
          </v-flex>
       </v-layout>
-           
+
    </v-container>
 </template>
 
@@ -108,7 +108,7 @@ export default {
     LTileLayer,
     LMarker
   },
-  
+
   data: () => ({
     waste_filling_levels_chart: {
       dim: "name",
@@ -138,10 +138,10 @@ export default {
       zoom: 12,
       center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-    },   
+    },
     selected: [],
     online: 0,
-    containers: []  
+    containers: []
   }),
 
   mounted: function() {
@@ -149,11 +149,11 @@ export default {
     this.batteries_levels_chart.data = this.calc_battery_levels();
     this.daily_filling_levels_chart.data = this.calc_battery_levels();
     this.online = this.calc_online();
-    this.renderCharts(); 
-    },
+    this.renderCharts();
+  },
 
   created: function() {
-   this.containers = tableData;
+    this.containers = tableData;
   },
   methods: {
     showbindetails(item) {
