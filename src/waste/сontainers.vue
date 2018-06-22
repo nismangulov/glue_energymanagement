@@ -173,7 +173,7 @@ export default {
       center: L.latLng(55.697247, 37.357755),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
     },
-    pagination: { rowsPerPage: 5 },
+    pagination: { rowsPerPage: 14 },
     selected: [],
     online: 0,
     table_headers: [
@@ -393,9 +393,9 @@ table.table thead tr {
 }
 
 .button-sm button {
-   height: 16px;
-   width: 16px;
-   margin: 0;
+  height: 16px;
+  width: 16px;
+  margin: 0;
 }
 </style>
 
@@ -417,21 +417,23 @@ table.table thead tr {
 table.table tbody td,
 table.table tbody th {
   height: 25px !important;
- 
- .flex-full-height {
-   height: 100%;
-   padding: 0px !important;
+}
+
+.flex-full-height {
+  height: 100%;
+  padding: 0px !important;
 }
 
 .no-shadow {
-   box-shadow: none;
+  box-shadow: none;
 }
 
 .table-block {
-   height: calc(100% - 8px);
-   padding: 0;
-   margin: 4px 4px 0 4px;
-   background-color: white;
-   box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  height: calc(100% - 8px);
+  padding: 0;
+  margin: 4px 4px 0 4px;
+  background-color: white;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 </style>
