@@ -1,0 +1,92 @@
+[
+   {
+      "coordinates": {
+         "lat": "55.917414",
+         "lng": "37.569581"
+      },
+      "name": "Station #23",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.850261",
+         "lng": "37.349855"
+      },
+      "name": "Station #65",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.762091",
+         "lng": "37.411653"
+      },
+      "name": "Station #82",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.689333",
+         "lng": "37.351070"
+      },
+      "name": "Station #12",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.767506",
+         "lng": "37.674475"
+      },
+      "name": "Station #45",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.723740",
+         "lng": "37.811804"
+      },
+      "name": "Station #88",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.659744",
+         "lng": "37.696447"
+      },
+      "name": "Station #92",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.646155",
+         "lng": "37.550879"
+      },
+      "name": "Station #10",
+      "type": "Vaisala",
+      "status": "offline"
+   },
+   {
+      "coordinates": {
+         "lat": "55.576198",
+         "lng": "37.667608"
+      },
+      "name": "Station #26",
+      "type": "Vaisala",
+      "status": "online"
+   },
+   {
+      "coordinates": {
+         "lat": "55.732652",
+         "lng": "37.860556"
+      },
+      "name": "Station #27",
+      "type": "Vaisala",
+      "status": "online"
+   }
+]

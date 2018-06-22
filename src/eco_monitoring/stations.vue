@@ -2,11 +2,26 @@
    <v-container fill-height>
       <v-layout row wrap>
          <v-flex d-flex md12>
-            <v-card color="green" dark>
-               <v-card-title primary class="title">{{$route.path}}
-               </v-card-title>
-               <v-card-text>
-               </v-card-text>
+            <v-card color="white">
+               <v-data-table :headers="headers" :items="station_table" :pagination.sync="pagination">
+                  <template slot="items" slot-scope="props">
+
+                     <tr @click="$router.push({path: '/eco_monitoring/history'})">
+                        <td>
+                           <div>{{ props.item.name }}</div>
+                        </td>
+                        <td>
+                           <div>{{ props.item.coordinates }}</div>
+                        </td>
+                        <td>
+                           <div>{{ props.item.type }}</div>
+                        </td>
+                        <td>
+                           <div>{{ props.item.status }}</div>
+                        </td>
+                     </tr>
+                  </template>
+               </v-data-table>
             </v-card>
          </v-flex>
       </v-layout>
@@ -15,15 +30,40 @@
 
 
 <script>
-import Vue from "vue";
-import Axios from "axios";
-import VueAxios from "vue-axios";
-Vue.use(VueAxios, Axios);
+import tableData from "!json-loader!./stations.json";
 
 export default {
-  data: () => ({})
+  data: () => ({
+    pagination: { rowsPerPage: 25 },
+
+    station_table: tableData,
+    headers: [
+      {
+        text: "Name",
+        value: "name",
+        align: "left"
+      },
+      {
+        text: "Coordinates",
+        value: "coordinates",
+        sortable: false
+      },
+      {
+        text: "Type",
+        value: "type",
+        align: "center"
+      },
+      {
+        text: "Status",
+        value: "status",
+        sortable: false
+      }
+    ]
+  })
 };
 </script>
+
+
 
 
 <style>
