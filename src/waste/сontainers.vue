@@ -93,7 +93,7 @@ Vue.use(VueAxios, Axios);
 
 import binstable from "./components/binstable.vue";
 Vue.component("binstable", binstable);
-import tableData from "!json-loader!./containers.json";
+import table_data from "!json-loader!./containers.json";
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
@@ -141,7 +141,7 @@ export default {
     },
     selected: [],
     online: 0,
-    containers: []
+    containers: table_data
   }),
 
   mounted: function() {
@@ -150,10 +150,6 @@ export default {
     this.daily_filling_levels_chart.data = this.calc_battery_levels();
     this.online = this.calc_online();
     this.renderCharts();
-  },
-
-  created: function() {
-    this.containers = tableData;
   },
   methods: {
     showbindetails(item) {
