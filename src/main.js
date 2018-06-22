@@ -39,7 +39,8 @@ let color_nokia = {
    red: "#FF3154",
    yellow: "#FFFB00",
    green: "#4BDD33",
-   orange: "#FF9910"
+   orange: "#FF9910",
+   grafana_grey: "#F6F7F9"
 }
 
 import Vuetify from 'vuetify'
@@ -65,6 +66,7 @@ Vue.use(Vuetify, {
       warning: color_nokia.yellow,
       info: color_nokia.gray_2,
       success: color_nokia.green,
+      grafana_grey: color_nokia.grafana_grey,
    }
 })
 
@@ -148,9 +150,9 @@ import L from 'leaflet'
 delete L.Icon.Default.prototype._getIconUrl
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('../node_modules/leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('../node_modules/leaflet/dist/images/marker-shadow.png')
+   iconRetinaUrl: require('../node_modules/leaflet/dist/images/marker-icon-2x.png'),
+   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
+   shadowUrl: require('../node_modules/leaflet/dist/images/marker-shadow.png')
 })
 
 new Vue({
