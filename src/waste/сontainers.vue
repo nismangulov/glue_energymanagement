@@ -14,7 +14,7 @@
                            <l-map :zoom="map.zoom" style="z-index: 5" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                               <template v-for="container in containers">
-                                 <l-marker :lat-lng="container.coordinates" @click="map_marker_click" v-bind:key="container.name"></l-marker>
+                                 <l-marker :lat-lng="container.coordinates" @click="map_marker_click" v-bind:key="container.name" :icon="get_marker_icon(container.selected)"></l-marker>
                               </template>
                            </l-map>
                         </v-card>
@@ -95,6 +95,7 @@ import binstable from "./components/binstable.vue";
 Vue.component("binstable", binstable);
 import table_data from "!json-loader!./containers.json";
 
+import L from 'leaflet';
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 import * as d3 from "d3";
@@ -234,6 +235,15 @@ export default {
         { name: "<80%", value: count_80 },
         { name: ">80%", value: count_100 }
       ];
+    },
+    get_marker_icon(selected) {
+      const url = selected ? require('../assets/marker-active.svg') : require('../assets/marker.svg')
+       
+      return L.icon({
+        iconUrl: url,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32]
+      })
     }
   }
 };
