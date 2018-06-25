@@ -6,14 +6,14 @@
             <v-card class="no-shadow">
                <v-data-table :headers="table_headers" :items="smartbins" :pagination.sync="pagination" hide-actions class="elevation-1">
                   <template slot="headers" slot-scope="props">
-                     <tr>
+                     <tr class="text-center">
                         <th v-for="header in props.headers" :key="header.text">
                            {{ header.text }}
                         </th>
                      </tr>
                   </template>
                   <template slot="items" slot-scope="props">
-                     <tr :class="props.item.selected ? 'row-selected' : ''">
+                     <tr :class="props.item.selected ? 'row-selected text-center' : 'text-center'">
                         <td @click="center_map(props.item)">{{ props.item.name }}</td>
                         <td @click="center_map(props.item)">{{ props.item.level }} %</td>
                         <td @click="center_map(props.item)">{{ props.item.status }}</td>
@@ -114,6 +114,10 @@ table.table tbody th {
   height: 100%;
   padding: 0px !important;
 }
+
+.text-center {
+   text-align: center;
+}
 </style>
 
 
@@ -138,7 +142,7 @@ table.table thead tr {
 .button-sm button {
   height: 16px;
   width: 16px;
-  margin: 0;
+  margin: 0 !important;
 }
 </style>
 
