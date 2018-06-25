@@ -21,7 +21,7 @@
             v-else-if="item.children"
             :key="item.text"
             :prepend-icon="item.model ? item.icon : item.alticon"
-            append-icon=""  
+            append-icon=""
             v-bind:value="get_expanded_status(item.path)"
           >
             <v-list-tile slot="activator">
@@ -244,10 +244,10 @@ export default {
   methods: {
     get_expanded_status(path) {
       if (window.location.href.includes(path)) {
-        return true
+        return true;
       }
 
-      return false
+      return false;
     }
   }
 };
