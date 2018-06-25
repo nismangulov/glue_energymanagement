@@ -33,13 +33,13 @@ export default {
   created: function() {
     this.timers.update.time = this.timer_value;
     for (let lines_index = 0; lines_index <= this.row; lines_index++) {
-      this.lines[lines_index] = { index: lines_index };
-      this.lines[lines_index].cards = {};
+      Vue.set(this.lines, lines_index, { index: lines_index });
+      Vue.set(this.lines[lines_index], "cards", {});
       for (let cards_index = 0; cards_index <= this.column; cards_index++) {
-        this.lines[lines_index].cards[cards_index] = {
+        Vue.set(this.lines[lines_index].cards, cards_index, {
           index: cards_index,
-          color: "red"
-        };
+          color: "green"
+        });
       }
     }
   },
