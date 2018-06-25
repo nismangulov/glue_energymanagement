@@ -184,7 +184,6 @@ export default {
           this.containers[index].selected = true;
           container = this.containers[index];
           this.map.center = L.latLng(0, 0);
-          this.map.center = this.containers[index].coordinates;
           this.map.center.lat = container.coordinates.lat;
           this.map.center.lng = container.coordinates.lng;
         }
@@ -197,7 +196,6 @@ export default {
         container.selected = false;
       });
       item.selected = true;
-      this.map.center = item.coordinates;
       this.map.center.lat = item.coordinates.lat;
       this.map.center.lng = item.coordinates.lng;
       this.map.zoom = 15;
