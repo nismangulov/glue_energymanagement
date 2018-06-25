@@ -95,7 +95,7 @@ import binstable from "./components/binstable.vue";
 Vue.component("binstable", binstable);
 import table_data from "!json-loader!./containers.json";
 
-import L from 'leaflet';
+import L from "leaflet";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 import * as d3 from "d3";
@@ -144,7 +144,6 @@ export default {
     online: 0,
     containers: table_data
   }),
-
   mounted: function() {
     this.waste_filling_levels_chart.data = this.calc_filling_levels();
     this.batteries_levels_chart.data = this.calc_battery_levels();
@@ -181,8 +180,9 @@ export default {
           event.latlng.lat == this.containers[index].coordinates.lat &&
           event.latlng.lng == this.containers[index].coordinates.lng
         ) {
-          this.containers[index].selected = true;
           container = this.containers[index];
+
+          container.selected = true;
           this.map.center = L.latLng(0, 0);
           this.map.center.lat = container.coordinates.lat;
           this.map.center.lng = container.coordinates.lng;
@@ -191,7 +191,6 @@ export default {
     },
 
     table_click(item) {
-      console.log(item);
       this.containers.forEach(container => {
         container.selected = false;
       });
@@ -239,13 +238,15 @@ export default {
       ];
     },
     get_marker_icon(selected) {
-      const url = selected ? require('../assets/marker-active.svg') : require('../assets/marker.svg')
-       
+      const url = selected
+        ? require("../assets/marker-active.svg")
+        : require("../assets/marker.svg");
+
       return L.icon({
         iconUrl: url,
         iconSize: [32, 32],
         iconAnchor: [16, 32]
-      })
+      });
     }
   }
 };
