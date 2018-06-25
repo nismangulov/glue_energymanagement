@@ -5,7 +5,7 @@
          <v-flex d-flex md4>
             <v-layout class="fix-layout" row wrap>
                <v-flex d-flex md3>
-                  <v-card :color="waste.color" to="/waste/stat">
+                  <v-card :color="waste.color" to="/waste/containers">
                      <v-card-title primary class="title">Waste
                         <v-spacer></v-spacer>
                         <v-icon>fa-trash</v-icon>
@@ -93,7 +93,7 @@
                                  <v-flex d-flex md6>
                                     <v-layout class="fix-layout" row wrap>
                                        <v-flex d-flex md6>
-                                          <v-card :color="air.color" to="/eco_monitoring/stations">
+                                          <v-card :color="air.color" to="/eco_monitoring/map">
                                              <v-card-title primary class="title">Air
                                                 <v-spacer></v-spacer>
                                                 <v-icon>fa-tree</v-icon>
@@ -125,7 +125,7 @@
                      <v-flex class="move-top" d-flex md6>
                         <v-layout class="fix-layout-large" row wrap>
                            <v-flex d-flex md12>
-                              <v-card :color="power.color" to="/energy/stat">
+                              <v-card :color="power.color" to="metering/meters">
                                  <v-card-title primary class="title">Power
                                     <v-spacer></v-spacer>
                                     <v-icon>fa-chart-bar</v-icon>
