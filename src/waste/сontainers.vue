@@ -142,8 +142,11 @@ export default {
     },
     selected: [],
     online: 0,
-    containers: table_data
+    containers: {}
   }),
+  created: function() {
+    Vue.set(this, "containers", table_data);
+  },
   mounted: function() {
     this.waste_filling_levels_chart.data = this.calc_filling_levels();
     this.batteries_levels_chart.data = this.calc_battery_levels();
