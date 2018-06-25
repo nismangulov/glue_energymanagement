@@ -222,11 +222,11 @@ export default {
         icon: "fa-trash-alt",
         alticon: "fa-trash-alt",
         children: [
-          {
+          /* {
             icon: "fa-chart-line",
             path: "/waste/stat",
             text: "Statistic"
-          },
+          }, */
           {
             icon: "fa-th-list",
             path: "/waste/containers",
