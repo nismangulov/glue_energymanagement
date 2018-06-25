@@ -23,23 +23,23 @@
                      </v-card-title>
                      <v-card-text>
                         <span class="title">Free: </span>
-                        <span class="headline">{{ parking.free }}%</span><br>
-                        <span class="title">Avg park time: </span>
-                        <span class="headline">{{ parking.time }}min</span>
+                        <span class="headline">{{ parking.free }} %</span><br>
+                        <span class="title">Average park time: </span>
+                        <span class="headline">{{ parking.time }} min</span>
                      </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card :color="lamps.color" to="/lighting/main">
+                  <v-card :color="lamps.color" to="/lighting/unilight">
                      <v-card-title primary class="title">Smart Lighting
                         <v-spacer></v-spacer>
                         <v-icon>fa-lightbulb</v-icon>
                      </v-card-title>
                      <v-card-text>
                         <span class="title">Lamps on: </span>
-                        <span class="headline">{{ lamps.power_on }}</span><br>
+                        <span class="headline">{{ lamps.power_on }}/{{ lamps.all }}</span><br>
                         <span class="title">Consumption: </span>
-                        <span class="headline">{{ lamps.power }}Wh</span>
+                        <span class="headline">{{ lamps.power }} KW</span>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -63,7 +63,7 @@
                            <l-map :zoom="map.zoom" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                               <template v-for="marker in map.markers">
-                                 <l-marker :lat-lng="marker.coordinates" @click="marker_click" v-bind:key="marker.name"></l-marker>
+                                 <l-marker :lat-lng="marker.coordinates" v-bind:key="marker.name"></l-marker>
                               </template>
                            </l-map>
                         </v-card>
@@ -86,7 +86,7 @@
                                           <span class="title">Households in: </span>
                                           <span class="headline">{{ meters.households }} %</span><br>
                                           <span class="title">Consumption: </span>
-                                          <span class="headline">{{ meters.power }} Wh</span>
+                                          <span class="headline">{{ meters.power }} KW</span>
                                        </v-card-text>
                                     </v-card>
                                  </v-flex>
@@ -234,7 +234,8 @@ export default {
       color: "nokia_gray_2"
     },
     lamps: {
-      power_on: "40/400",
+      power_on: 42,
+      all: 421,
       power: 527,
       color: "nokia_green"
     },
@@ -256,22 +257,11 @@ export default {
     },
     power: {
       value: "90",
-      incidents: 0,
+      incidents: 2,
       color: "nokia_red"
     }
   }),
-  methods: {
-    marker_click(event) {
-      for (let index = 0; index < this.map.markers.length; index++) {
-        if (
-          event.latlng.lat == this.map.markers[index].coordinates.lat &&
-          event.latlng.lng == this.map.markers[index].coordinates.lng
-        ) {
-          console.log(this.map.markers[index].name);
-        }
-      }
-    }
-  }
+  methods: {}
 };
 </script>
 
