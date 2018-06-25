@@ -229,7 +229,7 @@ export default {
           },
           {
             icon: "fa-th-list",
-            path: "/waste/сontainers",
+            path: "/waste/containers",
             text: "Сontainers"
           },
           {

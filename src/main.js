@@ -131,7 +131,7 @@ const router = new VueRouter({
       path: '/infrastructure/monitoring',
       component: infras_monitoring
    }, {
-      path: '/waste/сontainers',
+      path: '/waste/containers',
       component: waste_сontainers
    }, {
       path: '/waste/planning',
