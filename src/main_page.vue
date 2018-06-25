@@ -158,11 +158,11 @@ export default {
         icon: "fa-unlock-alt",
         alticon: "fa-unlock-alt",
         children: [
-          {
+          /* {
             icon: "fa-key",
             path: "/safety/acs_lora",
             text: "Access Control System"
-          },
+          }, */
           {
             icon: "fa-video",
             path: "/safety/video",
