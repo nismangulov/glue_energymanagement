@@ -44,12 +44,11 @@
                   </v-card>
                </v-flex>
                <v-flex d-flex md3>
-                  <v-card :color="video.color" to="/safety/video">
+                  <v-card :color="video.color" to="/safety/video" class="card-image" style="background-image: url(http://www.intek-m.ru/img/cams/cam_17/17_camera.jpg)">
                      <v-card-title primary class="title">Video
                         <v-spacer></v-spacer>
                         <v-icon>fa-video</v-icon>
                      </v-card-title>
-                     <img class="cam-image" width="100%" height="60%" src="http://www.intek-m.ru/img/cams/cam_17/17_camera.jpg" />
                   </v-card>
                </v-flex>
             </v-layout>
@@ -278,5 +277,10 @@ export default {
 
 .move-top {
   margin-top: -8px;
+}
+
+.card-image {
+   background-size: cover;
+   background-position: left center;
 }
 </style>
