@@ -1,6 +1,6 @@
 <template>
    <v-container grid-list-md fill-height>
-      <v-layout column>
+      <v-layout column class="full-height">
          <v-flex d-flex md6>
             <v-layout row wrap fill-height fix-layout>
                <v-flex d-flex md6 fix-layout>
@@ -82,6 +82,14 @@ export default {
    object-fit: cover;
    object-position: left center;
 }
+
+@media (min-width: 960px) {
+   .full-height {
+      height: calc(100vh - 80px) !important;
+   }    
+}
+
+
 </style>
 
 
