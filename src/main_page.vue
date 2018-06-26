@@ -104,11 +104,11 @@ export default {
             path: "/eco_monitoring/stations",
             text: "Stations"
           },
-          {
+          /* {
             icon: "fa-calendar-alt",
             path: "/eco_monitoring/history",
             text: "Historical data"
-          },
+          }, */
           {
             icon: "fa-calendar-alt",
             path: "/eco_monitoring/aqi",

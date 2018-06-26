@@ -31,38 +31,104 @@ export default {
     LMarker,
     Heatmap
   },
+  mounted() {
+    console.log(table_data[0].coordinates.lng);
+  },
   data: () => ({
     map: {
       zoom: 10,
-      center: L.latLng(55.755826, 37.6172999),
+      center: L.latLng(55.697855, 37.634648),
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: table_data
     },
     heatmapOptions: {
-      scaleRadius: true, 
+      scaleRadius: true,
       useLocalExtrema: true,
-      latField: 'lat',
-      lngField: 'lng',
-      valueField: 'count',
-      radius: 0.1,
-      maxOpacity: 0.7,
+      latField: "lat",
+      lngField: "lng",
+      valueField: "count",
+      radius: 0.2,
+      maxOpacity: 0.3,
       minOpacity: 0,
-      blur: .75,
+      blur: 1
     },
     heatmapData: {
-      min: 0,
+      min: 1,
       max: 100,
       data: [
-         {lat: 55.83423792, lng: 37.64075481, count: 18},
-         {lat: 55.7552443, lng: 37.61348755, count: 28},
-         {lat: 55.68098578, lng: 37.70412475, count: 62},
-         {lat: 55.86790868, lng: 37.51461059, count: 32},
-         {lat: 55.77455929, lng: 37.48027832, count: 54},
-         {lat: 55.69259798, lng: 37.54756958, count: 48},
-         {lat: 55.61511815, lng: 37.61211426, count: 78},
-         {lat: 55.83398936, lng: 37.73296387, count: 43},
+        {
+          lat: 55.752024,
+          lng: 37.621766,
+          count: 10
+        },
+        {
+          lat: 55.789306,
+          lng: 37.669198,
+          count: 10
+        },
+        {
+          lat: 55.718442,
+          lng: 37.554528,
+          count: 10
+        },
+        {
+          lat: 55.71224,
+          lng: 37.692544,
+          count: 10
+        },
+        {
+          lat: 55.826429,
+          lng: 37.339608,
+          count: 10
+        },
+        {
+          lat: 55.929118,
+          lng: 37.518197,
+          count: 10
+        },
+        {
+          lat: 55.905982,
+          lng: 37.733118,
+          count: 10
+        },
+        {
+          lat: 55.679981,
+
+          lng: 37.244258,
+          count: 10
+        },
+        {
+          lat: 55.788074,
+          lng: 37.929531,
+          count: 10
+        },
+        {
+          lat: 55.44767,
+          lng: 37.754647,
+          count: 10
+        },
+        {
+          lat: 55.425808,
+          lng: 37.578865,
+          count: 10
+        },
+        {
+          lat: 55.556797,
+          lng: 37.433297,
+          count: 5
+        },
+        {
+          lat: 55.603896,
+          lng: 37.934026,
+          count: 5
+        },
+        {
+          lat: 55.659057,
+          lng: 38.167485,
+          count: 5
+        }
       ]
     }
   })

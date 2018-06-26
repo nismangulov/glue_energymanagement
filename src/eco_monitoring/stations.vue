@@ -10,13 +10,13 @@
                         <td>
                            <div>{{ props.item.name }}</div>
                         </td>
-                        <td>
-                           <div>{{ props.item.coordinates }}</div>
+                        <td class="text-center">
+                           <div>{{ props.item.aqi }}</div>
                         </td>
-                        <td>
+                        <td class="text-center">
                            <div>{{ props.item.type }}</div>
                         </td>
-                        <td>
+                        <td class="text-center">
                            <div>{{ props.item.status }}</div>
                         </td>
                      </tr>
@@ -44,9 +44,9 @@ export default {
         align: "left"
       },
       {
-        text: "Coordinates",
-        value: "coordinates",
-        sortable: false
+        text: "AQI",
+        value: "aqi",
+        align: "center"
       },
       {
         text: "Type",
@@ -56,7 +56,7 @@ export default {
       {
         text: "Status",
         value: "status",
-        sortable: false
+        align: "center"
       }
     ]
   })
@@ -69,6 +69,10 @@ export default {
 <style>
 .fill-height {
   height: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
 </style>
 
