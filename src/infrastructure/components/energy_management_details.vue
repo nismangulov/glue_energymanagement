@@ -20,8 +20,8 @@
                </v-btn>
             </v-card-text>
             <v-divider></v-divider>
-            <v-card-text>
-               <l-map :zoom="map.zoom" :center="map.center">
+            <v-card-text v-if="visible" class="no-padding">
+               <l-map :zoom="map.zoom" :center="map.center" class="map">
                   <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                   <l-marker :lat-lng="map.marker"></l-marker>
                </l-map>
@@ -90,4 +90,12 @@ export default {
 
 <style>
 @import "../../../node_modules/leaflet/dist/leaflet.css";
+
+.no-padding {
+   padding: 0px;
+}
+
+.map {
+   min-height: 300px;
+}
 </style>
