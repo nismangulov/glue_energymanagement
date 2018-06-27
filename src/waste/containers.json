@@ -9,7 +9,8 @@
       "level": "20",
       "battery": "93",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Unwired Devices(LoRa)"
    },
    {
       "coordinates": {
@@ -21,7 +22,8 @@
       "level": "40",
       "battery": "93",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Unwired Devices(LoRa)"
    },
    {
       "coordinates": {
@@ -33,7 +35,8 @@
       "level": "80",
       "battery": "98",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Unwired Devices(LoRa)"
    },
    {
       "coordinates": {
@@ -45,7 +48,8 @@
       "level": "90",
       "battery": "95",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Ecubelabs"
    },
    {
       "coordinates": {
@@ -57,7 +61,8 @@
       "level": "2",
       "battery": "99",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Ecubelabs"
    },
    {
       "coordinates": {
@@ -69,7 +74,8 @@
       "level": "10",
       "battery": "94",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Unwired Devices(LoRa)"
    },
    {
       "coordinates": {
@@ -81,7 +87,8 @@
       "level": "28",
       "battery": "98",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Ecubelabs"
    },
    {
       "coordinates": {
@@ -93,7 +100,8 @@
       "level": "19",
       "battery": "95",
       "status": "offline",
-      "selected": false
+      "selected": false,
+      "vendor": "Ecubelabs"
    },
    {
       "coordinates": {
@@ -105,7 +113,8 @@
       "level": "62",
       "battery": "38",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Ecubelabs"
    },
    {
       "coordinates": {
@@ -117,6 +126,7 @@
       "level": "12",
       "battery": "98",
       "status": "online",
-      "selected": false
+      "selected": false,
+      "vendor": "Unwired Devices(LoRa)"
    }
 ]
