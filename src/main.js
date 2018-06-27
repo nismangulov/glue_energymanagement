@@ -126,7 +126,7 @@ const router = new VueRouter({
       path: '/infrastructure/incidents',
       component: infras_incidents
    }, {
-      path: '/infrastructure/energy_management',
+      path: '/lighting/energy_management',
       component: infras_stat
    }, {
       path: '/infrastructure/monitoring',
