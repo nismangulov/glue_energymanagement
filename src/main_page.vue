@@ -116,7 +116,7 @@ export default {
           }
         ]
       },
-      {
+      /* {
         path: "parking",
         text: "Parking",
         icon: "fa-car",
@@ -133,7 +133,7 @@ export default {
             text: "Map"
           }
         ]
-      },
+      }, */
       {
         path: "lighting",
         text: "Lighting",
@@ -145,6 +145,11 @@ export default {
             path: "/lighting/main",
             text: "Main"
           }, */
+          {
+            icon: "fa-chart-line",
+            path: "/lighting/energy_management",
+            text: "Management"
+          },
           {
             icon: "fa-external-link-square-alt",
             path: "/lighting/unilight",
@@ -201,13 +206,13 @@ export default {
         children: [
           {
             icon: "fa-chart-line",
-            path: "/infrastructure/energy_management",
-            text: "Energy management"
+            path: "/infrastructure/monitoring",
+            text: "Monitoring"
           },
           {
             icon: "fa-chart-line",
-            path: "/infrastructure/monitoring",
-            text: "Monitoring"
+            path: "/infrastructure/gateways",
+            text: "Gateways"
           },
           {
             icon: "fa-exclamation-triangle",
