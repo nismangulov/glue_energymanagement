@@ -170,8 +170,13 @@ export default {
           }, */
           {
             icon: "fa-video",
-            path: "/safety/video",
+            path: "/safety/video-analitics",
             text: "Video analitics"
+          },
+          {
+            icon: "fa-video",
+            path: "/safety/video-monitoring",
+            text: "Video monitoring"
           }
         ]
       },

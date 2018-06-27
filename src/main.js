@@ -14,7 +14,8 @@ import lighting_main from './lighting/main.vue'
 import lighting_unilight from './lighting/unilight.vue'
 
 import safety_acs_lora from './safety/acs-lora.vue'
-import safety_video from './safety/video.vue'
+import safety_video_monitoring from './safety/video-monitoring.vue'
+import safety_video_analitics from './safety/video-analitics.vue'
 
 import metering_gascloud from './metering/gascloud.vue'
 import metering_linergo from './metering/linergo.vue'
@@ -111,8 +112,11 @@ const router = new VueRouter({
       path: '/safety/acs_lora',
       component: safety_acs_lora
    }, {
-      path: '/safety/video',
-      component: safety_video
+      path: '/safety/video-monitoring',
+      component: safety_video_monitoring
+   }, {
+      path: '/safety/video-analitics',
+      component: safety_video_analitics
    }, {
       path: '/metering/gascloud',
       component: metering_gascloud
