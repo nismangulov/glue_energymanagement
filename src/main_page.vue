@@ -3,6 +3,7 @@
        <v-navigation-drawer
       :clipped="$vuetify.breakpoint.lgAndUp"
       v-model="drawer"
+      :mini-variant.sync="menu_collapsed"
       fixed app disable-resize-watcher permanent touchless width=250
     >
       <v-list dense>
@@ -61,16 +62,17 @@
     </v-navigation-drawer>
 
    <v-toolbar color="primary" dark app fixed clipped-left>
-         <v-menu>
-            <v-toolbar-title slot="activator">
-                <img class="mr-3 mt-2" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
-               Smart City control center
-            </v-toolbar-title>
-            </v-menu>
-            <v-spacer></v-spacer>
-            <v-toolbar-items class="hidden-sm-and-down">
-               <div class="title mt-4" >Powered by IMPACT</div>
-            </v-toolbar-items>
+      <v-btn icon @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
+      <v-menu>
+         <v-toolbar-title  slot="activator">
+            <img class="mr-3 mt-2" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
+            Smart City control center
+         </v-toolbar-title>
+      </v-menu>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+         <div class="title mt-4" >Powered by IMPACT</div>
+      </v-toolbar-items>
    </v-toolbar>
 
     <v-content>
@@ -82,6 +84,7 @@
 <script>
 export default {
   data: () => ({
+    menu_collapsed: true,
     items: [
       {
         path: "dashboard",
@@ -258,6 +261,9 @@ export default {
       }
 
       return false;
+    },
+    toggle_menu() {
+       this.menu_collapsed = !this.menu_collapsed
     }
   }
 };
