@@ -29,12 +29,9 @@
                </v-data-table>
             </v-card>
          </v-flex>
-         <v-flex d-block>
-            <v-card class="no-shadow">
-               <div class="text-xs-center">
-                  <span @click="change_page('-')">&larr;</span>
-                  <span @click="change_page('+')">&rarr;</span>
-               </div>
+         <v-flex v-if="pagination.totalItems > pagination.rowsPerPage" d-block>
+            <v-card class="no-shadow pagination-block">
+               <v-pagination class="custom-pagination" v-model="pagination.page" :length="pages"></v-pagination>
             </v-card>
          </v-flex>
       </v-layout>
@@ -76,14 +73,6 @@ export default {
     this.smartbins = this.$props.bins;
   },
   methods: {
-    change_page(direction) {
-      if (direction == "-" && this.pagination.page > 1) {
-        this.pagination.page--;
-      }
-      if (direction == "+" && this.pagination.page < this.pages) {
-        this.pagination.page++;
-      }
-    },
     showbindetails(item) {
       this.$refs.bindetails.show(item);
     },
@@ -112,6 +101,11 @@ table.table tbody th {
 
 .text-center {
   text-align: center;
+}
+
+.pagination-block {
+   display: flex;
+   justify-content: center;
 }
 </style>
 
