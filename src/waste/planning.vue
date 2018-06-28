@@ -1,11 +1,16 @@
 <template>
    <v-container grid-list-md fill-height>
-      <v-layout fix-layout row wrap>
+      <v-layout column>
+         <v-flex d-flex>
+            <div>
+               <v-btn @click="show_route">Build Route</v-btn>
+               <v-btn @click="hide_route">Clear Route</v-btn>
+            </div>
+         </v-flex>
          <v-flex d-flex md12>
             <l-map :zoom="map.zoom" :center="map.center">
                <l-tile-layer :url="map.url"></l-tile-layer>
-               <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
-
+               <l-polyline v-if="route_visible" :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
                <template v-for="container in containers">
                   <l-marker :lat-lng="container.coordinates" v-bind:key="container.name" :icon="container.icon"></l-marker>
                </template>
@@ -123,12 +128,20 @@ export default {
         battery: "10",
         status: "online"
       }
-    ]
+    ],
+    route_visible: false
   }),
 
   computed: {},
   mounted: function() {},
-  methods: {}
+  methods: {
+    show_route: function() {
+      this.route_visible = true
+    },
+    hide_route: function() {
+      this.route_visible = false
+    },
+  }
 };
 </script>
 

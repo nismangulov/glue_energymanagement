@@ -1,0 +1,80 @@
+[
+   {
+      "name": "LoRa",
+      "type": "Unwired Devices Generic",
+      "status": "online",
+      "devices": 2
+   },
+   {
+      "name": "6LoWPAN",
+      "type": "Unwired Devices Generic",
+      "status": "online",
+      "devices": 0
+   },
+   {
+      "name": "NB-IoT",
+      "type": "Impact",
+      "status": "online",
+      "devices": 1
+   },
+   {
+      "name": "Modbus",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 13
+   },
+   {
+      "name": "RS458",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 12
+   },
+   {
+      "name": "1-Wire",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 2
+   },
+   {
+      "name": "KNX",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 0
+   },
+   {
+      "name": "HDL",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 0
+   },
+   {
+      "name": "Z-Wave",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 0
+   },
+   {
+      "name": "Mercury",
+      "type": "ContactLess",
+      "status": "online",
+      "devices": 1
+   },
+   {
+      "name": "MQTT",
+      "type": "Impact Glue",
+      "status": "online",
+      "devices": 20
+   },
+   {
+      "name": "Vaisala-generic",
+      "type": "Vaisala",
+      "status": "online",
+      "devices": 2
+   },
+   {
+      "name": "AIR-Q",
+      "type": "Air-Q generic",
+      "status": "online",
+      "devices": 1
+   }
+]

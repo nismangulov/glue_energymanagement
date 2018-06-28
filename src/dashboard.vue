@@ -23,7 +23,7 @@
                      </v-card-title>
                      <v-card-text>
                         <span class="title">Free: </span>
-                        <span class="headline">{{ parking.free }} %</span><br>
+                        <span class="headline">{{ get_randomized_value(parking.free) }} %</span><br>
                         <span class="title">Average park time: </span>
                         <span class="headline">{{ parking.time }} min</span>
                      </v-card-text>
@@ -37,9 +37,9 @@
                      </v-card-title>
                      <v-card-text>
                         <span class="title">Lamps on: </span>
-                        <span class="headline">{{ lamps.power_on }}/{{ lamps.all }}</span><br>
+                        <span class="headline">{{ get_randomized_value(lamps.power_on) }}/{{ lamps.all }}</span><br>
                         <span class="title">Consumption: </span>
-                        <span class="headline">{{ lamps.power }} KW</span>
+                        <span class="headline">{{ get_randomized_value(lamps.power) }} KW</span>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -85,7 +85,7 @@
                                           <span class="title">Households in: </span>
                                           <span class="headline">{{ meters.households }} %</span><br>
                                           <span class="title">Consumption: </span>
-                                          <span class="headline">{{ meters.power }} KW</span>
+                                          <span class="headline">{{ get_randomized_value(meters.power) }} KW</span>
                                        </v-card-text>
                                     </v-card>
                                  </v-flex>
@@ -131,7 +131,7 @@
                                  </v-card-title>
                                  <v-card-text>
                                     <span class="title">Consumption: </span>
-                                    <span class="headline">{{ power.value }}GWh</span><br>
+                                    <span class="headline">{{ get_randomized_value(power.value) }}GWh</span><br>
                                     <span class="title">Incidents: </span>
                                     <span class="headline">{{ power.incidents }}</span>
                                  </v-card-text>
@@ -258,9 +258,28 @@ export default {
       value: "90",
       incidents: 2,
       color: "nokia_red"
-    }
+    },
+    random_interval: null
   }),
-  methods: {}
+  created: function() {
+    this.update_random_values();
+  },
+  beforeDestroy: function() {
+    clearInterval(this.random_interval);
+  },
+  methods: {
+    update_random_values: function() {
+      let that = this;
+      this.random_interval = setInterval(function() {
+        that.$forceUpdate();
+      }, 3000);
+    },
+    get_randomized_value: function(value) {
+      const min_value = value * 0.98;
+      const randomizer = value * 0.05 * Math.random();
+      return parseInt(min_value + randomizer);
+    }
+  }
 };
 </script>
 
@@ -280,7 +299,7 @@ export default {
 }
 
 .card-image {
-   background-size: cover;
-   background-position: left center;
+  background-size: cover;
+  background-position: left center;
 }
 </style>

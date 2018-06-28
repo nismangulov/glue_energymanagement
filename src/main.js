@@ -14,7 +14,8 @@ import lighting_main from './lighting/main.vue'
 import lighting_unilight from './lighting/unilight.vue'
 
 import safety_acs_lora from './safety/acs-lora.vue'
-import safety_video from './safety/video.vue'
+import safety_video_monitoring from './safety/video-monitoring.vue'
+import safety_video_analitics from './safety/video-analitics.vue'
 
 import metering_gascloud from './metering/gascloud.vue'
 import metering_linergo from './metering/linergo.vue'
@@ -23,6 +24,7 @@ import metering_meters from './metering/meters.vue'
 import infras_incidents from './infrastructure/incidents.vue'
 import infras_stat from './infrastructure/energy_management.vue'
 import infras_monitoring from './infrastructure/monitoring.vue'
+import infras_gateways from './infrastructure/gateways.vue'
 
 import waste_сontainers from './waste/сontainers.vue'
 import waste_planning from './waste/planning.vue'
@@ -110,8 +112,11 @@ const router = new VueRouter({
       path: '/safety/acs_lora',
       component: safety_acs_lora
    }, {
-      path: '/safety/video',
-      component: safety_video
+      path: '/safety/video-monitoring',
+      component: safety_video_monitoring
+   }, {
+      path: '/safety/video-analitics',
+      component: safety_video_analitics
    }, {
       path: '/metering/gascloud',
       component: metering_gascloud
@@ -125,11 +130,14 @@ const router = new VueRouter({
       path: '/infrastructure/incidents',
       component: infras_incidents
    }, {
-      path: '/infrastructure/energy_management',
+      path: '/lighting/energy_management',
       component: infras_stat
    }, {
       path: '/infrastructure/monitoring',
       component: infras_monitoring
+   }, {
+      path: '/infrastructure/gateways',
+      component: infras_gateways
    }, {
       path: '/waste/containers',
       component: waste_сontainers

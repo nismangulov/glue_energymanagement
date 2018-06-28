@@ -17,7 +17,8 @@
                         <td @click="center_map(props.item)">{{ props.item.name }}</td>
                         <td @click="center_map(props.item)">{{ props.item.level }} %</td>
                         <td @click="center_map(props.item)">{{ props.item.status }}</td>
-                        <td @click="center_map(props.item)">{{ props.item.battery }} %</td>
+                        <td @click="center_map(props.item)">{{ props.item.vendor }}</td>
+
                         <td class="button-sm">
                            <v-btn icon class="ml-0 mr-2" @click="showbindetails(props.item)">
                               <v-icon color="grey" small>fa-eye</v-icon>
@@ -50,7 +51,7 @@ export default {
       { text: "Name", value: "name" },
       { text: "Level", value: "level" },
       { text: "Status", value: "status" },
-      { text: "Battery", value: "battery" },
+      { text: "Vendor", value: "vendor" },
       { text: "Info", value: "info" }
     ]
   }),
@@ -99,7 +100,7 @@ table.table tbody th {
 }
 
 .text-center {
-   text-align: center;
+  text-align: center;
 }
 
 .pagination-block {
