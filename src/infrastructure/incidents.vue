@@ -1,5 +1,5 @@
 <template>
-   <v-container grid-list-md fill-height>
+   <v-container grid-list-md fill-height fluid>
 
       <v-layout column fix-layout>
          <template v-for="line in lines">
