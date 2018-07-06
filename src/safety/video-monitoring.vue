@@ -1,5 +1,5 @@
 <template>
-   <v-container grid-list-md fill-height>
+   <v-container grid-list-md fill-height fluid>
       <v-layout column class="full-height">
          <v-flex d-flex md6>
             <v-layout row wrap fill-height fix-layout>

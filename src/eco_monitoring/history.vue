@@ -1,5 +1,5 @@
 <template>
-   <v-container fill-height>
+   <v-container fill-height fluid>
       <v-layout row wrap>
          <v-flex d-flex md12>
             <v-card color="grafana_grey">
