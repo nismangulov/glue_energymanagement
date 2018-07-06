@@ -14,6 +14,7 @@
                <template v-for="container in containers">
                   <l-marker :lat-lng="container.coordinates" v-bind:key="container.name" :icon="container.icon"></l-marker>
                </template>
+               <l-marker :lat-lng="truck.coordinates" :icon="truck.icon"></l-marker>
             </l-map>
          </v-flex>
       </v-layout>
@@ -129,6 +130,14 @@ export default {
         status: "online"
       }
     ],
+    truck: {
+      coordinates: L.latLng(55.696342, 37.359745),
+      icon: L.icon({
+        iconUrl: require('../assets/car.svg'),
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      })
+    },
     route_visible: false
   }),
 
