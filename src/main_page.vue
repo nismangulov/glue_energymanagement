@@ -223,6 +223,11 @@ export default {
             text: "Gateways"
           },
           {
+            icon: "fa-chart-line",
+            path: "/infrastructure/managment",
+            text: "Management"
+          },
+          {
             icon: "fa-exclamation-triangle",
             path: "/infrastructure/incidents",
             text: "Incidents"
@@ -249,6 +254,11 @@ export default {
             icon: "fa-calendar-alt",
             path: "/waste/planning",
             text: "Planning"
+          },
+          {
+            icon: "fa-calendar-alt",
+            path: "/waste/managment",
+            text: "Management"
           }
         ]
       }
@@ -263,7 +273,7 @@ export default {
       return false;
     },
     toggle_menu() {
-       this.menu_collapsed = !this.menu_collapsed
+      this.menu_collapsed = !this.menu_collapsed;
     }
   }
 };

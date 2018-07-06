@@ -24,10 +24,12 @@ import metering_meters from './metering/meters.vue'
 import infras_incidents from './infrastructure/incidents.vue'
 import infras_stat from './infrastructure/energy_management.vue'
 import infras_monitoring from './infrastructure/monitoring.vue'
+import infras_managment from './infrastructure/managment.vue'
 import infras_gateways from './infrastructure/gateways.vue'
 
 import waste_сontainers from './waste/сontainers.vue'
 import waste_planning from './waste/planning.vue'
+import waste_managment from './waste/managment.vue'
 import waste_stat from './waste/stat.vue'
 
 let color_nokia = {
@@ -139,6 +141,9 @@ const router = new VueRouter({
       path: '/infrastructure/gateways',
       component: infras_gateways
    }, {
+      path: '/infrastructure/managment',
+      component: infras_managment
+   }, {
       path: '/waste/containers',
       component: waste_сontainers
    }, {
@@ -147,6 +152,9 @@ const router = new VueRouter({
    }, {
       path: '/waste/stat',
       component: waste_stat
+   }, {
+      path: '/waste/managment',
+      component: waste_managment
    }, {
       path: '*',
       redirect: '/dashboard'
