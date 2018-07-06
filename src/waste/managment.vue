@@ -1,5 +1,5 @@
 <template>
-   <v-container fill-height>
+   <v-container fill-height fluid>
       <iframe :src="src" class="iframe-size"></iframe>
    </v-container>
 </template>
