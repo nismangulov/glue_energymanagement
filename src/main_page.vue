@@ -174,7 +174,7 @@ export default {
           {
             icon: "fa-video",
             path: "/safety/video-analitics",
-            text: "Video analitics"
+            text: "Video analytics"
           },
           {
             icon: "fa-video",
