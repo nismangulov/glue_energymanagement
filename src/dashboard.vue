@@ -10,8 +10,8 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-trash</v-icon>
                      </v-card-title>
-                     <v-card-text class="pt-0">
-                        <pie-chart :donut="true" :data="waste.data" width="60%" height="100%" :colors="waste.colors" :bcolors="waste.bcolors" :library="waste.library" class="mx-auto mt-0"></pie-chart>
+                     <v-card-text class="pt-0 chart">
+                        <donut-chart :data="waste.data"></donut-chart>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -155,15 +155,14 @@ Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
-import VueChartkick from "vue-chartkick";
-import Chart from "chart.js";
-Vue.use(VueChartkick, { adapter: Chart });
+import DonutChart from './common/charts/DonutChart'
 
 export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    DonutChart
   },
   data: () => ({
     map: {
@@ -222,10 +221,11 @@ export default {
     },
     waste: {
       color: "nokia_green",
-      data: { "<20%": 20, "<80%": 60, ">80%": 20 },
-      colors: ["#039BE5", "#8D6E63", "#D4E157"],
-      bcolors: ["#FF0000", "#0000FF", "#00FFFF"],
-      library: { legend: { display: false } }
+      data: [
+        {title: "<20%", value: 20, color: "#039BE5"},
+        {title: "<80%", value: 60, color: "#8D6E63"},
+        {title: ">80%", value: 20, color: "#D4E157"}
+      ],
     },
     parking: {
       free: 61,
@@ -301,5 +301,9 @@ export default {
 .card-image {
   background-size: cover;
   background-position: left center;
+}
+
+.chart {
+  height: calc(100% - 56px);
 }
 </style>

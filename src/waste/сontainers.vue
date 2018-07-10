@@ -45,6 +45,7 @@
                            <v-card-title primary class="title">Filling level
                            </v-card-title>
                            <v-card-text class="">
+                              <donut-chart :data="waste_filling_levels_chart.data"></donut-chart>
                               <svg class="chart" id="waste_filling_levels_chart"></svg>
                            </v-card-text>
                         </v-card>
@@ -72,7 +73,7 @@
                            <v-card-text class="pt-0">
                               <v-card-title primary class="title">Batteries
                               </v-card-title>
-                              <svg class="chart" id="batteries_levels_chart"></svg>
+                              <donut-chart :data="batteries_levels_chart.data"></donut-chart>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -103,11 +104,14 @@ import charts from "../v-charts";
 Vue.use(charts);
 Object.defineProperty(Vue.prototype, "$d3", { value: d3 });
 
+import DonutChart from '../common/charts/DonutChart'
+
 export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    DonutChart
   },
 
   data: () => ({
@@ -150,7 +154,7 @@ export default {
   mounted: function() {
     this.waste_filling_levels_chart.data = this.calc_filling_levels();
     this.batteries_levels_chart.data = this.calc_battery_levels();
-    this.daily_filling_levels_chart.data = this.calc_battery_levels();
+    this.daily_filling_levels_chart.data = this.calc_daily_filling_levels();
     this.online = this.calc_online();
     this.renderCharts();
   },
@@ -159,16 +163,6 @@ export default {
       this.$refs.bindetails.show(item);
     },
     renderCharts: function() {
-      this.$helpers.chart.pieChart(
-        this.$d3,
-        this.waste_filling_levels_chart.data,
-        this.waste_filling_levels_chart
-      );
-      this.$helpers.chart.pieChart(
-        this.$d3,
-        this.batteries_levels_chart.data,
-        this.batteries_levels_chart
-      );
       this.$helpers.chart.pieChart(
         this.$d3,
         this.daily_filling_levels_chart.data,
@@ -212,9 +206,9 @@ export default {
         else if (this.containers[index].level > 80) count_100++;
       }
       return [
-        { name: "<20%", value: count_20 },
-        { name: "<80%", value: count_80 },
-        { name: ">80%", value: count_100 }
+        { title: "<20%", value: count_20, color: "#039BE5" },
+        { title: "<80%", value: count_80, color: "#8D6E63" },
+        { title: ">80%", value: count_100, color: "#D4E157"}
       ];
     },
     calc_online() {
@@ -226,6 +220,21 @@ export default {
       return online;
     },
     calc_battery_levels() {
+      let count_20 = 0;
+      let count_80 = 0;
+      let count_100 = 0;
+      for (let index = 0; index < this.containers.length; index++) {
+        if (this.containers[index].battery < 20) count_20++;
+        else if (this.containers[index].battery <= 80) count_80++;
+        else if (this.containers[index].battery > 80) count_100++;
+      }
+      return [
+        { title: "<20%", value: count_20, color: "#039BE5" },
+        { title: "<80%", value: count_80, color: "#8D6E63" },
+        { title: ">80%", value: count_100, color: "#D4E157"}
+      ];
+    },
+    calc_daily_filling_levels() {
       let count_20 = 0;
       let count_80 = 0;
       let count_100 = 0;
