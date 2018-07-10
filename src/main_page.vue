@@ -197,12 +197,12 @@ export default {
           {
             icon: "fa-external-link-square-alt",
             path: "/metering/linergo",
-            text: "Linergo"
+            text: "Partner #1"
           },
           {
             icon: "fa-external-link-square-alt",
             path: "/metering/gascloud",
-            text: "Gascloud"
+            text: "Partner #2"
           }
         ]
       },
@@ -258,7 +258,7 @@ export default {
           {
             icon: "fa-calendar-alt",
             path: "/waste/managment",
-            text: "Management"
+            text: "Partner #1"
           }
         ]
       }
