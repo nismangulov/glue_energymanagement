@@ -31,7 +31,7 @@
                         <v-card color="cyan lighten-2" dark>
                            <v-card-title primary class="title">Daily filling level
                            </v-card-title>
-                           <v-card-text class="pt-0">
+                           <v-card-text class="pt-0 chart">
                               <bar-chart :data="daily_filling_levels_chart.data"></bar-chart>
                            </v-card-text>
                         </v-card>

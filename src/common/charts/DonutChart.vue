@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="donut-outer">
     <svg class="donut-chart"></svg>
   </div>
 </template>
@@ -28,7 +28,16 @@ export default BaseChart.extend({
         return
       }
 
-      const width = this.$el.offsetWidth
+      const parent = this.$el.parentNode
+      let baseSize
+
+      if (window.innerWidth < 960) {
+        baseSize = Math.min(parent.offsetWidth, window.innerWidth * 0.33)
+      } else {
+        baseSize = Math.min(parent.clientWidth, parent.clientHeight) - 16
+      }
+
+      const width = baseSize
       const height = width
       const radius = Math.min(width, height) / 2;
       const legendLeftOffset = 'calc(50% - 30px)'
@@ -48,6 +57,8 @@ export default BaseChart.extend({
       const svg = d3.select(this.$el)
         .select("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("height", height)
+        .attr("width", width)
         .append("svg")
         .attr("class", "chart")
         .attr("viewBox", `0 0 ${width} ${height}`)
@@ -99,9 +110,13 @@ export default BaseChart.extend({
 </script>
 
 <style>
+.donut-outer {
+  display: flex;
+  justify-content: center;
+}
+
 .donut-chart {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
 }
 
 .donut-chart text {

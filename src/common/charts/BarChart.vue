@@ -25,8 +25,26 @@ export default BaseChart.extend({
         return
       }
 
-      let width = this.$el.offsetWidth;
-      let height = width * 0.75;
+      const parent = this.$el.parentNode;
+      let baseSize;
+
+      if (window.innerWidth < 960) {
+        baseSize = Math.min(parent.offsetWidth, window.innerWidth * 0.5)
+      } else {
+        baseSize = Math.min(parent.clientWidth, parent.clientHeight) - 16
+      }
+
+      let width;
+      let height;
+
+      if (parent.clientWidth > parent.clientHeight) {
+        height = Math.max(250, baseSize)
+        width = height / 0.75
+      } else {
+        width = baseSize
+        height = width * 0.75
+      }
+
       let padding = 30;
       
       let svg = d3.select(this.$el).append("svg").attr("width", width).attr("height", height);
@@ -67,5 +85,8 @@ export default BaseChart.extend({
 </script>
 
 <style>
-
+.bar-chart {
+  display: flex;
+  justify-content: center;
+}
 </style>
