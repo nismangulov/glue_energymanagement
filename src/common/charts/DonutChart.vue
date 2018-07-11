@@ -1,5 +1,7 @@
 <template>
-  <svg class="donut-chart"></svg>
+  <div>
+    <svg class="donut-chart"></svg>
+  </div>
 </template>
 
 <script>
@@ -9,23 +11,42 @@ import * as d3 from 'd3'
 export default BaseChart.extend({
   name: 'donut-chart',
   props: ['data'],
+  mounted: function () {
+    window.addEventListener('resize', this.renderChart)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.renderChart)
+  },
   methods: {
     renderChart () {
-      const width = 250
-      const height = 250
+      const svgElement = this.$el.firstChild
+      while (svgElement.firstChild) {
+        svgElement.removeChild(svgElement.firstChild);
+      }
+
+      if (!this.data.length) {
+        return
+      }
+
+      const width = this.$el.offsetWidth
+      const height = width
       const radius = Math.min(width, height) / 2;
       const legendLeftOffset = 'calc(50% - 30px)'
       const legendTopOffset = (Math.min(width, height) - (this.data.length * 20)) / 2
 
+      const outerRadius = (radius < 60) ? 60 : radius
+      const innerRadius = (radius - 50) < 50 ? 50 : (radius - 50)
+
       const arc = d3.arc()
-        .outerRadius(radius)
-        .innerRadius(radius - 50);
+        .outerRadius(outerRadius)
+        .innerRadius(innerRadius);
 
       const pie = d3.pie()
         .sort(null)
         .value((data) => data.value);
 
       const svg = d3.select(this.$el)
+        .select("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
         .append("svg")
         .attr("class", "chart")
@@ -44,6 +65,7 @@ export default BaseChart.extend({
         .style("fill", (data) => data.data.color);
 
       const svgLegend = d3.select(this.$el)
+        .select("svg")
         .append("svg")
         .attr("class", "legend");
 
