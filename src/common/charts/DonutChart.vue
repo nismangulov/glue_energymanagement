@@ -11,6 +11,12 @@ import * as d3 from 'd3'
 export default BaseChart.extend({
   name: 'donut-chart',
   props: ['data'],
+  mounted: function () {
+    window.addEventListener('resize', this.renderChart)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.renderChart)
+  },
   methods: {
     renderChart () {
       const svgElement = this.$el.firstChild
@@ -27,10 +33,12 @@ export default BaseChart.extend({
       const radius = Math.min(width, height) / 2;
       const legendLeftOffset = 'calc(50% - 30px)'
       const legendTopOffset = (Math.min(width, height) - (this.data.length * 20)) / 2
+
+      const outerRadius = (radius < 60) ? 60 : radius
       const innerRadius = (radius - 50) < 50 ? 50 : (radius - 50)
 
       const arc = d3.arc()
-        .outerRadius(radius)
+        .outerRadius(outerRadius)
         .innerRadius(innerRadius);
 
       const pie = d3.pie()
