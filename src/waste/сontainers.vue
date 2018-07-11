@@ -44,9 +44,8 @@
                         <v-card color="indigo lighten-2" dark>
                            <v-card-title primary class="title">Filling level
                            </v-card-title>
-                           <v-card-text class="">
+                           <v-card-text class="pt-0 chart">
                               <donut-chart :data="waste_filling_levels_chart.data"></donut-chart>
-                              <svg class="chart" id="waste_filling_levels_chart"></svg>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -70,9 +69,9 @@
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="teal lighten-2" dark>
-                           <v-card-text class="pt-0">
-                              <v-card-title primary class="title">Batteries
-                              </v-card-title>
+                           <v-card-title primary class="title">Batteries
+                           </v-card-title>
+                           <v-card-text class="pt-0 chart">
                               <donut-chart :data="batteries_levels_chart.data"></donut-chart>
                            </v-card-text>
                         </v-card>
@@ -286,6 +285,10 @@ export default {
   background-color: white;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.chart {
+  height: calc(100% - 56px);
 }
 </style>
 
