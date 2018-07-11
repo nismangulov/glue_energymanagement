@@ -32,7 +32,7 @@
                            <v-card-title primary class="title">Daily filling level
                            </v-card-title>
                            <v-card-text class="pt-0">
-                              <svg class="chart" id="daily_filling_levels_chart"></svg>
+                              <bar-chart :data="daily_filling_levels_chart.data"></bar-chart>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -104,13 +104,15 @@ Vue.use(charts);
 Object.defineProperty(Vue.prototype, "$d3", { value: d3 });
 
 import DonutChart from '../common/charts/DonutChart'
+import BarChart from '../common/charts/BarChart'
 
 export default {
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    DonutChart
+    DonutChart,
+    BarChart
   },
 
   data: () => ({
@@ -155,18 +157,10 @@ export default {
     this.batteries_levels_chart.data = this.calc_battery_levels();
     this.daily_filling_levels_chart.data = this.calc_daily_filling_levels();
     this.online = this.calc_online();
-    this.renderCharts();
   },
   methods: {
     showbindetails(item) {
       this.$refs.bindetails.show(item);
-    },
-    renderCharts: function() {
-      this.$helpers.chart.pieChart(
-        this.$d3,
-        this.daily_filling_levels_chart.data,
-        this.daily_filling_levels_chart
-      );
     },
     map_marker_click(event) {
       let container;
@@ -234,18 +228,14 @@ export default {
       ];
     },
     calc_daily_filling_levels() {
-      let count_20 = 0;
-      let count_80 = 0;
-      let count_100 = 0;
-      for (let index = 0; index < this.containers.length; index++) {
-        if (this.containers[index].battery < 20) count_20++;
-        else if (this.containers[index].battery <= 80) count_80++;
-        else if (this.containers[index].battery > 80) count_100++;
-      }
       return [
-        { name: "<20%", value: count_20 },
-        { name: "<80%", value: count_80 },
-        { name: ">80%", value: count_100 }
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 6 },
+        { title: "8 июля", value: 8 },
+        { title: "9 июля", value: 6 },
+        { title: "10 июля", value: 12 },
+        { title: "11 июля", value: 9 }
       ];
     },
     get_marker_icon(selected) {

@@ -11,6 +11,10 @@ export default BaseChart.extend({
   props: ['data'],
   methods: {
     renderChart () {
+      while (this.$el.firstChild) {
+        this.$el.removeChild(this.$el.firstChild);
+      }
+      
       const width = 250
       const height = 250
       const radius = Math.min(width, height) / 2;
