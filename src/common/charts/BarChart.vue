@@ -37,15 +37,16 @@ export default BaseChart.extend({
       let width;
       let height;
 
-      if (parent.clientWidth > parent.clientHeight) {
-        height = Math.max(250, baseSize)
+      if (parent.clientWidth - parent.clientHeight >= 100) {
+        height = baseSize
         width = height / 0.75
       } else {
         width = baseSize
         height = width * 0.75
       }
 
-      let padding = 30;
+      const ticksHidden = width < 300
+      const padding = ticksHidden ? 1 : 16
       
       let svg = d3.select(this.$el).append("svg").attr("width", width).attr("height", height);
 
@@ -58,13 +59,23 @@ export default BaseChart.extend({
         .domain([0, d3.max(this.data, (d) => d.value)])
         .range([height - padding, padding]);
 
-      svg.append("g")
-        .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
-        .call(d3.axisBottom(xScale));
+      if (ticksHidden) {
+        svg.append("g")
+          .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+          .call(d3.axisBottom(xScale).tickSizeOuter(0).tickSizeInner(0).tickFormat(''));
 
-      svg.append("g")
-        .attr("transform", "translate(" + padding + "," + 0 + ")")
-        .call(d3.axisLeft(yScale));
+        svg.append("g")
+          .attr("transform", "translate(" + padding + "," + 0 + ")")
+          .call(d3.axisLeft(yScale).tickSizeOuter(0).tickSizeInner(0).tickFormat(''));
+      } else {
+        svg.append("g")
+          .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+          .call(d3.axisBottom(xScale));
+
+        svg.append("g")
+          .attr("transform", "translate(" + padding + "," + 0 + ")")
+          .call(d3.axisLeft(yScale));
+      }
 
       svg.append("g")
         .selectAll("rect")
