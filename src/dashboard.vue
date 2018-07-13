@@ -18,7 +18,7 @@
                <v-flex d-flex md3>
                   <v-card :color="parking.color" to="/parking/stat">
                      <div class="chart-background">
-                       <bar-chart :data="parking.chartData"></bar-chart>
+                       <bar-chart :data="parking.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                      </div>
                      <v-card-title primary class="title">Parking
                         <v-spacer></v-spacer>
@@ -35,7 +35,7 @@
                <v-flex d-flex md3>
                   <v-card :color="lamps.color" to="/lighting/unilight">
                      <div class="chart-background">
-                        <bar-chart :data="lamps.chartData"></bar-chart>
+                        <bar-chart :data="lamps.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                      </div>
                      <v-card-title primary class="title">Smart Lighting
                         <v-spacer></v-spacer>
@@ -84,7 +84,7 @@
                                  <v-flex d-flex md6>
                                     <v-card :color="meters.color" to="/metering/meters">
                                        <div class="chart-background">
-                                         <bar-chart :data="meters.chartData"></bar-chart>
+                                         <bar-chart :data="meters.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                        </div>
                                        <v-card-title primary class="title">Meters
                                           <v-spacer></v-spacer>
@@ -103,7 +103,7 @@
                                        <v-flex d-flex md6>
                                           <v-card :color="air.color" to="/eco_monitoring/map">
                                              <div class="chart-background">
-                                               <bar-chart :data="air.chartData"></bar-chart>
+                                               <bar-chart :data="air.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                              </div>
                                              <v-card-title primary class="title">Air
                                                 <v-spacer></v-spacer>
@@ -118,7 +118,7 @@
                                        <v-flex d-flex md6>
                                           <v-card :color="weather.color" to="/eco_monitoring/stations">
                                              <div class="chart-background">
-                                                <bar-chart :data="weather.chartData"></bar-chart>
+                                                <bar-chart :data="weather.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                              </div>
                                              <v-card-title primary class="title">
                                                 <v-spacer></v-spacer>
@@ -141,7 +141,7 @@
                            <v-flex d-flex md12>
                               <v-card :color="power.color" to="metering/meters">
                                  <div class="chart-background">
-                                    <bar-chart :data="power.chartData"></bar-chart>
+                                    <bar-chart :data="power.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                  </div>
                                  <v-card-title primary class="title">Power
                                     <v-spacer></v-spacer>
@@ -394,7 +394,7 @@ export default {
   width: 100%;
   opacity: 0.3;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   z-index: 1;
 }
