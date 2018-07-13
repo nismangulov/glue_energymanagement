@@ -48,7 +48,7 @@ export default {
   methods: {
     update() {
       Vue.axios
-        .get("//192.168.1.45:8080/we/weather_api")
+        .get("/we/weather_api")
         .then(response => {
           console.log(response.data[14]);
           this.heatmapData.data = response.data;
@@ -68,7 +68,7 @@ export default {
     map: {
       zoom: 10,
       center: L.latLng(55.697855, 37.634648),
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: table_data
