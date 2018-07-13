@@ -57,7 +57,7 @@ export default {
         lat: "55.659744",
         lng: "37.696447"
       },
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       marker: {
@@ -92,10 +92,10 @@ export default {
 @import "../../../node_modules/leaflet/dist/leaflet.css";
 
 .no-padding {
-   padding: 0px;
+  padding: 0px;
 }
 
 .map {
-   min-height: 300px;
+  min-height: 300px;
 }
 </style>

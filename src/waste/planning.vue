@@ -38,7 +38,7 @@ export default {
     map: {
       zoom: 14,
       center: L.latLng(55.697247, 37.357755),
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     },
     polyline: {
       latlngs: [
@@ -133,7 +133,7 @@ export default {
     truck: {
       coordinates: L.latLng(55.696342, 37.359745),
       icon: L.icon({
-        iconUrl: require('../assets/car.svg'),
+        iconUrl: require("../assets/car.svg"),
         iconSize: [32, 32],
         iconAnchor: [16, 16]
       })
@@ -145,11 +145,11 @@ export default {
   mounted: function() {},
   methods: {
     show_route: function() {
-      this.route_visible = true
+      this.route_visible = true;
     },
     hide_route: function() {
-      this.route_visible = false
-    },
+      this.route_visible = false;
+    }
   }
 };
 </script>

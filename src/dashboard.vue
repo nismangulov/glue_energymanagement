@@ -185,9 +185,9 @@ export default {
     map: {
       zoom: 12,
       center: L.latLng(55.697247, 37.357755),
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
-        '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        '&copy; <a  href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       markers: [
         {
           coordinates: L.latLng(55.696623, 37.356674),

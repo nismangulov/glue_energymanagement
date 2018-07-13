@@ -103,8 +103,8 @@ import charts from "../v-charts";
 Vue.use(charts);
 Object.defineProperty(Vue.prototype, "$d3", { value: d3 });
 
-import DonutChart from '../common/charts/DonutChart'
-import BarChart from '../common/charts/BarChart'
+import DonutChart from "../common/charts/DonutChart";
+import BarChart from "../common/charts/BarChart";
 
 export default {
   components: {
@@ -143,7 +143,7 @@ export default {
     map: {
       zoom: 12,
       center: L.latLng(55.697247, 37.357755),
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     },
     selected: [],
     online: 0,
@@ -201,7 +201,7 @@ export default {
       return [
         { title: "<20%", value: count_20, color: "#039BE5" },
         { title: "<80%", value: count_80, color: "#8D6E63" },
-        { title: ">80%", value: count_100, color: "#D4E157"}
+        { title: ">80%", value: count_100, color: "#D4E157" }
       ];
     },
     calc_online() {
@@ -224,7 +224,7 @@ export default {
       return [
         { title: "<20%", value: count_20, color: "#039BE5" },
         { title: "<80%", value: count_80, color: "#8D6E63" },
-        { title: ">80%", value: count_100, color: "#D4E157"}
+        { title: ">80%", value: count_100, color: "#D4E157" }
       ];
     },
     calc_daily_filling_levels() {

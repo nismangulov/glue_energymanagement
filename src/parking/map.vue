@@ -90,7 +90,7 @@ export default {
     map: {
       zoom: 13,
       center: L.latLng(55.755826, 37.6172999),
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       marker: L.latLng(55.755826, 37.6172999)
