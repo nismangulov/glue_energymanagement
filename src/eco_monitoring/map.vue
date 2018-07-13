@@ -68,7 +68,7 @@ export default {
     map: {
       zoom: 10,
       center: L.latLng(55.697855, 37.634648),
-      url: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: table_data
