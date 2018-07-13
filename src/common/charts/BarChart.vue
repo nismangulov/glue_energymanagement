@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-chart"></div>
+  <div :class="className"></div>
 </template>
 
 <script>
@@ -9,6 +9,9 @@ import * as d3 from 'd3'
 export default BaseChart.extend({
   name: 'bar-chart',
   props: ['data', 'hideAxis', 'fillParent'],
+  data: () => ({
+    className: 'bar-chart'
+  }),
   mounted: function () {
     window.addEventListener('resize', this.renderChart)
   },
@@ -30,7 +33,7 @@ export default BaseChart.extend({
       const parent = this.$el.parentNode;
 
       if (this.fillParent) {
-        width = parent.offsetWidth
+        width = parent.clientWidth
         height = parent.clientHeight
       } else {
         let baseSize;
@@ -65,6 +68,7 @@ export default BaseChart.extend({
         .range([height - padding, padding]);
 
       if (ticksHidden) {
+        this.className = `bar-chart axis-hidden`
         svg.append("g")
           .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
           .call(d3.axisBottom(xScale).tickSizeOuter(0).tickSizeInner(0).tickFormat(''));
@@ -104,5 +108,9 @@ export default BaseChart.extend({
 .bar-chart {
   display: flex;
   justify-content: center;
+}
+
+.axis-hidden .domain {
+  stroke: transparent;
 }
 </style>
