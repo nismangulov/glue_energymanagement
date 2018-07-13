@@ -18,7 +18,7 @@
                <v-flex d-flex md3>
                   <v-card :color="parking.color" to="/parking/stat">
                      <div class="chart-background">
-                       <bar-chart :data="parking.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
+                        <bar-chart :data="parking.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                      </div>
                      <v-card-title primary class="title">Parking
                         <v-spacer></v-spacer>
@@ -84,7 +84,7 @@
                                  <v-flex d-flex md6>
                                     <v-card :color="meters.color" to="/metering/meters">
                                        <div class="chart-background">
-                                         <bar-chart :data="meters.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
+                                          <bar-chart :data="meters.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                        </div>
                                        <v-card-title primary class="title">Meters
                                           <v-spacer></v-spacer>
@@ -103,7 +103,7 @@
                                        <v-flex d-flex md6>
                                           <v-card :color="air.color" to="/eco_monitoring/map">
                                              <div class="chart-background">
-                                               <bar-chart :data="air.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
+                                                <bar-chart :data="air.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
                                              </div>
                                              <v-card-title primary class="title">Air
                                                 <v-spacer></v-spacer>
@@ -117,9 +117,6 @@
                                        </v-flex>
                                        <v-flex d-flex md6>
                                           <v-card :color="weather.color" to="/eco_monitoring/stations">
-                                             <div class="chart-background">
-                                                <bar-chart :data="weather.chartData" :hideAxis="true" :fillParent="true"></bar-chart>
-                                             </div>
                                              <v-card-title primary class="title">
                                                 <v-spacer></v-spacer>
                                                 <v-icon>fa-cloud</v-icon>
@@ -173,8 +170,8 @@ Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
-import DonutChart from './common/charts/DonutChart'
-import BarChart from './common/charts/BarChart'
+import DonutChart from "./common/charts/DonutChart";
+import BarChart from "./common/charts/BarChart";
 
 export default {
   components: {
@@ -242,10 +239,10 @@ export default {
     waste: {
       color: "nokia_green",
       data: [
-        {title: "<20%", value: 20, color: "#039BE5"},
-        {title: "<80%", value: 60, color: "#8D6E63"},
-        {title: ">80%", value: 20, color: "#D4E157"}
-      ],
+        { title: "<20%", value: 20, color: "#039BE5" },
+        { title: "<80%", value: 60, color: "#8D6E63" },
+        { title: ">80%", value: 20, color: "#D4E157" }
+      ]
     },
     parking: {
       free: 61,
@@ -254,11 +251,11 @@ export default {
       chartData: [
         { title: "5 июля", value: 1 },
         { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
       ]
     },
     lamps: {
@@ -267,13 +264,13 @@ export default {
       power: 527,
       color: "nokia_green",
       chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
+        { title: "5 июля", value: 3 },
+        { title: "6 июля", value: 3 },
+        { title: "7 июля", value: 3 },
+        { title: "8 июля", value: 4 },
+        { title: "9 июля", value: 3 },
+        { title: "10 июля", value: 3 },
+        { title: "11 июля", value: 3 }
       ]
     },
     video: {
@@ -284,12 +281,12 @@ export default {
       power: "473",
       color: "nokia_yellow",
       chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
+        { title: "5 июля", value: 3 },
+        { title: "6 июля", value: 4 },
         { title: "7 июля", value: 6 },
         { title: "8 июля", value: 8 },
         { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
+        { title: "10 июля", value: 8 },
         { title: "11 июля", value: 9 }
       ]
     },
@@ -297,40 +294,34 @@ export default {
       grade: "1",
       color: "nokia_green",
       chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
+        { title: "5 июля", value: 2 },
+        { title: "6 июля", value: 3 },
+        { title: "7 июля", value: 1 }
       ]
     },
     weather: {
       temp: "+23",
-      color: "nokia_green",
-      chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
-      ]
+      color: "nokia_green"
     },
     power: {
       value: "90",
       incidents: 2,
       color: "nokia_red",
       chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
+        { title: "5 июля", value: 13 },
+        { title: "6 июля", value: 12 },
+        { title: "7 июля", value: 14 },
+        { title: "8 июля", value: 13 },
+        { title: "9 июля", value: 12 },
         { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
+        { title: "11 июля", value: 17 },
+        { title: "12 июля", value: 18 },
+        { title: "13 июля", value: 10 },
+        { title: "14 июля", value: 12 },
+        { title: "15 июля", value: 13 },
+        { title: "16 июля", value: 12 },
+        { title: "17 июля", value: 12 },
+        { title: "18 июля", value: 14 }
       ]
     },
     random_interval: null
