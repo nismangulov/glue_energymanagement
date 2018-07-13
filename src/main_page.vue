@@ -115,7 +115,12 @@ export default {
           {
             icon: "fa-calendar-alt",
             path: "/eco_monitoring/aqi",
-            text: "AQI"
+            text: "Partner #1"
+          },
+          {
+            icon: "fa-calendar-alt",
+            path: "/eco_monitoring/sityair",
+            text: "Partner #2"
           }
         ]
       },

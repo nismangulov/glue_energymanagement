@@ -6,6 +6,7 @@ import eco_monitoring_map from './eco_monitoring/map.vue'
 import eco_monitoring_stations from './eco_monitoring/stations.vue'
 import eco_monitoring_history from './eco_monitoring/history.vue'
 import eco_monitoring_aqi from './eco_monitoring/aqi.vue'
+import eco_monitoring_sityair from './eco_monitoring/sityair.vue'
 
 import parking_map from './parking/map.vue'
 import parking_stat from './parking/stat.vue'
@@ -98,6 +99,10 @@ const router = new VueRouter({
    }, {
       path: '/eco_monitoring/aqi',
       component: eco_monitoring_aqi
+   },
+   {
+      path: '/eco_monitoring/sityair',
+      component: eco_monitoring_sityair
    }, {
       path: '/parking/map',
       component: parking_map
