@@ -19,6 +19,10 @@
 <script>
 import Vue from "vue";
 
+import Axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, Axios);
+
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import Heatmap from "../common/heatmap";
 
@@ -32,7 +36,33 @@ export default {
     Heatmap
   },
   mounted() {
-    console.log(table_data[0].coordinates.lng);
+    //this.update();
+  },
+  timers: {
+    update: {
+      autostart: true,
+      time: 0
+    }
+  },
+
+  methods: {
+    update() {
+      Vue.axios
+        .get("http://192.168.1.45:8080/we/weather_api")
+        .then(response => {
+          console.log(response.data[14]);
+          this.heatmapData.data = response.data;
+          this.$timer.stop("update");
+          this.timers.update.time = 5000;
+          this.$timer.start("update");
+        })
+        .catch(error => {
+          console.log(error);
+          this.$timer.stop("update");
+          this.timers.update.time = 5000;
+          this.$timer.start("update");
+        });
+    }
   },
   data: () => ({
     map: {
@@ -56,80 +86,8 @@ export default {
     },
     heatmapData: {
       min: 1,
-      max: 100,
-      data: [
-        {
-          lat: 55.752024,
-          lng: 37.621766,
-          count: 10
-        },
-        {
-          lat: 55.789306,
-          lng: 37.669198,
-          count: 10
-        },
-        {
-          lat: 55.718442,
-          lng: 37.554528,
-          count: 10
-        },
-        {
-          lat: 55.71224,
-          lng: 37.692544,
-          count: 10
-        },
-        {
-          lat: 55.826429,
-          lng: 37.339608,
-          count: 10
-        },
-        {
-          lat: 55.929118,
-          lng: 37.518197,
-          count: 10
-        },
-        {
-          lat: 55.905982,
-          lng: 37.733118,
-          count: 10
-        },
-        {
-          lat: 55.679981,
-
-          lng: 37.244258,
-          count: 10
-        },
-        {
-          lat: 55.788074,
-          lng: 37.929531,
-          count: 10
-        },
-        {
-          lat: 55.44767,
-          lng: 37.754647,
-          count: 10
-        },
-        {
-          lat: 55.425808,
-          lng: 37.578865,
-          count: 10
-        },
-        {
-          lat: 55.556797,
-          lng: 37.433297,
-          count: 5
-        },
-        {
-          lat: 55.603896,
-          lng: 37.934026,
-          count: 5
-        },
-        {
-          lat: 55.659057,
-          lng: 38.167485,
-          count: 5
-        }
-      ]
+      max: 20,
+      data: []
     }
   })
 };
