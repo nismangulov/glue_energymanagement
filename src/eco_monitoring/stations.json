@@ -1,101 +1,31 @@
 [
    {
       "coordinates": {
-         "lat": "55.917414",
-         "lng": "37.569581"
+         "lat": "55.696677",
+         "lng": "37.356257"
       },
-      "name": "Station #23",
+      "name": "Station #1",
       "type": "Vaisala",
       "status": "online",
       "aqi": 2
    },
    {
       "coordinates": {
-         "lat": "55.850261",
-         "lng": "37.349855"
+         "lat": "45.806843",
+         "lng": "15.976127"
       },
-      "name": "Station #65",
-      "type": "Vaisala",
+      "name": "Station #2",
+      "type": "AirSense",
       "status": "online",
       "aqi": 2
    },
    {
       "coordinates": {
-         "lat": "55.762091",
-         "lng": "37.411653"
+         "lat": "55.697023",
+         "lng": "37.357359"
       },
-      "name": "Station #82",
-      "type": "AirQ",
-      "status": "online",
-      "aqi": 3
-   },
-   {
-      "coordinates": {
-         "lat": "55.689333",
-         "lng": "37.351070"
-      },
-      "name": "Station #12",
-      "type": "AirQ",
-      "status": "online",
-      "aqi": 1
-   },
-   {
-      "coordinates": {
-         "lat": "55.767506",
-         "lng": "37.674475"
-      },
-      "name": "Station #45",
-      "type": "AirQ",
-      "status": "online",
-      "aqi": 1
-   },
-   {
-      "coordinates": {
-         "lat": "55.723740",
-         "lng": "37.811804"
-      },
-      "name": "Station #88",
-      "type": "Vaisala",
-      "status": "online",
-      "aqi": 2
-   },
-   {
-      "coordinates": {
-         "lat": "55.659744",
-         "lng": "37.696447"
-      },
-      "name": "Station #92",
-      "type": "Vaisala",
-      "status": "online",
-      "aqi": 1
-   },
-   {
-      "coordinates": {
-         "lat": "55.646155",
-         "lng": "37.550879"
-      },
-      "name": "Station #10",
-      "type": "Vaisala",
-      "status": "offline",
-      "aqi": 2
-   },
-   {
-      "coordinates": {
-         "lat": "55.576198",
-         "lng": "37.667608"
-      },
-      "name": "Station #26",
-      "type": "Vaisala",
-      "status": "online",
-      "aqi": 2
-   },
-   {
-      "coordinates": {
-         "lat": "55.732652",
-         "lng": "37.860556"
-      },
-      "name": "Station #27",
-      "type": "Vaisala",
+      "name": "Station #3",
+      "type": "Tion",
       "status": "online",
       "aqi": 1
    }
