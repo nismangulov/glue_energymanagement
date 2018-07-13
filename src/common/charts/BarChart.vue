@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-chart"></div>
+  <div :class="className"></div>
 </template>
 
 <script>
@@ -8,7 +8,10 @@ import * as d3 from 'd3'
 
 export default BaseChart.extend({
   name: 'bar-chart',
-  props: ['data'],
+  props: ['data', 'hideAxis', 'fillParent'],
+  data: () => ({
+    className: 'bar-chart'
+  }),
   mounted: function () {
     window.addEventListener('resize', this.renderChart)
   },
@@ -25,28 +28,33 @@ export default BaseChart.extend({
         return
       }
 
-      const parent = this.$el.parentNode;
-      let baseSize;
-
-      if (window.innerWidth < 960) {
-        baseSize = Math.min(parent.offsetWidth, window.innerWidth * 0.5)
-      } else {
-        baseSize = Math.min(parent.clientWidth, parent.clientHeight) - 16
-      }
-
       let width;
       let height;
+      const parent = this.$el.parentNode;
 
-      if (parent.clientWidth - parent.clientHeight >= 100) {
-        height = baseSize
-        width = height / 0.75
+      if (this.fillParent) {
+        width = parent.clientWidth
+        height = parent.clientHeight
       } else {
-        width = baseSize
-        height = width * 0.75
-      }
+        let baseSize;
 
-      const ticksHidden = width < 300
-      const padding = ticksHidden ? 1 : 16
+        if (window.innerWidth < 960) {
+          baseSize = Math.min(parent.offsetWidth, window.innerWidth * 0.5)
+        } else {
+          baseSize = Math.min(parent.clientWidth, parent.clientHeight) - 16
+        }
+
+        if (parent.clientWidth - parent.clientHeight >= 100) {
+          height = baseSize
+          width = height / 0.75
+        } else {
+          width = baseSize
+          height = width * 0.75
+        }
+      }
+      
+      const ticksHidden = width < 300 || this.hideAxis
+      const padding = ticksHidden ? 8 : 16
       
       let svg = d3.select(this.$el).append("svg").attr("width", width).attr("height", height);
 
@@ -60,6 +68,7 @@ export default BaseChart.extend({
         .range([height - padding, padding]);
 
       if (ticksHidden) {
+        this.className = `bar-chart axis-hidden`
         svg.append("g")
           .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
           .call(d3.axisBottom(xScale).tickSizeOuter(0).tickSizeInner(0).tickFormat(''));
@@ -99,5 +108,9 @@ export default BaseChart.extend({
 .bar-chart {
   display: flex;
   justify-content: center;
+}
+
+.axis-hidden .domain {
+  stroke: transparent;
 }
 </style>
