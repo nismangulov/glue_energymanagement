@@ -48,7 +48,7 @@ export default {
   methods: {
     update() {
       Vue.axios
-        .get("http://192.168.1.45:8080/we/weather_api")
+        .get("//192.168.1.45:8080/we/weather_api")
         .then(response => {
           console.log(response.data[14]);
           this.heatmapData.data = response.data;
