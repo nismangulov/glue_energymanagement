@@ -124,7 +124,7 @@ export default {
           }
         ]
       },
-      /* {
+      {
         path: "parking",
         text: "Parking",
         icon: "fa-car",
@@ -141,7 +141,7 @@ export default {
             text: "Map"
           }
         ]
-      }, */
+      },
       {
         path: "lighting",
         text: "Lighting",
