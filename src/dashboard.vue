@@ -93,8 +93,12 @@
                                        <v-card-text>
                                           <span class="title">Households in: </span>
                                           <span class="headline">{{ meters.households }} %</span><br>
-                                          <span class="title">Consumption: </span>
-                                          <span class="headline">{{ get_randomized_value(meters.power) }} KW</span>
+                                          <span class="title">Power: </span>
+                                          <span class="headline">{{ get_randomized_value(meters.power) }} KW</span><br>
+                                          <span class="title">Water: </span>
+                                          <span class="headline">{{ get_randomized_value(meters.water) }} m³</span><br>
+                                          <span class="title">Gas: </span>
+                                          <span class="headline">{{ get_randomized_value(meters.gas) }} m³</span><br>
                                        </v-card-text>
                                     </v-card>
                                  </v-flex>
@@ -279,6 +283,8 @@ export default {
     meters: {
       households: "21",
       power: "473",
+      water: "870",
+      gas: "320",
       color: "nokia_yellow",
       chartData: [
         { title: "5 июля", value: 3 },
