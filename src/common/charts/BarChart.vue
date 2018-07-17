@@ -14,6 +14,11 @@ export default BaseChart.extend({
   }),
   mounted: function () {
     window.addEventListener('resize', this.renderChart)
+    let that = this
+
+    setTimeout(function() {
+      that.renderChart()
+    }, 1)
   },
   beforeDestroy: function () {
     window.removeEventListener('resize', this.renderChart)
