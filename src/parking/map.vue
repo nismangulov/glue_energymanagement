@@ -38,8 +38,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_free_chart_data()"></donut-chart>
+                        <v-card color="blue lighten-3" dark>
+                           <v-card-title primary class="title">Total parking load</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <donut-chart :data="this.get_free_chart_data()"></donut-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -47,8 +50,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_used_parkings_stats()"></donut-chart>
+                        <v-card color="green lighten-3" dark>
+                           <v-card-title primary class="title">Parking congestion</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <donut-chart :data="this.get_used_parkings_stats()"></donut-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -56,8 +62,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_random_data()"></donut-chart>
+                        <v-card color="teal lighten-3" dark>
+                           <v-card-title primary class="title">Current parking</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <donut-chart :data="this.get_random_data()"></donut-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -127,63 +136,78 @@ export default {
         container.selected = false;
       });
       item.selected = true;
-      this.map.center = L.latLng(item.polygone_coordinates[0][0], item.polygone_coordinates[0][1])
+      this.map.center = L.latLng(
+        item.polygone_coordinates[0][0],
+        item.polygone_coordinates[0][1]
+      );
       this.map.zoom = 15;
     },
     show_details(item) {
       this.$refs.parkingTable.show(item);
     },
     get_free_chart_data() {
-      let free = 0
-      let placesTotal = 0
+      let free = 0;
+      let placesTotal = 0;
 
-      this.parkings.forEach((item) => {
-        free = free + item.free
-        placesTotal = placesTotal + item.places
-      })
+      this.parkings.forEach(item => {
+        free = free + item.free;
+        placesTotal = placesTotal + item.places;
+      });
 
       return [
         { title: "Free", value: free, color: "#039BE5" },
-        { title: "Used", value: placesTotal - free, color: "#8D6E63" }
-      ]
+        { title: "Occuped", value: placesTotal - free, color: "#8D6E63" }
+      ];
     },
     get_used_parkings_stats() {
-      let levelFirst = 0
-      let levelSecond = 0
-      let levelThird = 0
+      let levelFirst = 0;
+      let levelSecond = 0;
+      let levelThird = 0;
 
-      this.parkings.forEach((item) => {
-        const freePercent = item.free / item.places
+      this.parkings.forEach(item => {
+        const freePercent = item.free / item.places;
 
         if (freePercent < 0.2) {
-          levelFirst++
+          levelFirst++;
         } else if (freePercent < 0.7) {
-          levelSecond++
+          levelSecond++;
         } else {
-          levelThird++
+          levelThird++;
         }
-      })
+      });
 
       return [
         { title: "<20%", value: levelFirst, color: "#039BE5" },
         { title: "<70%", value: levelSecond, color: "#8D6E63" },
         { title: ">70%", value: levelThird, color: "#D4E157" }
-      ]
+      ];
     },
     get_random_data() {
       return [
-        { title: "First", value: Math.ceil(Math.random() * 100), color: "#039BE5" },
-        { title: "Second", value: Math.ceil(Math.random() * 100), color: "#8D6E63" },
-        { title: "Third", value: Math.ceil(Math.random() * 100), color: "#D4E157" }
-      ]
+        {
+          title: "First",
+          value: Math.ceil(Math.random() * 100),
+          color: "#039BE5"
+        },
+        {
+          title: "Second",
+          value: Math.ceil(Math.random() * 100),
+          color: "#8D6E63"
+        },
+        {
+          title: "Third",
+          value: Math.ceil(Math.random() * 100),
+          color: "#D4E157"
+        }
+      ];
     },
     get_polygon_color(parking) {
-      console.log('parking', parking)
+      console.log("parking", parking);
       if (parking.selected) {
-        return this.polygon_color_active
+        return this.polygon_color_active;
       }
 
-      return this.polygon_color
+      return this.polygon_color;
     }
   }
 };
