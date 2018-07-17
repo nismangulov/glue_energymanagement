@@ -3,7 +3,10 @@
       <v-layout column>
          <v-flex d-flex>
             <div>
-               <v-btn @click="show_route">Build Route</v-btn>
+               <v-btn @click="show_route" :class="this.get_button_class()">
+                 Build Route
+                 <v-progress-circular v-if="show_progress" indeterminate color="primary" class="progress" size="24"></v-progress-circular>
+               </v-btn>
                <v-btn @click="hide_route">Clear Route</v-btn>
             </div>
          </v-flex>
@@ -138,17 +141,32 @@ export default {
         iconAnchor: [16, 16]
       })
     },
-    route_visible: false
+    route_visible: false,
+    show_progress: false
   }),
 
   computed: {},
   mounted: function() {},
   methods: {
     show_route: function() {
-      this.route_visible = true;
+      let delay = 1000 + Math.random() * 1000
+      let that = this
+      this.show_progress = true;
+      this.route_visible = false;
+      setTimeout(function() {
+        that.route_visible = true;
+        that.show_progress = false;
+      }, delay)
     },
     hide_route: function() {
       this.route_visible = false;
+    },
+    get_button_class: function() {
+      if (this.show_progress) {
+        return 'progress-button'
+      }
+
+      return ''
     }
   }
 };
@@ -190,5 +208,14 @@ table.table thead tr {
 
 .move-top {
   margin-top: -8px;
+}
+
+.progress {
+  margin-left: 16px;
+}
+
+.progress-button {
+  transition: all 0.3s ease;
+  color: rgba(0,0,0,.3) !important;
 }
 </style>
