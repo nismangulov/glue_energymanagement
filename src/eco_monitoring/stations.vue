@@ -8,16 +8,16 @@
 
                      <tr @click="$router.push({path: '/eco_monitoring/history'})">
                         <td>
-                           <div>{{ props.item.name }}</div>
+                           <div>{{ props.item.name.value }}</div>
                         </td>
                         <td class="text-center">
-                           <div>{{ props.item.aqi }}</div>
+                           <div>test</div>
                         </td>
                         <td class="text-center">
-                           <div>{{ props.item.type }}</div>
+                           <div>test</div>
                         </td>
                         <td class="text-center">
-                           <div>{{ props.item.status }}</div>
+                           <div>test</div>
                         </td>
                      </tr>
                   </template>
@@ -30,32 +30,53 @@
 
 
 <script>
-import tableData from "!json-loader!./stations.json";
+//import tableData from "!json-loader!./stations.json";
+import Vue from "vue";
+
+import Axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, Axios);
 
 export default {
+  mounted: function() {
+    this.download_data();
+  },
+  methods: {
+    download_data() {
+      Vue.axios
+        .get("http://192.168.1.45:8080/we/weather_stations")
+        .then(response => {
+          this.station_table = response.data;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
   data: () => ({
     pagination: { rowsPerPage: 25 },
 
-    station_table: tableData,
+    station_table: [],
     headers: [
       {
         text: "Name",
-        value: "name",
+        value: "name.value",
         align: "left"
       },
       {
         text: "AQI",
-        value: "aqi",
+        //value: "aqi",
         align: "center"
       },
       {
         text: "Type",
-        value: "type",
+        //value: "type",
         align: "center"
       },
       {
         text: "Status",
-        value: "status",
+        //value: "status",
         align: "center"
       }
     ]
