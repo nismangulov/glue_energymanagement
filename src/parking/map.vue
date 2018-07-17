@@ -11,7 +11,7 @@
                            <l-map :zoom="map.zoom" style="z-index: 5" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                               <template v-for="parking in parkings">
-                                 <l-polygon :lat-lngs="parking.polygone_coordinates" :color="polygon_color" v-bind:key="parking.name">
+                                 <l-polygon :lat-lngs="parking.polygone_coordinates" :color="get_polygon_color(parking)" v-bind:key="parking.name">
                                     <l-popup :content="generate_text(parking.places, parking.free, parking.name)"></l-popup>
                                  </l-polygon>
                               </template>
@@ -99,7 +99,8 @@ export default {
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     },
     parkings: parking_data,
-    polygon_color: "#ff00ff"
+    polygon_color: "#ff00ff",
+    polygon_color_active: "#ffff00"
   }),
   methods: {
     generate_text(all_places, free, name) {
@@ -175,6 +176,14 @@ export default {
         { title: "Second", value: Math.ceil(Math.random() * 100), color: "#8D6E63" },
         { title: "Third", value: Math.ceil(Math.random() * 100), color: "#D4E157" }
       ]
+    },
+    get_polygon_color(parking) {
+      console.log('parking', parking)
+      if (parking.selected) {
+        return this.polygon_color_active
+      }
+
+      return this.polygon_color
     }
   }
 };
