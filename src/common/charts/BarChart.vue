@@ -59,7 +59,7 @@ export default BaseChart.extend({
       }
       
       const ticksHidden = width < 300 || this.hideAxis
-      const padding = ticksHidden ? 8 : 16
+      const padding = ticksHidden ? 8 : 24
       
       let svg = d3.select(this.$el).append("svg").attr("width", width).attr("height", height);
 
