@@ -65,7 +65,7 @@
                         <v-card color="teal lighten-3" dark>
                            <v-card-title primary class="title">Current parking</v-card-title>
                            <v-card-text class="pt-0 chart">
-                              <donut-chart :data="this.get_random_data()"></donut-chart>
+                              <bar-chart :data="this.get_random_data()"></bar-chart>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -81,14 +81,19 @@
 import Vue from "vue";
 import Axios from "axios";
 import VueAxios from "vue-axios";
+import moment from "moment";
+import 'moment/locale/ru';
 Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LPolygon, LPopup } from "vue2-leaflet";
 
 import DonutChart from "./../common/charts/DonutChart";
+import BarChart from "./../common/charts/BarChart";
 
 import parking_data from "!json-loader!./parking.json";
 import table from "./components/table.vue";
+
+const DATE_FORMAT = 'DD MMMM'
 
 export default {
   components: {
@@ -97,7 +102,8 @@ export default {
     LPolygon,
     LPopup,
     parkingTable: table,
-    DonutChart
+    DonutChart,
+    BarChart
   },
   data: () => ({
     map: {
@@ -140,7 +146,7 @@ export default {
         item.polygone_coordinates[0][0],
         item.polygone_coordinates[0][1]
       );
-      this.map.zoom = 15;
+      this.map.zoom = 17;
     },
     show_details(item) {
       this.$refs.parkingTable.show(item);
@@ -185,24 +191,36 @@ export default {
     get_random_data() {
       return [
         {
-          title: "First",
-          value: Math.ceil(Math.random() * 100),
-          color: "#039BE5"
+          title: moment().subtract(6, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
         },
         {
-          title: "Second",
-          value: Math.ceil(Math.random() * 100),
-          color: "#8D6E63"
+          title: moment().subtract(5, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
         },
         {
-          title: "Third",
-          value: Math.ceil(Math.random() * 100),
-          color: "#D4E157"
-        }
+          title: moment().subtract(4, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(3, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(2, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(1, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
       ];
     },
     get_polygon_color(parking) {
-      console.log("parking", parking);
       if (parking.selected) {
         return this.polygon_color_active;
       }
@@ -241,5 +259,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chart {
+  height: calc(100% - 56px);
 }
 </style>
