@@ -31,6 +31,7 @@
 
 <script>
 //import tableData from "!json-loader!./stations.json";
+import backendData from "!json-loader!./stations-backend.json";
 import Vue from "vue";
 
 import Axios from "axios";
@@ -40,6 +41,7 @@ Vue.use(VueAxios, Axios);
 export default {
   mounted: function() {
     this.download_data();
+    this.station_table = this.convert_backend_data(backendData);
   },
   methods: {
     download_data() {
@@ -52,6 +54,33 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    convert_backend_data(data) {
+      let arr = []
+
+      Object.keys(data).forEach(item => {
+        const element = data[item]
+        let station = {}
+
+        if (element.lat && element.lng) {
+          station.coordinates = {
+            lat: element.lat.value,
+            lng: element.lng.value
+          }
+        }
+
+        if (element.name) {
+          station.name = element.name.value
+        }
+
+        station.type = 'unknown'
+        station.status = 'unknown'
+        station.aqi = 'unknown'
+
+        arr.push(station)
+      })
+
+      return arr
     }
   },
   data: () => ({
