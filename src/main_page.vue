@@ -1,7 +1,7 @@
 <template lang=html>
   <v-app id="inspire">
        <v-navigation-drawer
-      :clipped="$vuetify.breakpoint.lgAndUp"
+      :clipped="true"
       :mini-variant.sync="menu_collapsed"
       fixed app disable-resize-watcher permanent touchless width=250
     >

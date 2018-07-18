@@ -11,7 +11,7 @@
                            <l-map :zoom="map.zoom" style="z-index: 5" :center="map.center">
                               <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
                               <template v-for="parking in parkings">
-                                 <l-polygon :lat-lngs="parking.polygone_coordinates" :color="polygon_color" v-bind:key="parking.name">
+                                 <l-polygon :lat-lngs="parking.polygone_coordinates" :color="get_polygon_color(parking)" v-bind:key="parking.name">
                                     <l-popup :content="generate_text(parking.places, parking.free, parking.name)"></l-popup>
                                  </l-polygon>
                               </template>
@@ -38,8 +38,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_free_chart_data()"></donut-chart>
+                        <v-card color="blue lighten-3" dark>
+                           <v-card-title primary class="title">Total parking load</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <donut-chart :data="this.get_free_chart_data()"></donut-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -47,8 +50,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_used_parkings_stats()"></donut-chart>
+                        <v-card color="green lighten-3" dark>
+                           <v-card-title primary class="title">Parking congestion</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <donut-chart :data="this.get_used_parkings_stats()"></donut-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -56,8 +62,11 @@
                <v-flex d-flex md4>
                   <v-layout row wrap>
                      <v-flex d-flex md12>
-                        <v-card color="green" dark class="card-center">
-                          <donut-chart :data="this.get_random_data()"></donut-chart>
+                        <v-card color="teal lighten-3" dark>
+                           <v-card-title primary class="title">Current parking</v-card-title>
+                           <v-card-text class="pt-0 chart">
+                              <bar-chart :data="this.get_random_data()"></bar-chart>
+                           </v-card-text>
                         </v-card>
                      </v-flex>
                   </v-layout>
@@ -72,14 +81,19 @@
 import Vue from "vue";
 import Axios from "axios";
 import VueAxios from "vue-axios";
+import moment from "moment";
+import 'moment/locale/ru';
 Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LPolygon, LPopup } from "vue2-leaflet";
 
 import DonutChart from "./../common/charts/DonutChart";
+import BarChart from "./../common/charts/BarChart";
 
 import parking_data from "!json-loader!./parking.json";
 import table from "./components/table.vue";
+
+const DATE_FORMAT = 'DD MMMM'
 
 export default {
   components: {
@@ -88,7 +102,8 @@ export default {
     LPolygon,
     LPopup,
     parkingTable: table,
-    DonutChart
+    DonutChart,
+    BarChart
   },
   data: () => ({
     map: {
@@ -99,7 +114,8 @@ export default {
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     },
     parkings: parking_data,
-    polygon_color: "#ff00ff"
+    polygon_color: "#ff00ff",
+    polygon_color_active: "#ffff00"
   }),
   methods: {
     generate_text(all_places, free, name) {
@@ -126,55 +142,90 @@ export default {
         container.selected = false;
       });
       item.selected = true;
-      this.map.center = L.latLng(item.polygone_coordinates[0][0], item.polygone_coordinates[0][1])
-      this.map.zoom = 15;
+      this.map.center = L.latLng(
+        item.polygone_coordinates[0][0],
+        item.polygone_coordinates[0][1]
+      );
+      this.map.zoom = 17;
     },
     show_details(item) {
       this.$refs.parkingTable.show(item);
     },
     get_free_chart_data() {
-      let free = 0
-      let placesTotal = 0
+      let free = 0;
+      let placesTotal = 0;
 
-      this.parkings.forEach((item) => {
-        free = free + item.free
-        placesTotal = placesTotal + item.places
-      })
+      this.parkings.forEach(item => {
+        free = free + item.free;
+        placesTotal = placesTotal + item.places;
+      });
 
       return [
         { title: "Free", value: free, color: "#039BE5" },
-        { title: "Used", value: placesTotal - free, color: "#8D6E63" }
-      ]
+        { title: "Occuped", value: placesTotal - free, color: "#8D6E63" }
+      ];
     },
     get_used_parkings_stats() {
-      let levelFirst = 0
-      let levelSecond = 0
-      let levelThird = 0
+      let levelFirst = 0;
+      let levelSecond = 0;
+      let levelThird = 0;
 
-      this.parkings.forEach((item) => {
-        const freePercent = item.free / item.places
+      this.parkings.forEach(item => {
+        const freePercent = item.free / item.places;
 
         if (freePercent < 0.2) {
-          levelFirst++
+          levelFirst++;
         } else if (freePercent < 0.7) {
-          levelSecond++
+          levelSecond++;
         } else {
-          levelThird++
+          levelThird++;
         }
-      })
+      });
 
       return [
         { title: "<20%", value: levelFirst, color: "#039BE5" },
         { title: "<70%", value: levelSecond, color: "#8D6E63" },
         { title: ">70%", value: levelThird, color: "#D4E157" }
-      ]
+      ];
     },
     get_random_data() {
       return [
-        { title: "First", value: Math.ceil(Math.random() * 100), color: "#039BE5" },
-        { title: "Second", value: Math.ceil(Math.random() * 100), color: "#8D6E63" },
-        { title: "Third", value: Math.ceil(Math.random() * 100), color: "#D4E157" }
-      ]
+        {
+          title: moment().subtract(6, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(5, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(4, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(3, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(2, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().subtract(1, 'days').format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+        {
+          title: moment().format(DATE_FORMAT),
+          value: Math.ceil(Math.random() * 100)
+        },
+      ];
+    },
+    get_polygon_color(parking) {
+      if (parking.selected) {
+        return this.polygon_color_active;
+      }
+
+      return this.polygon_color;
     }
   }
 };
@@ -208,5 +259,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chart {
+  height: calc(100% - 56px);
 }
 </style>
