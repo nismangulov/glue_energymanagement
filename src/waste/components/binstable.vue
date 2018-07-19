@@ -89,9 +89,24 @@ export default {
   box-shadow: none;
 }
 
-table.table tbody td,
-table.table tbody th {
+.elevation-1 tbody td,
+.elevation-1 tbody th {
   height: 25px !important;
+}
+
+.elevation-1 {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.elevation-1 tr {
+  height: 30px;
+}
+
+.elevation-1 tr td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .flex-full-height {
@@ -114,10 +129,6 @@ table.table tbody th {
 <style scoped>
 .row-selected {
   background-color: rgb(155, 204, 255);
-}
-
-table.table thead tr {
-  height: 30px;
 }
 
 .small_title {
