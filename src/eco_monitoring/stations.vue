@@ -62,21 +62,12 @@ export default {
         const element = data[item];
         let station = {};
 
-        if (element.lat && element.lng) {
-          station.coordinates = {
-            lat: element.lat.value,
-            lng: element.lng.value
-          };
-        }
-
-        if (element.name) {
-          station.name = element.name.value;
-        }
-
-        //station.type = "unknown";
-        //station.status = "unknown";
-        //station.aqi = "unknown";
-
+        Object.keys(element).forEach(item => {
+          if (element[item] && element[item].value !== undefined) {
+            station[item] = element[item].value
+          }
+        })
+        
         arr.push(station);
       });
 
