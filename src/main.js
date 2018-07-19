@@ -22,7 +22,7 @@ import metering_gascloud from './metering/gascloud.vue'
 import metering_linergo from './metering/linergo.vue'
 import metering_meters from './metering/meters.vue'
 
-import infras_incidents from './infrastructure/incidents.vue'
+import infras_incidents from './infrastructure/incidents_new.vue'
 import infras_stat from './infrastructure/energy_management.vue'
 import infras_monitoring from './infrastructure/monitoring.vue'
 import infras_managment from './infrastructure/managment.vue'

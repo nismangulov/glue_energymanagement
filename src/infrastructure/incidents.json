@@ -1,0 +1,42 @@
+[
+   {
+      "system": "Waste monitoring",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Parking",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Power infrastructure",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Metering monitoring",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Air and weather",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Ecology",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Safety",
+      "status": "normal",
+      "incidents": 0
+   },
+   {
+      "system": "Transport",
+      "status": "normal",
+      "incidents": 0
+   }
+]
