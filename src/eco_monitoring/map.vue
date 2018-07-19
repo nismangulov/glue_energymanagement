@@ -26,8 +26,6 @@ Vue.use(VueAxios, Axios);
 import { LMap, LTileLayer, LMarker, LCircle } from "vue2-leaflet";
 import ColoredHeatmap from "../common/colored-heatmap";
 
-import table_data from "!json-loader!./stations.json";
-
 export default {
   components: {
     LMap,
@@ -37,16 +35,48 @@ export default {
     LCircle
   },
   mounted() {
-    //this.update();
+    this.download_data();
   },
   timers: {
     update: {
-      autostart: true,
+      autostart: false,
       time: 0
     }
   },
 
   methods: {
+    download_data() {
+      Vue.axios
+        .get("http://192.168.1.45:8080/we/weather_stations")
+        .then(response => {
+          this.station_table = this.convert_backend_data(response.data);
+          this.map.markers = this.station_table;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    convert_backend_data(data) {
+      let arr = [];
+
+      Object.keys(data).forEach(item => {
+        const element = data[item];
+        let station = {};
+
+        Object.keys(element).forEach(item => {
+          if (element[item] && element[item].value !== undefined) {
+            station[item] = element[item].value;
+          }
+        });
+        station.coordinates = { lat: station.lat, lng: station.lng };
+        console.log(station);
+
+        arr.push(station);
+      });
+
+      return arr;
+    },
     update() {
       Vue.axios
         .get("/we/weather_api")
@@ -72,20 +102,14 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      markers: table_data
+      markers: []
     },
     heatmapData: {
-      data: [
-        { lat: 55.83423792, lng: 37.64075481, radius: 10000, color: "#FF0000" },
-        { lat: 55.7552443, lng: 37.61348755, radius: 10000, color: "#FF0000" },
-        { lat: 55.68098578, lng: 37.70412475, radius: 10000, color: "#FF0000" },
-        { lat: 55.86790868, lng: 37.51461059, radius: 10000, color: "#FF0000" },
-        { lat: 55.77455929, lng: 37.48027832, radius: 10000, color: "#00FF00" },
-        { lat: 55.69259798, lng: 37.54756958, radius: 10000, color: "#FF0000" },
-        { lat: 55.61511815, lng: 37.61211426, radius: 10000, color: "#FF0000" },
-        { lat: 55.83398936, lng: 37.73296387, radius: 10000, color: "#FF0000" }
-      ]
-    }
+      min: 1,
+      max: 20,
+      data: []
+    },
+    station_table: []
   })
 };
 </script>
