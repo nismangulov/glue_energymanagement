@@ -26,8 +26,6 @@ Vue.use(VueAxios, Axios);
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import Heatmap from "../common/heatmap";
 
-import table_data from "!json-loader!./stations.json";
-
 export default {
   components: {
     LMap,
@@ -36,16 +34,48 @@ export default {
     Heatmap
   },
   mounted() {
-    //this.update();
+    this.download_data();
   },
   timers: {
     update: {
-      autostart: true,
+      autostart: false,
       time: 0
     }
   },
 
   methods: {
+    download_data() {
+      Vue.axios
+        .get("http://192.168.1.45:8080/we/weather_stations")
+        .then(response => {
+          this.station_table = this.convert_backend_data(response.data);
+          this.map.markers = this.station_table;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    convert_backend_data(data) {
+      let arr = [];
+
+      Object.keys(data).forEach(item => {
+        const element = data[item];
+        let station = {};
+
+        Object.keys(element).forEach(item => {
+          if (element[item] && element[item].value !== undefined) {
+            station[item] = element[item].value;
+          }
+        });
+        station.coordinates = { lat: station.lat, lng: station.lng };
+        console.log(station);
+
+        arr.push(station);
+      });
+
+      return arr;
+    },
     update() {
       Vue.axios
         .get("/we/weather_api")
@@ -71,7 +101,7 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      markers: table_data
+      markers: []
     },
     heatmapOptions: {
       scaleRadius: true,
@@ -88,7 +118,8 @@ export default {
       min: 1,
       max: 20,
       data: []
-    }
+    },
+    station_table: []
   })
 };
 </script>

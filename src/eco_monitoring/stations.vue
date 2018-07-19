@@ -19,6 +19,9 @@
                         <td class="text-center">
                            <div>{{ props.item.status }}</div>
                         </td>
+                        <td class="text-center">
+                           <div>{{ props.item.lat }}, {{ props.item.lng }}</div>
+                        </td>
                      </tr>
                   </template>
                </v-data-table>
@@ -30,8 +33,6 @@
 
 
 <script>
-//import tableData from "!json-loader!./stations.json";
-//import backendData from "!json-loader!./stations-backend.json";
 import Vue from "vue";
 
 import Axios from "axios";
@@ -41,7 +42,6 @@ Vue.use(VueAxios, Axios);
 export default {
   mounted: function() {
     this.download_data();
-    //this.station_table = this.convert_backend_data(backendData);
   },
   methods: {
     download_data() {
@@ -64,10 +64,10 @@ export default {
 
         Object.keys(element).forEach(item => {
           if (element[item] && element[item].value !== undefined) {
-            station[item] = element[item].value
+            station[item] = element[item].value;
           }
-        })
-        
+        });
+
         arr.push(station);
       });
 
@@ -97,6 +97,11 @@ export default {
       {
         text: "Status",
         value: "status",
+        align: "center"
+      },
+      {
+        text: "Coordinates",
+        value: "lat",
         align: "center"
       }
     ]
