@@ -63,7 +63,7 @@
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="teal lighten-3" dark>
-                           <v-card-title primary class="title">Current parking</v-card-title>
+                           <v-card-title primary class="title">Max occupancy per day</v-card-title>
                            <v-card-text class="pt-0 chart">
                               <bar-chart :data="this.get_random_data()"></bar-chart>
                            </v-card-text>
@@ -82,7 +82,7 @@ import Vue from "vue";
 import Axios from "axios";
 import VueAxios from "vue-axios";
 import moment from "moment";
-import 'moment/locale/ru';
+import "moment/locale/ru";
 Vue.use(VueAxios, Axios);
 
 import { LMap, LTileLayer, LPolygon, LPopup } from "vue2-leaflet";
@@ -93,7 +93,7 @@ import BarChart from "./../common/charts/BarChart";
 import parking_data from "!json-loader!./parking.json";
 import table from "./components/table.vue";
 
-const DATE_FORMAT = 'DD MMMM'
+const DATE_FORMAT = "DD MMMM";
 
 export default {
   components: {
@@ -191,33 +191,45 @@ export default {
     get_random_data() {
       return [
         {
-          title: moment().subtract(6, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(6, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
-          title: moment().subtract(5, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(5, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
-          title: moment().subtract(4, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(4, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
-          title: moment().subtract(3, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(3, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
-          title: moment().subtract(2, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(2, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
-          title: moment().subtract(1, 'days').format(DATE_FORMAT),
+          title: moment()
+            .subtract(1, "days")
+            .format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
         },
         {
           title: moment().format(DATE_FORMAT),
           value: Math.ceil(Math.random() * 100)
-        },
+        }
       ];
     },
     get_polygon_color(parking) {

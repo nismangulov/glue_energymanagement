@@ -129,11 +129,11 @@ export default {
         icon: "fa-car",
         alticon: "fa-car",
         children: [
-          {
+          /* {
             icon: "fa-chart-line",
             path: "/parking/stat",
             text: "Statistic"
-          },
+          }, */
           {
             icon: "fa-map",
             path: "/parking/map",
@@ -226,11 +226,11 @@ export default {
             path: "/infrastructure/gateways",
             text: "Gateways"
           },
-          {
+          /*           {
             icon: "fa-chart-line",
             path: "/infrastructure/managment",
             text: "Management"
-          },
+          }, */
           {
             icon: "fa-exclamation-triangle",
             path: "/infrastructure/incidents",

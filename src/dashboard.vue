@@ -243,9 +243,9 @@ export default {
     waste: {
       color: "nokia_green",
       data: [
-        { title: "<20%", value: 20, color: "#039BE5" },
-        { title: "<80%", value: 60, color: "#8D6E63" },
-        { title: ">80%", value: 20, color: "#D4E157" }
+        { title: "<20%", value: 4, color: "#039BE5" },
+        { title: "<80%", value: 5, color: "#8D6E63" },
+        { title: ">80%", value: 1, color: "#D4E157" }
       ]
     },
     parking: {
