@@ -29,7 +29,7 @@
                   <v-layout row wrap>
                      <v-flex d-flex md12>
                         <v-card color="cyan lighten-2" dark>
-                           <v-card-title primary class="title">Daily filling level
+                           <v-card-title primary class="title">Waste collection efficiency
                            </v-card-title>
                            <v-card-text class="pt-0 chart">
                               <bar-chart :data="daily_filling_levels_chart.data"></bar-chart>
@@ -228,15 +228,10 @@ export default {
       ];
     },
     calc_daily_filling_levels() {
-      return [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 6 },
-        { title: "8 июля", value: 8 },
-        { title: "9 июля", value: 6 },
-        { title: "10 июля", value: 12 },
-        { title: "11 июля", value: 9 }
-      ];
+      const start=new Date()-7*86400000;
+      return [10,27,63,89,69,12,80].map(function(x,i) {
+	     return {title:new Date(start+i*86400000).toLocaleDateString(),value:x};
+	   });
     },
     get_marker_icon(selected) {
       const url = selected
