@@ -5,7 +5,7 @@
             <v-card>
                <l-map :zoom="map.zoom" :center="map.center">
                   <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
-                  <heatmap :data="heatmapData" :options="heatmapOptions"></heatmap>
+                  <colored-heatmap :data="heatmapData"></colored-heatmap>
                   <template v-for="marker in map.markers">
                      <l-marker :lat-lng="marker.coordinates" @click="$router.push({path: '/eco_monitoring/history'})" v-bind:key="marker.name"></l-marker>
                   </template>
@@ -23,8 +23,8 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
-import Heatmap from "../common/heatmap";
+import { LMap, LTileLayer, LMarker, LCircle } from "vue2-leaflet";
+import ColoredHeatmap from "../common/colored-heatmap";
 
 import table_data from "!json-loader!./stations.json";
 
@@ -33,7 +33,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    Heatmap
+    ColoredHeatmap,
+    LCircle
   },
   mounted() {
     //this.update();
@@ -73,21 +74,17 @@ export default {
         '&copy; <a  href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: table_data
     },
-    heatmapOptions: {
-      scaleRadius: true,
-      useLocalExtrema: true,
-      latField: "lat",
-      lngField: "lng",
-      valueField: "count",
-      radius: 0.2,
-      maxOpacity: 0.3,
-      minOpacity: 0,
-      blur: 1
-    },
     heatmapData: {
-      min: 1,
-      max: 20,
-      data: []
+      data: [
+        { lat: 55.83423792, lng: 37.64075481, radius: 10000, color: "#FF0000" },
+        { lat: 55.7552443, lng: 37.61348755, radius: 10000, color: "#FF0000" },
+        { lat: 55.68098578, lng: 37.70412475, radius: 10000, color: "#FF0000" },
+        { lat: 55.86790868, lng: 37.51461059, radius: 10000, color: "#FF0000" },
+        { lat: 55.77455929, lng: 37.48027832, radius: 10000, color: "#00FF00" },
+        { lat: 55.69259798, lng: 37.54756958, radius: 10000, color: "#FF0000" },
+        { lat: 55.61511815, lng: 37.61211426, radius: 10000, color: "#FF0000" },
+        { lat: 55.83398936, lng: 37.73296387, radius: 10000, color: "#FF0000" }
+      ]
     }
   })
 };
