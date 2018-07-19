@@ -11,13 +11,13 @@
                            <div>{{ props.item.name }}</div>
                         </td>
                         <td class="text-center">
-                           <div>test</div>
+                           <div>{{ props.item.aqi }}</div>
                         </td>
                         <td class="text-center">
-                           <div>test</div>
+                           <div>{{ props.item.type }}</div>
                         </td>
                         <td class="text-center">
-                           <div>test</div>
+                           <div>{{ props.item.status }}</div>
                         </td>
                      </tr>
                   </template>
@@ -31,7 +31,7 @@
 
 <script>
 //import tableData from "!json-loader!./stations.json";
-import backendData from "!json-loader!./stations-backend.json";
+//import backendData from "!json-loader!./stations-backend.json";
 import Vue from "vue";
 
 import Axios from "axios";
@@ -41,14 +41,14 @@ Vue.use(VueAxios, Axios);
 export default {
   mounted: function() {
     this.download_data();
-    this.station_table = this.convert_backend_data(backendData);
+    //this.station_table = this.convert_backend_data(backendData);
   },
   methods: {
     download_data() {
       Vue.axios
         .get("http://192.168.1.45:8080/we/weather_stations")
         .then(response => {
-          this.station_table = response.data;
+          this.station_table = this.convert_backend_data(response.data);
           console.log(response.data);
         })
         .catch(error => {
@@ -73,9 +73,9 @@ export default {
           station.name = element.name.value;
         }
 
-        station.type = "unknown";
-        station.status = "unknown";
-        station.aqi = "unknown";
+        //station.type = "unknown";
+        //station.status = "unknown";
+        //station.aqi = "unknown";
 
         arr.push(station);
       });
@@ -95,17 +95,17 @@ export default {
       },
       {
         text: "AQI",
-        //value: "aqi",
+        value: "aqi",
         align: "center"
       },
       {
         text: "Type",
-        //value: "type",
+        value: "type",
         align: "center"
       },
       {
         text: "Status",
-        //value: "status",
+        value: "status",
         align: "center"
       }
     ]
