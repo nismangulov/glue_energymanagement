@@ -160,7 +160,7 @@ export default {
           {
             icon: "fa-external-link-square-alt",
             path: "/lighting/unilight",
-            text: "Unilight"
+            text: "Partner #1"
           }
         ]
       },
