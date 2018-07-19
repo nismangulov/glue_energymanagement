@@ -277,6 +277,10 @@ export default {
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
+.table-block > * {
+  max-width: 100%;
+}
+
 .chart {
   height: calc(100% - 56px);
 }
