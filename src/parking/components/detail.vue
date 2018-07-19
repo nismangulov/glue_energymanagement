@@ -90,7 +90,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .chart {
   height: calc(100% - 56px);
   min-height: 320px;

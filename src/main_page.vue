@@ -60,7 +60,7 @@
       </v-list>
     </v-navigation-drawer>
 
-   <v-toolbar color="primary" dark app fixed clipped-left>
+   <v-toolbar color="primary" dark app fixed clipped-left class="toolbar">
       <v-btn icon @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
       <v-menu>
          <v-toolbar-title  slot="activator">
@@ -282,3 +282,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.toolbar {
+  z-index: 10;
+}
+</style>
