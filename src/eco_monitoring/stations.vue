@@ -8,7 +8,7 @@
 
                      <tr @click="$router.push({path: '/eco_monitoring/history'})">
                         <td>
-                           <div>{{ props.item.name.value }}</div>
+                           <div>{{ props.item.name }}</div>
                         </td>
                         <td class="text-center">
                            <div>test</div>
@@ -56,31 +56,31 @@ export default {
         });
     },
     convert_backend_data(data) {
-      let arr = []
+      let arr = [];
 
       Object.keys(data).forEach(item => {
-        const element = data[item]
-        let station = {}
+        const element = data[item];
+        let station = {};
 
         if (element.lat && element.lng) {
           station.coordinates = {
             lat: element.lat.value,
             lng: element.lng.value
-          }
+          };
         }
 
         if (element.name) {
-          station.name = element.name.value
+          station.name = element.name.value;
         }
 
-        station.type = 'unknown'
-        station.status = 'unknown'
-        station.aqi = 'unknown'
+        station.type = "unknown";
+        station.status = "unknown";
+        station.aqi = "unknown";
 
-        arr.push(station)
-      })
+        arr.push(station);
+      });
 
-      return arr
+      return arr;
     }
   },
   data: () => ({
@@ -90,7 +90,7 @@ export default {
     headers: [
       {
         text: "Name",
-        value: "name.value",
+        value: "name",
         align: "left"
       },
       {
