@@ -26,7 +26,6 @@ export default {
   props: props,
   mounted() {
     this.parentContainer = findRealParent(this.$parent);
-
     this.data.data.forEach((element, index) => {
       this.removeGradient(index)
       this.addGradient(element, index)
@@ -35,6 +34,11 @@ export default {
   beforeUpdate() {
     this.data.data.forEach((element, index) => {
       this.removeGradient(index)
+    });
+  },
+  updated() {
+    this.data.data.forEach((element, index) => {
+      this.addGradient(element, index)
     });
   },
   methods: {
