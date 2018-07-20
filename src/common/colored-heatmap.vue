@@ -66,10 +66,13 @@ export default {
     removeGradient(index) {
       var map = this.parentContainer.mapObject
       var svg = map.getPanes().overlayPane.firstChild;
-      var gradient = svg.querySelector('#gradient-' + index)
 
-      if (gradient) {
-        gradient.remove()
+      if (svg) {
+        var gradient = svg.querySelector('#gradient-' + index)
+
+        if (gradient) {
+          gradient.remove()
+        }
       }
     }
   }
