@@ -151,12 +151,12 @@ export default {
             icon: "fa-sliders-h",
             path: "/lighting/main",
             text: "Main"
-          }, */
+          },
           {
             icon: "fa-chart-line",
             path: "/lighting/energy_management",
             text: "Management"
-          },
+          },*/
           {
             icon: "fa-external-link-square-alt",
             path: "/lighting/unilight",
