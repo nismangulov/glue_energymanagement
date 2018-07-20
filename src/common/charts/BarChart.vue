@@ -8,7 +8,7 @@ import * as d3 from 'd3'
 
 export default BaseChart.extend({
   name: 'bar-chart',
-  props: ['data', 'hideAxis', 'fillParent'],
+  props: ['data', 'hideAxis', 'fillParent', 'isDashboard', 'maxValue', 'barColor'],
   data: () => ({
     className: 'bar-chart'
   }),
@@ -40,6 +40,9 @@ export default BaseChart.extend({
       if (this.fillParent) {
         width = parent.clientWidth
         height = parent.clientHeight
+      } else if (this.isDashboard) {
+        width = parent.clientWidth
+        height = parent.clientHeight / 4
       } else {
         let baseSize;
 
@@ -69,7 +72,7 @@ export default BaseChart.extend({
         .domain(this.data.map((d) => d.title));
 
       var yScale = d3.scaleLinear()
-        .domain([0, d3.max(this.data, (d) => d.value)])
+        .domain([0, this.maxValue ? this.maxValue : d3.max(this.data, (d) => d.value)])
         .range([height - padding, padding]);
 
       if (ticksHidden) {
@@ -100,7 +103,7 @@ export default BaseChart.extend({
         .attr("y", (d) => yScale(d.value))
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - padding - yScale(d.value))
-        .attr("fill", "steelblue");
+        .attr("fill", this.barColor ? this.barColor : 'steelblue');
     }
   },
   watch: {
