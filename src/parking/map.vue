@@ -65,7 +65,7 @@
                         <v-card color="teal lighten-3" dark>
                            <v-card-title primary class="title">Max occupancy per day</v-card-title>
                            <v-card-text class="pt-0 chart">
-                              <bar-chart :data="this.get_random_data()"></bar-chart>
+                              <bar-chart :data="this.get_random_data()" :fillParent="true"></bar-chart>
                            </v-card-text>
                         </v-card>
                      </v-flex>
