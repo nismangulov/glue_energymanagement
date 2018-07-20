@@ -50,9 +50,9 @@ export default {
         .get("http://192.168.1.45:8080/we/weather_stations")
         .then(response => {
           this.stations = this.convert_backend_data(response.data);
-          //this.heatmapData.data = this.stations;
+          this.heatmapData.data = this.stations;
           //console.log(response.data, this.stations);
-          console.log(this.heatmapData);
+          console.log(this.heatmapData.data);
           console.log(this.stations);
         })
         .catch(error => {
@@ -66,7 +66,6 @@ export default {
         const element = data[item];
         let station = {};
 
-        //console.log(element);
         Object.keys(element).forEach(item => {
           if (element[item] && element[item].value !== undefined) {
             station[item] = element[item].value;
@@ -87,7 +86,7 @@ export default {
         }
 
         arr.push(station);
-        Vue.set(this.heatmapData.data, this.heatmapData.data.length, station);
+        //Vue.set(this.heatmapData.data, this.heatmapData.data.length, station);
       });
 
       return arr;
