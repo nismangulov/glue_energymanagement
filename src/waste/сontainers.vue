@@ -32,7 +32,7 @@
                            <v-card-title primary class="title">Waste collection efficiency
                            </v-card-title>
                            <v-card-text class="pt-0 chart">
-                              <bar-chart :data="daily_filling_levels_chart.data"></bar-chart>
+                              <bar-chart :data="daily_filling_levels_chart.data" :maxValue="100" barColor="#BDBDBD" :fillParent="true"></bar-chart>
                            </v-card-text>
                         </v-card>
                      </v-flex>
@@ -275,9 +275,13 @@ export default {
 .table-block > * {
   max-width: 100%;
 }
-
-.chart {
-  height: calc(100% - 56px);
-}
 </style>
 
+<style scoped>
+.chart {
+  height: calc(100% - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
