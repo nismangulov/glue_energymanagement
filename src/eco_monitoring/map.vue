@@ -38,22 +38,18 @@ export default {
     this.download_data();
   },
   timers: {
-    update: {
-      autostart: false,
-      time: 0
-    }
+    download_data: { time: 5000, autostart: true, repeat: true }
   },
 
   methods: {
     download_data() {
       Vue.axios
-        .get("http://192.168.1.45:8080/we/weather_stations")
+        .get("/we/weather_stations")
         .then(response => {
           this.stations = this.convert_backend_data(response.data);
           this.heatmapData.data = this.stations;
-          //console.log(response.data, this.stations);
-          console.log(this.heatmapData.data);
-          console.log(this.stations);
+          //console.log(this.heatmapData.data);
+          //console.log(this.stations);
         })
         .catch(error => {
           console.log(error);
