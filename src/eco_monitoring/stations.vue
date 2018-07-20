@@ -46,7 +46,7 @@ export default {
   methods: {
     download_data() {
       Vue.axios
-        .get("http://192.168.1.45:8080/we/weather_stations")
+        .get("/we/weather_stations")
         .then(response => {
           this.station_table = this.convert_backend_data(response.data);
           console.log(response.data);
