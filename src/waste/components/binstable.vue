@@ -14,10 +14,10 @@
                   </template>
                   <template slot="items" slot-scope="props">
                      <tr :class="props.item.selected ? 'row-selected text-center' : 'text-center'">
-                        <td @click="center_map(props.item)">{{ props.item.name }}</td>
+                        <td @click="center_map(props.item)" :title="props.item.name">{{ props.item.name }}</td>
                         <td @click="center_map(props.item)">{{ props.item.level }} %</td>
                         <td @click="center_map(props.item)">{{ props.item.status }}</td>
-                        <td @click="center_map(props.item)">{{ props.item.vendor }}</td>
+                        <td @click="center_map(props.item)" :title="props.item.vendor">{{ props.item.vendor }}</td>
 
                         <td class="button-sm">
                            <v-btn icon class="ml-0 mr-2" @click="showbindetails(props.item)">
@@ -92,6 +92,10 @@ export default {
 .elevation-1 tbody td,
 .elevation-1 tbody th {
   height: 25px !important;
+}
+
+.elevation-1 table {
+  table-layout: fixed;
 }
 
 .elevation-1 {
