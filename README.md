@@ -1,6 +1,7 @@
 # Control panel for energy management
 
 Glue: https://github.com/vvzvlad/glue
+
 Glue control panel: https://github.com/vvzvlad/glue_panel
 
 ## Build Setup
