@@ -1,7 +1,8 @@
 # Control panel for smartsity
 
-> Glue: https://github.com/vvzvlad/glue
-> Glue-app: https://github.com/vvzvlad/glue_web_app
+Glue: https://github.com/vvzvlad/glue
+
+Glue-app: https://github.com/vvzvlad/glue_web_app
 
 ## Build Setup
 
