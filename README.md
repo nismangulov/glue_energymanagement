@@ -1,8 +1,7 @@
-# Control panel for smartsity
+# Control panel for energy management
 
 Glue: https://github.com/vvzvlad/glue
-
-Glue-app: https://github.com/vvzvlad/glue_web_app
+Glue control panel: https://github.com/vvzvlad/glue_panel
 
 ## Build Setup
 
