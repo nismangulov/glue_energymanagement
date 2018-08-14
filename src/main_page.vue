@@ -80,63 +80,63 @@
 
 <script>
 export default {
-   data: () => ({
-      menu_collapsed: true,
-      items: [
-         {
-            path: "dashboard",
-            text: "Dashboard",
-            icon: "fa-tachometer-alt"
-         },
-         {
-            path: "power_quality",
-            text: "Power quality index",
-            icon: "fa-weight"
-         },
-         {
-            path: "phase_current_balance",
-            text: "Phase current balance",
-            icon: "fa-balance-scale"
-         },
-         {
-            path: "scheduled_maintenance",
-            text: "Scheduled maintenance",
-            icon: "fa-clock"
-         },
-         {
-            path: "electrical_shields",
-            text: "Electrical shields status",
-            icon: "fa-bolt"
-         },
-         {
-            path: "problems",
-            text: "Problems and failures",
-            icon: "fa-exclamation-triangle"
-         },
-         {
-            path: "energy_consumption",
-            text: "Energy consumption profiles",
-            icon: "fa-lightbulb"
-         },
-      ]
-   }),
-   methods: {
-      get_expanded_status(path) {
-         if (window.location.href.includes(path)) {
-            return true;
-         }
-
-         return false;
+  data: () => ({
+    menu_collapsed: true,
+    items: [
+      {
+        path: "dashboard",
+        text: "Dashboard",
+        icon: "fa-tachometer-alt"
       },
-      toggle_menu() {
-         this.menu_collapsed = !this.menu_collapsed;
+      {
+        path: "power_quality",
+        text: "Power quality index",
+        icon: "fa-weight"
+      },
+      {
+        path: "phase_current_balance",
+        text: "Phase current balance",
+        icon: "fa-balance-scale"
+      },
+      {
+        path: "scheduled_maintenance",
+        text: "Scheduled maintenance",
+        icon: "fa-clock"
+      },
+      {
+        path: "electrical_shields",
+        text: "Electrical shields status",
+        icon: "fa-bolt"
+      },
+      {
+        path: "problems",
+        text: "Problems and failures",
+        icon: "fa-exclamation-triangle"
+      },
+      {
+        path: "energy_consumption",
+        text: "Energy consumption profiles",
+        icon: "fa-lightbulb"
       }
-   }
+    ]
+  }),
+  methods: {
+    get_expanded_status(path) {
+      if (window.location.href.includes(path)) {
+        return true;
+      }
+
+      return false;
+    },
+    toggle_menu() {
+      this.menu_collapsed = !this.menu_collapsed;
+    }
+  }
 };
 </script>
 
 <style>
 .toolbar {
-   z-index: 10;
+  z-index: 10;
 }
 </style>
