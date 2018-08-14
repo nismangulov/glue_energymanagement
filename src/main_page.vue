@@ -64,7 +64,7 @@
          <v-menu>
             <v-toolbar-title  slot="activator">
                <img class="mr-3 mt-2" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
-               Smart City control center
+               Energy management
             </v-toolbar-title>
          </v-menu>
          <v-spacer></v-spacer>
