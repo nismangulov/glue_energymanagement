@@ -12,6 +12,18 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-weight</v-icon>
                      </v-card-title>
+                     <v-card-text>
+                        <div class="pb-3 display-2">
+                           <span>PQI: 1.7</span> <br>
+                        </div>
+                        <div class="headline">
+                           <span>Power factor index: 1.2</span> <br>
+                           <span>Total harmonic distortion index: 1.7</span> <br>
+                           <span>Frequency deviation index: 1.2</span> <br>
+                           <span>Voltage deviation index: 1.1</span> <br>
+                           <span>Phase imbalance index: 1</span> <br>
+                        </div>
+                     </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md4>
@@ -27,13 +39,22 @@
                </v-flex>
                <v-flex d-flex md4>
                   <v-card :color="scheduled_maintenance.color" to="/scheduled_maintenance">
-                     <div class="chart-background">
-                        <bar-chart :data="scheduled_maintenance.chartData" :hideAxis="true" :isDashboard="true"></bar-chart>
-                     </div>
                      <v-card-title primary class="title">Scheduled maintenance
                         <v-spacer></v-spacer>
                         <v-icon>fa-clock</v-icon>
                      </v-card-title>
+                     <v-card-text>
+                        <div class="pb-3 display-1">
+                           <span>Maintenance is not required</span> <br>
+                        </div>
+                        <div class="pb-2 headline">
+                           <span>Next Service:</span> <br>
+                        </div>
+                        <div class="headline">
+                           <span>Compressor (AR-2): in 578 hours</span> <br>
+                           <span>Refrigeration unit (FE-4): in 2879 hours</span> <br>
+                        </div>
+                     </v-card-text>
                   </v-card>
                </v-flex>
             </v-layout>
@@ -88,118 +109,109 @@ Vue.use(VueAxios, Axios);
 import BarChart from "./common/charts/BarChart";
 
 export default {
-   components: {
-      BarChart
-   },
-   data: () => ({
-      power_quality: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-      phase_current_balance: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-      scheduled_maintenance: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-      electrical_shields: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-      problems: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-      energy_consumption: {
-         color: "nokia_green",
-         chartData: [
-         { title: "5 июля", value: 1 },
-         { title: "6 июля", value: 2 },
-         { title: "7 июля", value: 1 },
-         { title: "8 июля", value: 1 },
-         { title: "9 июля", value: 2 },
-         { title: "10 июля", value: 4 },
-         { title: "11 июля", value: 3 }
-         ]
-      },
-   })
+  components: {
+    BarChart
+  },
+  data: () => ({
+    power_quality: {
+      color: "nokia_green",
+      chartData: [
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
+      ]
+    },
+    phase_current_balance: {
+      color: "nokia_green",
+      chartData: [
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
+      ]
+    },
+    scheduled_maintenance: {
+      color: "nokia_green"
+    },
+    electrical_shields: {
+      color: "nokia_green",
+      chartData: [
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
+      ]
+    },
+    problems: {
+      color: "nokia_green",
+      chartData: [
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
+      ]
+    },
+    energy_consumption: {
+      color: "nokia_green",
+      chartData: [
+        { title: "5 июля", value: 1 },
+        { title: "6 июля", value: 2 },
+        { title: "7 июля", value: 1 },
+        { title: "8 июля", value: 1 },
+        { title: "9 июля", value: 2 },
+        { title: "10 июля", value: 4 },
+        { title: "11 июля", value: 3 }
+      ]
+    }
+  })
 };
 </script>
 
 <style>
 .container.fill-height .layout.fix-layout {
-   height: calc(100% + 8px);
+  height: calc(100% + 8px);
 }
 
 .container.fill-height .layout.fix-layout-large {
-   height: calc(100% + 16px);
+  height: calc(100% + 16px);
 }
 
 .move-top {
-   margin-top: -8px;
+  margin-top: -8px;
 }
 
 .chart {
-   height: calc(100% - 56px);
+  height: calc(100% - 56px);
 }
 
 .card {
-   z-index: 2;
-   overflow: hidden;
+  z-index: 2;
+  overflow: hidden;
 }
 
 .chart-background {
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   height: 100%;
-   width: 100%;
-   opacity: 0.3;
-   display: flex;
-   align-items: flex-end;
-   justify-content: center;
-   z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
 }
 </style>
