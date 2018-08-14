@@ -16,7 +16,7 @@
                         <div class="pb-3 display-2">
                            <span>PQI: 1.7</span> <br>
                         </div>
-                        <div class="headline">
+                        <div class="title">
                            <span>Power factor index: 1.2</span> <br>
                            <span>Total harmonic distortion index: 1.7</span> <br>
                            <span>Frequency deviation index: 1.2</span> <br>
@@ -47,10 +47,10 @@
                         <div class="pb-3 display-1">
                            <span>Maintenance is not required</span> <br>
                         </div>
-                        <div class="pb-2 headline">
+                        <div class="pt-4 headline">
                            <span>Next Service:</span> <br>
                         </div>
-                        <div class="headline">
+                        <div class="title">
                            <span>Compressor (AR-2): in 578 hours</span> <br>
                            <span>Refrigeration unit (FE-4): in 2879 hours</span> <br>
                         </div>
@@ -70,6 +70,15 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-bolt</v-icon>
                      </v-card-title>
+                     <v-card-text>
+                        <div class="pb-2 display-1">
+                           <span>Shield #1:</span> <br>
+                        </div>
+                        <div class="headline">
+                           <span>Temperature within normal limits</span> <br>
+                           <span>Current within normal limits</span> <br>
+                        </div>
+                     </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md4>
@@ -81,6 +90,14 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-exclamation-triangle</v-icon>
                      </v-card-title>
+                     <v-card-text>
+                        <div class="pb-2 display-1">
+                           <span>Incorrect value of the device's current compressor (AR-2)</span> <br>
+                        </div>
+                        <div class="headline pt-5">
+                           <span>Days without Incidents: 0</span> <br>
+                        </div>
+                     </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md4>
@@ -153,7 +170,7 @@ export default {
       ]
     },
     problems: {
-      color: "nokia_green",
+      color: "nokia_red",
       chartData: [
         { title: "5 июля", value: 1 },
         { title: "6 июля", value: 2 },
