@@ -3,16 +3,13 @@
       <v-layout row wrap>
          <v-flex d-flex md12>
             <v-card color="green" dark>
-               <v-card-title primary class="title">{{$route.path}}
-               </v-card-title>
-               <v-card-text>
-               </v-card-text>
+               <v-card-title primary class="title">Energy consumption profiles</v-card-title>
+               <v-card-text></v-card-text>
             </v-card>
          </v-flex>
       </v-layout>
    </v-container>
 </template>
-
 
 <script>
 import Vue from "vue";
@@ -21,17 +18,6 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
 export default {
-  data: () => ({})
+   data: () => ({})
 };
 </script>
-
-
-<style>
-.fill-height {
-  height: 100%;
-}
-</style>
-
-
-<style scoped>
-</style>
