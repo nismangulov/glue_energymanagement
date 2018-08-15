@@ -80,6 +80,9 @@ const router = new VueRouter({
    }, {
       path: '/energy_consumption',
       component: energy_consumption
+   }, {
+      path: '*',
+      redirect: '/dashboard'
    }]
 })
 
