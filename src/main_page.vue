@@ -3,7 +3,7 @@
       <v-navigation-drawer
          :clipped="true"
          :mini-variant.sync="menu_collapsed"
-         fixed app disable-resize-watcher permanent touchless width=250
+         fixed app disable-resize-watcher permanent touchless width=250 mini-variant-width=60
       >
          <v-list dense>
             <template v-for="item in items">
@@ -59,7 +59,7 @@
             </template>
          </v-list>
       </v-navigation-drawer>
-      <v-toolbar color="primary" dark app fixed clipped-left class="toolbar">
+      <v-toolbar color="primary" dark app fixed clipped-left class="toolbar" height=48>
          <v-btn icon @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
          <v-menu>
             <v-toolbar-title  slot="activator">
@@ -138,5 +138,17 @@ export default {
 <style>
 .toolbar {
   z-index: 10;
+}
+
+.v-navigation-drawer .v-list__tile {
+  padding: 0 12px;
+}
+
+.v-navigation-drawer .v-list__tile__action {
+  min-width: 36px;
+}
+
+.container {
+  padding: 12px;
 }
 </style>
