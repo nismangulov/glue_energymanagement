@@ -2,7 +2,6 @@
    <div class="bar-outer">
       <div class="bar-inner" :style="get_outer_styles()">
          <div class="bar" :style="get_styles()"></div>
-
       </div>
       <div class="value">{{value}}V</div>
    </div>
@@ -10,8 +9,6 @@
 
 <script>
 import Vue from 'vue'
-import BaseChart from './BaseChart'
-import * as d3 from 'd3'
 
 export default Vue.extend({
    name: 'voltage-chart',
@@ -32,20 +29,18 @@ export default Vue.extend({
       setData: function() {
          const parent = this.$el.parentNode;
          const computedStyle = getComputedStyle(parent);
-
-         this.height = parent.offsetHeight
-
          this.height = parent.clientHeight - (parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)) - 50
-
       },
       get_outer_styles: function() {
          const {height} = this
          return `height: ${height}px;`
       },
       get_styles: function() {
-         const value = Math.min(this.value, 300)
-         const height = this.height * (value / 300)
-         return `height: ${height}px; background-color: ${this.get_color(value)};`
+         const heightValue = Math.min(this.value - 150, 150)
+         const height = this.height * (heightValue / 150)
+
+         const colorValue = Math.min(this.value, 300)
+         return `height: ${height}px; background-color: ${this.get_color(colorValue)};`
       },
       get_color: function(value) {
          if (value <= 207) {
