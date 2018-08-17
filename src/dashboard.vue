@@ -29,9 +29,9 @@
                <v-flex d-flex md4>
                   <v-card class="phase-card" :color="phase_current_balance.color" to="/phase_current_balance">
                      <div class="voltage-background">
-                        <voltage-chart :value="phase_current_balance.lineFirst"></voltage-chart>
-                        <voltage-chart :value="phase_current_balance.lineSecond"></voltage-chart>
-                        <voltage-chart :value="phase_current_balance.lineThird"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l1"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l2"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l3"></voltage-chart>
                      </div>
                      <v-card-title primary class="title">Phase current balance
                         <v-spacer></v-spacer>
@@ -150,9 +150,9 @@ export default {
     },
     phase_current_balance: {
       color: "nokia_green",
-      lineFirst: 252,
-      lineSecond: 202,
-      lineThird: 273
+      line_l1: 240,
+      line_l2: 236,
+      line_l3: 238
     },
     scheduled_maintenance: {
       color: "nokia_green"
@@ -229,7 +229,6 @@ export default {
   left: 0px;
   height: 80%;
   width: 100%;
-  opacity: 0.3;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -237,16 +236,16 @@ export default {
 }
 
 .voltage-background > * {
-   margin-right: 32px;
+  margin-right: 32px;
 }
 
 .voltage-background > *:last-of-type {
-   margin-right: 0px;
+  margin-right: 0px;
 }
 
 @media (max-width: 734px) {
-   .phase-card {
-      min-height: 300px;
-   }
+  .phase-card {
+    min-height: 300px;
+  }
 }
 </style>
