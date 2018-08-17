@@ -27,9 +27,11 @@
                   </v-card>
                </v-flex>
                <v-flex d-flex md4>
-                  <v-card :color="phase_current_balance.color" to="/phase_current_balance">
-                     <div class="chart-background">
-                        <bar-chart :data="phase_current_balance.chartData" :hideAxis="true" :isDashboard="true"></bar-chart>
+                  <v-card class="phase-card" :color="phase_current_balance.color" to="/phase_current_balance">
+                     <div class="voltage-background">
+                        <voltage-chart :value="phase_current_balance.lineFirst"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.lineSecond"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.lineThird"></voltage-chart>
                      </div>
                      <v-card-title primary class="title">Phase current balance
                         <v-spacer></v-spacer>
@@ -124,10 +126,12 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
 import BarChart from "./common/charts/BarChart";
+import VoltageChart from "./common/charts/VoltageChart.vue";
 
 export default {
   components: {
-    BarChart
+    BarChart,
+    VoltageChart
   },
   data: () => ({
     power_quality: {
@@ -144,15 +148,9 @@ export default {
     },
     phase_current_balance: {
       color: "nokia_green",
-      chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 1 },
-        { title: "8 июля", value: 1 },
-        { title: "9 июля", value: 2 },
-        { title: "10 июля", value: 4 },
-        { title: "11 июля", value: 3 }
-      ]
+      lineFirst: 252,
+      lineSecond: 202,
+      lineThird: 273
     },
     scheduled_maintenance: {
       color: "nokia_green"
@@ -230,5 +228,32 @@ export default {
   align-items: flex-end;
   justify-content: center;
   z-index: 1;
+}
+
+.voltage-background {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 80%;
+  width: 100%;
+  opacity: 0.3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+}
+
+.voltage-background > * {
+   margin-right: 32px;
+}
+
+.voltage-background > *:last-of-type {
+   margin-right: 0px;
+}
+
+@media (max-width: 734px) {
+   .phase-card {
+      min-height: 300px;
+   }
 }
 </style>
