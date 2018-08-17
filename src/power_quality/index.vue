@@ -3,7 +3,7 @@
       <v-layout row wrap>
          <v-flex d-flex md12>
             <v-card color="transparent" class="no-shadow">
-               <v-data-table :headers="headers" :items="items" hide-actions>
+               <v-data-table class="power-table" :headers="headers" :items="items" hide-actions>
                   <template slot="items" slot-scope="props">
                      <td class="text-xs-left" :style="get_row_color(props.item.index)">
                         <div>{{ props.item.parameter }}</div>
@@ -114,5 +114,13 @@ export default {
 
    .cell-max {
       border-bottom: none;
+      border-left: 1px solid rgba(0,0,0,.12);
+   }
+</style>
+
+<style>
+   .application .power-table .theme--light.v-table tbody tr,
+   .theme--light .power-table .v-table tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,.12);
    }
 </style>
