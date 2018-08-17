@@ -14,14 +14,14 @@
                      </v-card-title>
                      <v-card-text>
                         <div class="pb-3 display-2">
-                           <span>PQI: 1.7</span> <br>
+                           <span>PQI: 2</span> <br>
                         </div>
                         <div class="title">
                            <span>Power factor index: 1.2</span> <br>
                            <span>Total harmonic distortion index: 1.7</span> <br>
                            <span>Frequency deviation index: 1.2</span> <br>
-                           <span>Voltage deviation index: 1.1</span> <br>
-                           <span>Phase imbalance index: 1</span> <br>
+                           <span>Voltage deviation index: 1</span> <br>
+                           <span>Phase imbalance index: 2</span> <br>
                         </div>
                      </v-card-text>
                   </v-card>
@@ -73,28 +73,22 @@
                         <v-icon>fa-bolt</v-icon>
                      </v-card-title>
                      <v-card-text>
-                        <div class="pb-2 display-1">
-                           <span>Shield #1:</span> <br>
-                        </div>
                         <div class="headline">
-                           <span>Temperature within normal limits</span> <br>
-                           <span>Current within normal limits</span> <br>
+                           <span>Shields temperature:<br> within normal limits</span> <br> <br>
+                           <span>Shields current:<br> within normal limits</span> <br>
                         </div>
                      </v-card-text>
                   </v-card>
                </v-flex>
                <v-flex d-flex md4>
                   <v-card :color="problems.color" to="/problems">
-                     <div class="chart-background">
-                        <bar-chart :data="problems.chartData" :hideAxis="true" :isDashboard="true"></bar-chart>
-                     </div>
                      <v-card-title primary class="title">Problems and failures
                         <v-spacer></v-spacer>
                         <v-icon>fa-exclamation-triangle</v-icon>
                      </v-card-title>
                      <v-card-text>
                         <div class="pb-2 display-1">
-                           <span>Incorrect value of the device's current compressor (AR-2)</span> <br>
+                           <span>Сompressor (AR-2): <br>maximum current limit exceeded</span> <br>
                         </div>
                         <div class="headline pt-5">
                            <span>Days without Incidents: 0</span> <br>
@@ -111,6 +105,14 @@
                         <v-spacer></v-spacer>
                         <v-icon>fa-lightbulb</v-icon>
                      </v-card-title>
+                     <v-card-text>
+                        <div class="pb-2 display-1">
+                           <span>Incorrect value of the device's current compressor (AR-2)</span> <br>
+                        </div>
+                        <div class="headline pt-5">
+                           <span>Days without Incidents: 0</span> <br>
+                        </div>
+                     </v-card-text>
                   </v-card>
                </v-flex>
             </v-layout>
@@ -135,15 +137,15 @@ export default {
   },
   data: () => ({
     power_quality: {
-      color: "nokia_green",
+      color: "nokia_red",
       chartData: [
         { title: "5 июля", value: 1 },
         { title: "6 июля", value: 2 },
         { title: "7 июля", value: 1 },
         { title: "8 июля", value: 1 },
-        { title: "9 июля", value: 2 },
-        { title: "10 июля", value: 4 },
-        { title: "11 июля", value: 3 }
+        { title: "9 июля", value: 1 },
+        { title: "10 июля", value: 1 },
+        { title: "11 июля", value: 2 }
       ]
     },
     phase_current_balance: {
@@ -159,25 +161,16 @@ export default {
       color: "nokia_green",
       chartData: [
         { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
+        { title: "6 июля", value: 1 },
         { title: "7 июля", value: 1 },
         { title: "8 июля", value: 1 },
         { title: "9 июля", value: 2 },
-        { title: "10 июля", value: 4 },
-        { title: "11 июля", value: 3 }
+        { title: "10 июля", value: 3 },
+        { title: "11 июля", value: 4 }
       ]
     },
     problems: {
-      color: "nokia_red",
-      chartData: [
-        { title: "5 июля", value: 1 },
-        { title: "6 июля", value: 2 },
-        { title: "7 июля", value: 1 },
-        { title: "8 июля", value: 1 },
-        { title: "9 июля", value: 2 },
-        { title: "10 июля", value: 4 },
-        { title: "11 июля", value: 3 }
-      ]
+      color: "nokia_yellow"
     },
     energy_consumption: {
       color: "nokia_green",
