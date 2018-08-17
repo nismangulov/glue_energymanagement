@@ -60,16 +60,16 @@
          </v-list>
       </v-navigation-drawer>
       <v-toolbar color="primary" dark app fixed clipped-left class="toolbar" height=48>
-         <v-btn icon @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
+         <v-btn icon class="burger" @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
          <v-menu>
             <v-toolbar-title  slot="activator">
-               <img class="mr-3 mt-2" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
+               <img class="mr-3" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
                Energy management
             </v-toolbar-title>
          </v-menu>
          <v-spacer></v-spacer>
-         <v-toolbar-items class="hidden-sm-and-down">
-            <div class="title mt-4" >Powered by IMPACT</div>
+         <v-toolbar-items class="hidden-sm-and-down powered">
+            <div class="title" >Powered by IMPACT</div>
          </v-toolbar-items>
       </v-toolbar>
       <v-content>
@@ -150,5 +150,20 @@ export default {
 
 .container {
   padding: 12px;
+}
+
+.v-toolbar__title {
+   display: flex;
+   align-items: center;
+}
+
+.burger {
+   margin-top: 0px !important;
+   margin-bottom: 0px !important;
+}
+
+.powered {
+   display: flex;
+   align-items: center;
 }
 </style>
