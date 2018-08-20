@@ -63,8 +63,8 @@
          <v-btn icon class="burger" @click="toggle_menu"><v-icon>fa-bars</v-icon></v-btn>
          <v-menu>
             <v-toolbar-title  slot="activator">
-               <img class="mr-3" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
-               Energy management
+               <img class="mr-3 logo" src="./assets/logo_nokia.svg" height="25px" alt="Nokia Logo">
+               <p>Energy management</p>
             </v-toolbar-title>
          </v-menu>
          <v-spacer></v-spacer>
@@ -157,6 +157,11 @@ export default {
    align-items: center;
 }
 
+.v-toolbar__title p {
+   margin: 0;
+   margin-bottom: 2px;
+}
+
 .burger {
    margin-top: 0px !important;
    margin-bottom: 0px !important;
@@ -165,5 +170,13 @@ export default {
 .powered {
    display: flex;
    align-items: center;
+}
+
+.powered .title {
+   margin-bottom: 3px;
+}
+
+.logo {
+   margin-top: 1px;
 }
 </style>
