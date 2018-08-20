@@ -3,7 +3,7 @@
       <v-layout row wrap>
          <v-flex d-flex md12>
             <v-card color="transparent" class="no-shadow">
-               <v-data-table :headers="headers" :items="items" hide-actions>
+               <v-data-table class="power-table" :headers="headers" :items="items" hide-actions>
                   <template slot="items" slot-scope="props">
                      <td class="text-xs-left" :style="get_row_color(props.item.index)">
                         <div>{{ props.item.parameter }}</div>
@@ -53,47 +53,46 @@ export default {
       ],
       items: [
          {
-            parameter: "Power factor index",
-            value: "1.2",
+        parameter: "Power factor",
+        value: "Cosφ = 1.2",
             index: "1.2"
          },
          {
-            parameter: "Total harmonic distortion index",
+        parameter: "Total harmonic distortion",
             value: "1.7",
             index: "1.7"
          },
          {
-            parameter: "Frequency deviation index",
-            value: "1.2",
+        parameter: "Frequency deviation",
+        value: "50.5 Hz",
             index: "1.2"
          },
          {
-            parameter: "Voltage deviation index",
-            value: "1.1",
-            index: "1.1"
+        parameter: "Voltage deviation",
+        value: "236",
+        index: "1"
          },
          {
-            parameter: "Phase imbalance index",
-            value: "1",
-            index: "1"
-         },
+        parameter: "Phase imbalance",
+        value: "30% (L1-L3)",
+        index: "2"
+      }
       ]
    }),
    methods: {
       get_row_color(value) {
-         console.log('value', value)
          if (value < 1.1) {
-            return "background-color: #DCE9D6;"
+        return "background-color: #DCE9D6;";
          } else if (value < 2) {
-            return "background-color: #FDF1D3;"
+        return "background-color: #FDF1D3;";
          }
 
-         return "background-color: #EDCCCC;"
+      return "background-color: #EDCCCC;";
       },
       get_max_value() {
-         let arr = this.items.map(item => item.index)
+      let arr = this.items.map(item => item.index);
 
-         return Math.max(...arr)
+      return Math.max(...arr);
       }
    }
 };
@@ -114,5 +113,13 @@ export default {
 
    .cell-max {
       border-bottom: none;
+      border-left: 1px solid rgba(0,0,0,.12);
+   }
+</style>
+
+<style>
+   .application .power-table .theme--light.v-table tbody tr,
+   .theme--light .power-table .v-table tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,.12);
    }
 </style>
