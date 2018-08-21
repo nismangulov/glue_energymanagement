@@ -113,30 +113,35 @@ export default Vue.extend({
    line-height: 12px;
    margin: 0;
    transition: bottom 0.1s ease;
+   font-weight: 600;
 }
 
 .value-max {
    position: absolute;
    top: 0px;
    left: 4px;
+   color: #C25248;
 }
 
 .value-min {
    position: absolute;
    bottom: 0px;
    left: 4px;
+   color: #E08F5F;
 }
 
 .value-red {
    position: absolute;
    left: 4px;
    bottom: calc(68.66% - 12px);
+   color: #C25248;
 }
 
 .value-green {
    position: absolute;
    left: 4px;
    bottom: calc(38% - 12px);
+   color: #51985A;
 }
 
 .bar-right {
