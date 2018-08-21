@@ -99,7 +99,7 @@ export default Vue.extend({
 }
 
 .bar {
-   width: 36px;
+   width: 32px;
    transition: height 0.1s ease;
 }
 
