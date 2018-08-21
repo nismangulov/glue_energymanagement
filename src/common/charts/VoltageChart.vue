@@ -114,6 +114,7 @@ export default Vue.extend({
    margin: 0;
    transition: bottom 0.1s ease;
    font-weight: 600;
+   text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .value-max {
