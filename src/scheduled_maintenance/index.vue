@@ -6,13 +6,13 @@
                <v-data-table :headers="headers" :items="items">
                   <template slot="items" slot-scope="props">
                      <td class="text-xs-left">
-                        <div>{{ props.item.parameter }}</div>
+                        <div>{{ props.item.device }}</div>
                      </td>
                      <td class="text-xs-left">
-                        <div>{{ props.item.value }}</div>
+                        <div>{{ props.item.hours_work }}</div>
                      </td>
                      <td class="text-xs-left">
-                        <div>{{ props.item.index }}</div>
+                        <div>{{ props.item.next_maintrance }}</div>
                      </td>
                   </template>
                </v-data-table>
@@ -29,58 +29,54 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, Axios);
 
 export default {
-   data: () => ({
-      headers: [
-         {
-            text: "Parameter",
-            value: "parameter"
-         },
-         {
-            text: "Value",
-            value: "value"
-         },
-         {
-            text: "Index",
-            value: "index"
-         }
-      ],
-      items: [
-         {
-            parameter: "Power factor index",
-            value: "1.2",
-            index: "1.2"
-         },
-         {
-            parameter: "Total harmonic distortion index",
-            value: "1.7",
-            index: "1.7"
-         },
-         {
-            parameter: "Frequency deviation index",
-            value: "1.2",
-            index: "1.2"
-         },
-         {
-            parameter: "Voltage deviation index",
-            value: "1.1",
-            index: "1.1"
-         },
-         {
-            parameter: "Phase imbalance index",
-            value: "1",
-            index: "1"
-         },
-      ]
-   })
+  data: () => ({
+    headers: [
+      {
+        text: "Device",
+        value: "device"
+      },
+      {
+        text: "Work hours",
+        value: "hours_work"
+      },
+      {
+        text: "Next maintrance",
+        value: "next_maintrance"
+      }
+    ],
+    items: [
+      {
+        device: "Compressor",
+        hours_work: "3242",
+        next_maintrance: "12000"
+      },
+      {
+        device: "Air cooler",
+        hours_work: "3294",
+        next_maintrance: "2300"
+      },
+      {
+        device: "Refrigerator",
+        hours_work: "128",
+        next_maintrance: "10012"
+      },
+      {
+        device: "Generator",
+        hours_work: "32100",
+        next_maintrance: "124"
+      }
+    ]
+  })
 };
 </script>
 
 <style scoped>
-   .no-shadow {
-      box-shadow: none;
-   }
+.no-shadow {
+  box-shadow: none;
+}
 
-   .no-shadow > div {
-      box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-   }
+.no-shadow > div {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
 </style>
