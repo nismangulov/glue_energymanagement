@@ -107,10 +107,7 @@
                      </v-card-title>
                      <v-card-text>
                         <div class="pb-2 display-1">
-                           <span>Incorrect value of the device's current compressor (AR-2)</span> <br>
-                        </div>
-                        <div class="headline pt-5">
-                           <span>Days without Incidents: 0</span> <br>
+                           <span>No deviations from the profiles</span> <br>
                         </div>
                      </v-card-text>
                   </v-card>
