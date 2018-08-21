@@ -29,9 +29,9 @@
                <v-flex d-flex md4>
                   <v-card class="phase-card" :color="phase_current_balance.color" to="/phase_current_balance">
                      <div class="voltage-background">
-                        <voltage-chart :value="phase_current_balance.line_l1"></voltage-chart>
-                        <voltage-chart :value="phase_current_balance.line_l2"></voltage-chart>
-                        <voltage-chart :value="phase_current_balance.line_l3"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l1" line="L1"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l2" line="L2"></voltage-chart>
+                        <voltage-chart :value="phase_current_balance.line_l3" line="L3"></voltage-chart>
                      </div>
                      <v-card-title primary class="title">Phase current balance
                         <v-spacer></v-spacer>
@@ -246,6 +246,12 @@ export default {
 @media (max-width: 734px) {
   .phase-card {
     min-height: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .voltage-background > * {
+    margin-right: 8px;
   }
 }
 </style>
