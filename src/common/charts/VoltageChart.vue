@@ -1,9 +1,20 @@
 <template>
-   <div class="bar-outer">
-      <div class="bar-inner" :style="get_outer_styles()">
-         <div class="bar" :style="get_styles()"></div>
+   <div class="bar-wrapper">
+      <div class="bar-outer">
+         <div class="bar-left" :style="get_outer_styles()">
+            <p class="value" :style="get_value_styles()">{{value}}V</p>
+         </div>
+         <div class="bar-center" :style="get_outer_styles()">
+            <div class="bar" :style="get_bar_styles()"></div>
+         </div>
+         <div class="bar-right" :style="get_outer_styles()">
+            <p class="value value-max">300V</p>
+            <p class="value value-red">253V</p>
+            <p class="value value-green">207V</p>
+            <p class="value value-min">150V</p>
+         </div>
       </div>
-      <div class="value">{{value}}V</div>
+      <div class="line">{{line}}</div>
    </div>
 </template>
 
@@ -12,7 +23,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
    name: 'voltage-chart',
-   props: ['value'],
+   props: ['value', 'line'],
    data: () => ({
       height: 0,
       color: 'transparent'
@@ -35,12 +46,24 @@ export default Vue.extend({
          const {height} = this
          return `height: ${height}px;`
       },
-      get_styles: function() {
+      get_bar_styles: function() {
          const heightValue = Math.min(this.value - 150, 150)
          const height = this.height * (heightValue / 150)
 
          const colorValue = Math.min(this.value, 300)
          return `height: ${height}px; background-color: ${this.get_color(colorValue)};`
+      },
+      get_value_styles: function() {
+         const heightValue = Math.min(this.value - 150, 150)
+         let height = this.height * (heightValue / 150) - 12
+
+         if (height < 0) {
+            height = 0
+         } else if (height > this.height) {
+            height = this.height
+         }
+
+         return `bottom: ${height}px; position: absolute;`
       },
       get_color: function(value) {
          if (value <= 207) {
@@ -56,19 +79,18 @@ export default Vue.extend({
 </script>
 
 <style>
-.bar {
-   width: 64px;
-   transition: height 0.1s ease;
+.bar-wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
 .bar-outer {
    display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: flex-end;
+   align-items: flex-end;
 }
 
-.bar-inner {
+.bar-center {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -76,7 +98,53 @@ export default Vue.extend({
    background-color: #E5E5E5;
 }
 
+.bar {
+   width: 36px;
+   transition: height 0.1s ease;
+}
+
+.bar-left {
+   width: 32px;
+   position: relative;
+}
+
 .value {
+   font-size: 12px;
+   line-height: 12px;
+   margin: 0;
+   transition: bottom 0.1s ease;
+}
+
+.value-max {
+   position: absolute;
+   top: 0px;
+   left: 4px;
+}
+
+.value-min {
+   position: absolute;
+   bottom: 0px;
+   left: 4px;
+}
+
+.value-red {
+   position: absolute;
+   left: 4px;
+   bottom: calc(68.66% - 12px);
+}
+
+.value-green {
+   position: absolute;
+   left: 4px;
+   bottom: calc(38% - 12px);
+}
+
+.bar-right {
+   width: 32px;
+   position: relative;
+}
+
+.line {
    font-weight: 500;
    font-size: 32px;
    line-height: 50px;

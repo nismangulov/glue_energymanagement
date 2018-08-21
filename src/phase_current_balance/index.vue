@@ -9,7 +9,7 @@
                         L1
                      </v-card-title>
                      <v-card-text class="card-text">
-                        <voltage-chart :value="lineFirst"></voltage-chart>
+                        <voltage-chart :value="lineFirst" line="L1"></voltage-chart>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -19,7 +19,7 @@
                         L2
                      </v-card-title>
                      <v-card-text class="card-text">
-                        <voltage-chart :value="lineSecond"></voltage-chart>
+                        <voltage-chart :value="lineSecond" line="L2"></voltage-chart>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -29,7 +29,7 @@
                         L3
                      </v-card-title>
                      <v-card-text class="card-text">
-                        <voltage-chart :value="lineThird"></voltage-chart>
+                        <voltage-chart :value="lineThird" line="L3"></voltage-chart>
                      </v-card-text>
                   </v-card>
                </v-flex>
