@@ -29,7 +29,18 @@
                            Max temperature
                            <span>60°C</span>
                         </div>
-
+                        <div class="pb-1 display-1">
+                           Door:
+                           <span>Opened</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Address:
+                           <span>Маршала Тухачевского, 50к2</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Coordinates:
+                           <span>55.786427, 37.461773</span>
+                        </div>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -58,6 +69,18 @@
                         <div class="pb-1 display-1">
                            Max temperature
                            <span>60°C</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Door:
+                           <span>Unauthorized access</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Address:
+                           <span>Лобачевского, 26</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Coordinates:
+                           <span>55.669398, 37.506877</span>
                         </div>
                      </v-card-text>
                   </v-card>
@@ -92,6 +115,18 @@
                            Max temperature
                            <span>60°C</span>
                         </div>
+                        <div class="pb-1 display-1">
+                           Door:
+                           <span>Closed</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Address:
+                           <span>Марьинский Парк, 35</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Coordinates:
+                           <span>55.666869, 37.788791</span>
+                        </div>
                      </v-card-text>
                   </v-card>
                </v-flex>
@@ -120,6 +155,18 @@
                         <div class="pb-1 display-1">
                            Max temperature
                            <span>60°C</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Door:
+                           <span>Closed</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Address:
+                           <span>Николая Химушина, 11к2</span>
+                        </div>
+                        <div class="pb-1 display-1">
+                           Coordinates:
+                           <span>55.822162, 37.760241</span>
                         </div>
                      </v-card-text>
                   </v-card>
